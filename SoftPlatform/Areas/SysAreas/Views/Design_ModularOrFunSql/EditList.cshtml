@@ -1,0 +1,238 @@
+﻿@model MyResponseBase
+
+@{
+    //Layout = "~/Views/Shared/_LayoutDesign.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<TextValue> DBOperTypes = new List<TextValue>
+    { 
+        new TextValue{Text="自定Sql语句",Value="16"},        
+        new TextValue{Text="添加",Value="1"},
+        new TextValue{Text="修改",Value="2"},
+        new TextValue{Text="删除",Value="4"},
+        new TextValue{Text="查询",Value="8"},
+    };
+
+    List<TextValue> SelectSubTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value="=="},
+        new TextValue{Text="不排序+不分页",Value="1"},
+        new TextValue{Text="排序+不分页",Value="2"},
+        new TextValue{Text="分页(包含排序)",Value="6"},
+        new TextValue{Text="计算",Value="8"},
+        new TextValue{Text="不排序+不分页+计算(1+8)",Value="9"},
+        new TextValue{Text="排序+不分页计算(2+8)",Value="10"},
+        new TextValue{Text="分页(包含排序)+计算(6+8)",Value="14"},
+    };
+
+    List<TextValue> DBSelectResultTypes = new List<TextValue>
+    { 
+        new TextValue{Text="单个值",Value="1"},
+        new TextValue{Text="集合",Value="2"},
+        new TextValue{Text="单个对象",Value="4"},
+        new TextValue{Text="DataTable",Value="8"},       
+    };
+}
+
+<div id='editP' class="operArea">
+    <div>
+        @*@Html.Navigation(Model.ModularOrFunCode)*@
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>设计管理</li>
+            <li><a href="/SysAreas/Design_ModularOrFunSql/">TSql语句</a></li>
+            <li>修改</li>
+        </ul>
+    </div>
+    @Html.Partial("Tab", Model)
+    <div class='mastEditArea editArea  '>
+        <form>
+            <div class="container-fluid margin-top-15">
+                <div class='form-horizontal merge targetdom'>
+                    <input type='hidden' id="Item_Design_ModularOrFunID" name='Item.Design_ModularOrFunID' value='@Model.Item.Design_ModularOrFunID' />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid childTableSelect">
+        <div class='operArea' data-searchmethod='' data-url="">
+            <div class="search-bar">
+                <div class="tool-bar search-bar">
+                    <div class="col-sm-4">
+
+                        <a href="javascript:void(0);" data-tableid="#tbList" class="btn btn-success  btn-FwBtnSubmit"
+                            data-posturl="/SysAreas/Design_ModularOrFunSql/Row" data-fun="200">
+                            <span class="glyphicon glyphicon-plus"></span>添加字段</a>
+
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunSqlID"
+                            data-posturl="/SysAreas/Design_ModularOrFunSql/BulidTSql"
+                            data-targeturl="/SysAreas/Design_ModularOrFunSql/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-targeturlparamname="">
+                            生成Sql语句(实体)</button>
+                    </div>
+                    <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>
+            <div class="scrollBar scrollBarAuto" style="width: 100%; overflow: auto;" data-width="2100">
+                <div class="mylist container-fluid container" style="width: 100%;">
+                    <table id='tbList' class=" table table-bordered table-hover table-striped" style="width: 100%">
+
+                        @*                        <div class="scrollBar scrollBarAuto" style="width: 1800px;" data-width="1800">
+                            <div class="mylist container-fluid container" style="width: %;">
+                                <table id='tbList' class="table table-bordered table-hover table-striped " style="width: 100%;">*@
+                        <thead>
+                            <tr>
+                                <th class="lockhead">序号 </th>
+                                <th class="lockhead" style="width: 60px;">操作</th>
+                                <th class="lockhead">配置项</th>
+                            </tr>
+                        </thead>
+                        <tbody data-design_modularorfunsqlid="Design_ModularOrFunSqlID">
+                            @for (var i = 0; i < Model.Items.Count; i++)
+                            {
+                                var item = Model.Items[i];
+                                <tr data-design_modularorfunsqlid="@item.Design_ModularOrFunSqlID" >
+                                    <td>
+                                        @(i + 1)
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='排序序号' id='Sort' name='Sort' value='@item.Sort' />
+                                    </td>
+                                    <td>
+                                        <ul class="form-horizontal merge">
+                                            <li class='col-lg-4'>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">操作<font color="666">*</font></label>
+                                                    <div class="col-md-9">
+                                                        <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" class='btn btn-primary btn-xs   btn-FwRowUIPopup'>
+                                                            <span class='glyphicon glyphicon-trash'></span>删除</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li class='col-lg-4'>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">名称<font color="666">*</font></label>
+                                                    <div class="col-md-9">
+                                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='名称' id='OperName' name='OperName' value='@item.OperName' />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class='col-lg-4'>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">编码<font color="666">*</font></label>
+                                                    <div class="col-md-9">
+                                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='编码' id='OperCode' name='OperCode' value='@item.OperCode' />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class='col-lg-4'>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Sql语句类型</label>
+                                                    <div class="col-md-9">
+                                                        @Html.DropDownList("DBOperType", DBOperTypes, "Value", "Text", item.DBOperType)
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class='col-lg-4'>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">查询子类型</label>
+                                                    <div class="col-md-9">
+                                                        @Html.DropDownList("SelectSubType", SelectSubTypes, "Value", "Text", item.SelectSubType)
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class='col-lg-4'>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">返回类型</label>
+                                                    <div class="col-md-9">
+                                                        @Html.DropDownList("DBSelectResultType", DBSelectResultTypes, "Value", "Text", item.DBSelectResultType)
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class='col-lg-4'>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">默认排序</label>
+                                                    <div class="col-md-9">
+                                                        <input type='text'  class='form-control'  data-DisFormat='string' 
+                                        data-fieldDisFormat='默认排序' id='DefaultSort' name='DefaultSort' value='@item.DefaultSort' />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class='col-lg-12 overflow-auto'>
+                                                <div class="form-group">
+                                                    <label class="col-md-1 control-label">Sql语句</label>
+                                                    <div class="col-md-11">
+                                                        <textarea class='form-control' rows="3" data-datatype='string' data-fieldnamecn='Sql语句' id='DBTSql' name='DBTSql'>@HttpUtility.UrlDecode(item.DBTSql)</textarea>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+
+
+                                            <li class='col-lg-12 overflow-auto'>
+                                                <div class="form-group">
+                                                    <label class="col-md-1 control-label">参数</label>
+                                                    <div class="col-md-11">
+                                                        <textarea class='form-control' rows="3" data-datatype='string' data-fieldnamecn='参数' id='DBSqlParam' name='DBSqlParam'>@HttpUtility.UrlDecode(item.DBSqlParam)</textarea>
+                                                        @*                                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='参数' id='DBSqlParam' name='DBSqlParam' value='@item.DBSqlParam' />*@
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+            </div>
+        </div>
+    </div>
+    <div class='editArea'>
+        <div class="container-fluid">
+            <div class="form-footer1">
+                <div class="text-right col-md-12">
+                    <button class="btn  btn-primary btn-FwBtnSubmit"
+                        data-targetdom=""
+                        data-masteditarea=""
+                        data-childtableselect=""
+                        data-fun="300"
+                        data-tableselect=""
+                        data-pkname="Design_ModularOrFunSqlID"
+                        data-posturl="/SysAreas/Design_ModularOrFunSql/EditListSave"
+                        data-targeturl="/SysAreas/Design_ModularOrFunSql/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                        data-targeturlparamname="">
+                        保存</button>
+                    @*<button class="btn  btn-primary btn-FwBtnSubmit" data-targetdom="" data-masteditarea=""
+                        data-childtableselect="" data-fun="26" data-tableselect=""
+                        data-pkname="Design_ModularFieldID"
+                        data-posturl="/SysAreas/Design_ModularField/CreateTable"
+                        data-targeturl="" data-targeturlparamname="">
+                        生成表</button>
+                    <button class="btn  btn-primary btn-FwBtnSubmit" data-targetdom="" data-masteditarea=""
+                        data-childtableselect="" data-fun="26" data-tableselect=""
+                        data-pkname="Design_ModularFieldID"
+                        data-posturl="/SysAreas/Design_ModularField/BulidEntity"
+                        data-targeturl="" data-targeturlparamname="">
+                        生成实体</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

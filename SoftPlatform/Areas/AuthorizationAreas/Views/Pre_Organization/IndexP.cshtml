@@ -1,0 +1,43 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //var conts = ViewContext.Controller as BaseController;
+    //var modulars = conts.Design_ModularOrFun;
+
+    //var ModularOrFunCode = Model.ModularOrFunCode;
+    //var modulars = ProjectCache.Design_ModularOrFuns.Where(p => p.ModularOrFunCode == ModularOrFunCode).FirstOrDefault();
+    //var SearchMethod = modulars.SearchMethod;
+    //if (string.IsNullOrEmpty(SearchMethod))
+    //{
+    //    SearchMethod = "Framework.FwSearch";
+    //}
+}
+
+@section PageCssSection{
+}
+
+<div id='IndexP'>
+    <div>
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+    <div class="container-fluid mycon">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                @Html.JqTreeN("Pre_OrganizationID")
+            </div>
+        </div>
+        <div class="col-md-9">
+            @Html.Partial("IndexPContext", Model)
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.myTree.js"></script>
+<script>
+    $(function () {
+        $('#Pre_OrganizationID').myTree({
+            subClass: 'sub'
+        })
+    })
+</script>

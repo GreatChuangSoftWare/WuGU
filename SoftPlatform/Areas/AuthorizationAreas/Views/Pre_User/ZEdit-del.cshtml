@@ -1,0 +1,73 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //var Nav = ProjectCache.Design_ModularPages.Where(p => p.PageCode == "UserManger").FirstOrDefault();
+    //ViewBag.Title = Nav.ModularName;
+    //var strNav = "<ul class='breadcrumb myjuxing'>";
+    //strNav += "<li><span class='icon-home'></span><a href='/'>首页</a></li>";
+    //strNav += "<li>" + Nav.ModularName + "</li>";
+    //strNav += "<li>" + Nav.ModularName + "</li>";
+    //strNav += "</ul>";
+
+    //var disabled = "";
+    //if (!string.IsNullOrEmpty(Model.Disabled))
+    //{
+    //    disabled = "disabled='disabled'";
+    //}
+    //ViewBag.Title = disabled == "" ? (Model.Item.Pre_UsersID == null ? "添加" : "编辑") : "查看";
+
+    //var conts = ViewContext.Controller as BaseController;
+
+    //conts.Breadcrumb.Items.Clear();
+    //conts.Breadcrumb.Items = new List<BreadcrumbItem>
+    //{
+    //    new BreadcrumbItem{Name="权限管理",URL=""},
+    //    new BreadcrumbItem{Name="用户管理",URL="Index"},
+    //    //new BreadcrumbItem{Name="ccc",URL="cc"},
+    //};
+
+}
+
+@section PageCssSection{
+    @*<link rel="stylesheet" href="/Content/treeview/jquery.treeview.css" />*@
+}
+
+@section PageJavascriptSection
+{
+    @*<script type='text/javascript' src='@Url.Content("~/Areas/AuthorizationAreas/Scripts/Pre_Users.js")'></script>*@
+}
+
+<div id='editP'>
+    <div>
+        @Html.Navigation(Model.ModularOrFunCode)
+    </div>
+    @*<input type='hidden' id=Item_Pre_UsersID name='Item.Pre_UsersID' value='@Model.Item.Pre_UsersID' />*@
+
+    
+    <div class="container-fluid set-height">
+        <div class="form-horizontal merge">
+            @{
+                var pagefields = ProjectCache.Design_ModularPageFields.Where(p => p.PageCode == "UserEdit").OrderBy(p => p.TableInfoSort).ToList();
+            }
+            <ul class='list-unstyled'>
+                @foreach (var field in pagefields)
+                {
+                    <li class='col-lg-4'>
+                        <div class='form-group'>
+                            <label class='col-lg-3 control-label'>@field.NameCn
+                                @if (field.Required == 1)
+                                { 
+                                    <font color="red">*</font>
+                                }
+                            </label>
+                            <div class='col-lg-9'>
+                                @Html.FormEleHtml(field,Model.Item)
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

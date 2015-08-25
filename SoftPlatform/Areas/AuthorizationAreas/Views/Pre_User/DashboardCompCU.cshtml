@@ -1,0 +1,41 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.FunNameCn;
+
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    //var btns = conts.LoginModulerBtns(modulars.ModularOrFunCode, 3);
+
+    var disabled = "";
+
+    var request = new
+    {
+        //FunNameEn = request.FunNameEn,
+        Item = new SoftProjectAreaEntity
+            {
+                Pre_UserID = Model.Item.Pre_UserID,
+            },
+        area = "CustomerAreas",
+    };
+}
+
+<div id="editP" class="operArea">
+    <div>
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+
+@*  最近1次订单、充值、回访、专家指导*@
+
+    最近1个订单：@*CustomerAreas/C_Order/Index?Item.Pre_UserID=28*@
+     @Html.Action("Last", "C_Order", request)
+    最后1次充值：@*/CustomerAreas/C_Recharge/Index?Item.Pre_UserID=28*@
+     @Html.Action("Last", "C_Recharge", request)
+    最后1次回访：@*CustomerAreas/C_Visit/Index?Item.Pre_UserID=28*@
+     @Html.Action("Last", "C_Visit", request)
+    最后1次专家指导：@*CustomerAreas/C_ExpertGuidance/Index?Item.Pre_UserID=28*@
+     @Html.Action("Last", "C_ExpertGuidance", request)
+
+</div>
+

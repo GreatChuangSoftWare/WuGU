@@ -1,0 +1,129 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.FunNameCn;
+
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.LoginModulerBtns(modulars.ModularOrFunCode, 3);
+
+    var disabled = "";
+    //if (Model.FunNameEn == "Detail")
+    //{
+    //    disabled = "disabled='disabled'";
+    //}
+    //var posturl = "AuthorizationAreas/Pre_Role/Edit";
+    //if (Model.FunNameEn == "Add")
+    //{
+    //    posturl = "AuthorizationAreas/Pre_Role/Add";
+    //}
+
+    //var conts = ViewContext.Controller as BaseController;
+
+    //conts.Breadcrumb.Items.Clear();
+    //conts.Breadcrumb.Items = new List<BreadcrumbItem>
+    //{
+    //    new BreadcrumbItem{Name="权限管理",URL=""},
+    //    new BreadcrumbItem{Name="角色管理",URL="Index"}
+    //};
+
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = new SoftProjectAreaEntity
+        {
+            Pre_RoleID = Model.Item.Pre_RoleID,
+            LoginCategoryID = Model.Item.LoginCategoryID
+        }
+    };
+}
+
+@section PageJavascriptSection
+{
+    <script type='text/javascript' src='@Url.Content("~/Areas/AuthorizationAreas/Scripts/Pre_Roles.js")'></script>
+}
+
+<div id="editP" class="operArea">
+    <div>
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+    <div class="targetdom">
+        <div class='mastEditArea editArea'>
+            <form>
+                <div class="container-fluid">
+                    <div class='form-horizontal merge '>
+                        <ul class="form-horizontal merge">
+                            @Html.FormEleHtml(Model.Item, Model.ModularOrFunCode, 4)
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        @*        <div class="mastEditArea editArea">
+            <form>
+                <div class="container-fluid">
+                    <div class="form-horizontal merge ">
+                        <input title="" data-original-title="" id="Item_Pre_RoleID" name="Item.Pre_RoleID" value="@Model.Item.Pre_RoleID" type="hidden">
+                        <input title="" data-original-title="" id="Item_LoginCategoryID" name="Item.LoginCategoryID" value="@Model.Item.LoginCategoryID" type="hidden">
+                        <ul class="form-horizontal merge">
+                            <li class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">
+                                        角色名称
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <input title="" data-original-title="" class=" form-control " id="Item_RoleName" name="Item.RoleName" value="@Model.Item.RoleName" placeholder="角色名称" data-fieldnamecn="角色名称" data-datatype="string" data-len="0|25" type="text">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">
+                                        排序
+                                    </label>
+                                    <div class="col-lg-9">
+                                        <input title="" data-original-title="" class=" form-control " id="Item_SortID" name="Item.SortID" value="@Model.Item.SortID" placeholder="排序" data-fieldnamecn="排序" data-datatype="int" type="text">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>*@
+        @Html.Action("EditList", "Pre_RolePremSet", request)
+        <div class='editArea'>
+            <div class="container-fluid">
+                <div class="form-footer1">
+                    <div class="text-right col-md-12">
+                        @Html.BtnFooterHtml(Model.Item, Model.ModularOrFunCode, btns)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*        <div class="editArea">
+            <div class="container-fluid">
+                <div class="form-footer1">
+                    <div class="text-right col-md-12">
+                        <button class="btn   btn-primary btn-FwBtnSubmit" data-fun="300" data-masteditarea=""
+                            data-childtableselect="#PermAssignTable|1" data-targetdom=""
+                            data-posturl="/AuthorizationAreas/Pre_Role/AddSave"
+                            data-targeturl="/AuthorizationAreas/Pre_Role/Index?">
+                            保存并返回</button>
+                        <button class="btn   btn-primary btn-FwBtnSubmit" data-fun="300" data-masteditarea=""
+                            data-childtableselect="#PermAssignTable|1" data-targetdom=""
+                            data-posturl="/AuthorizationAreas/Pre_Role/AddSave"
+                            data-targeturl="/AuthorizationAreas/Pre_Role/Add?">
+                            保存并添加</button>
+                        <button class="btn  btn-primary btn-FwBtnSubmit" data-fun="1" data-posturl="/AuthorizationAreas/Pre_Role/Index?" data-targeturlparamname="">返回</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    </div>
+
+</div>
+

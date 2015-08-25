@@ -1,0 +1,63 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var Item = Model.Item;
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = new SoftProjectAreaEntity { ImageFileNameGuid = Item.ImageFileNameGuid }
+    };
+}
+<div>
+    <div>
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>商品详情</li>
+        </ul>
+    </div>
+
+    <div class="container-fluid mycon">
+        <div class="col-md-12">
+            <div>
+                <div class="container-fluid targetdom ">
+                    <div class='operArea' data-targetdom=".targetdom">
+                        <div class="index item">
+                            <div class="img-box">
+                                <img src="@Item.ProductMainImageFilePath" />
+                            </div>
+                            <div class="c-box">
+                                <ul>
+                                    <li>
+                                        <div class="name">产品名称：@Item.ProductName</div>
+                                    </li>
+                                    <li>
+                                        <div>产品编码：@Item.ProductNo</div>
+                                    </li>
+                                    <li>
+                                        <div>规格：@Item.Specifications</div>
+                                    </li>
+                                    <li>
+                                        <div>进货单价：@Item.ProductPrice</div>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-xs btn-primary " 
+                                        href="/OrderAreas/O_Order/AddShoppingCart?Item.P_ProductID=@Item.P_ProductID" >
+                                            加入购物车</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clear-both"></div>
+                            @Html.Action("IndexImage", "P_ProductAttachment", request)
+                            <div class="clear-both"></div>
+                            <div>@Html.Raw(Model.Item.ProductContext)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

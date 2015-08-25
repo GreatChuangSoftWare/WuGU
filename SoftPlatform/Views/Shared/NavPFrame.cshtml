@@ -1,0 +1,16 @@
+﻿@model MyResponseBase
+
+@{
+    var conts = ViewContext.Controller as BaseController;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var modulars = conts.Design_ModularOrFun;
+}
+<div>
+    <div>
+@*        @Html.RenderBreadcrumb()*@
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+    <div style="clear: both; margin-bottom: 10px;"></div>
+    @Html.Partial(Model.ViewContextName, Model)
+</div>

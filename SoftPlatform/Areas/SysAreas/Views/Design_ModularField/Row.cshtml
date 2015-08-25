@@ -1,0 +1,133 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    List<TextValue> FieldTypeIDs = new List<TextValue>
+    { 
+        new TextValue{Text="表和实体",Value="3"},
+        new TextValue{Text="表字段",Value="1"},
+        new TextValue{Text="实体字段",Value="2"},
+    };
+
+    List<TextValue> DataTypes = new List<TextValue>
+    { 
+        new TextValue{Text="整数",Value="56"},
+        new TextValue{Text="小数",Value="106"},
+        new TextValue{Text="字符串",Value="167"},
+        new TextValue{Text="日期",Value="61"},
+    };
+
+    List<TextValue> Requireds = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+
+    List<TextValue> bPrimaryKeyOrFKs = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="主键",Value="1"},
+        new TextValue{Text="外键",Value="2"},
+    };
+
+    List<TextValue> bOperLogs = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+    List<TextValue> bRepeats = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+
+    List<TextValue> Calformulas = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="Sum",Value="Sum"},
+        new TextValue{Text="Avg",Value="Avg"},
+    };
+
+    List<TextValue> Aligns = new List<TextValue>
+    { 
+        new TextValue{Text="中",Value=""},
+        new TextValue{Text="左",Value="align-left"},
+        new TextValue{Text="右",Value="align-right"}
+    };
+}
+
+<tr data-design_modularfieldid="" data-colid="">
+    <td>
+        @(1)
+    </td>
+    <td>
+        <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" 
+            class='btn btn-primary btn-xs   btn-FwRowUIPopup'>
+            <span class='glyphicon glyphicon-trash'></span>删除</a>
+        @*<a href="~/AuthorizationAreas/Pre_Role/Detail?Item.Pre_RoleID=@item.Pre_RoleID" class='btn btn-xs  btn-primary'>删除</a>*@
+    </td>
+    <td>
+        <input type='text' class='form-control' data-datatype='int'
+            data-fieldnamecn='排序序号' id='Sort' name='Sort' value='' />
+    </td>
+    <td>
+        @Html.DropDownList("FieldTypeID", FieldTypeIDs, "Value", "Text", "1")
+    </td>
+    <td>
+        <input type='text' class='form-control' data-datatype='string'
+            data-fieldnamecn='字段名En' id='name' name='name' value='' />
+    </td>
+    <td>
+        <input type='text' class='form-control' data-datatype='string'
+            data-fieldnamecn='字段名Cn' id='NameCn' name='NameCn' value='' />
+    </td>
+    <td>
+        @Html.DropDownList("xtype", DataTypes, "Value", "Text", "")
+    </td>
+    <td>
+        <input type='text' class='form-control' data-datatypelen='int'
+            data-fielddatatypelen='长度' id='length' name='length' value='' />
+    </td>
+    <td>
+        <input type='text' class='form-control' data-disformat='string'
+            data-fielddisformat='显示格式' id='DisFormat' name='DisFormat' value='' />
+    </td>
+    <td>
+        @Html.DropDownList("Required", Requireds, "Value", "Text", "")
+    </td>
+    <td>
+        <input type='text' class='form-control' data-defaultvalue='string'
+            data-fielddefaultvalue='默认值' id='DefaultValue' name='DefaultValue' value='' />
+    </td>
+    <td>
+        @Html.DropDownList("bPrimaryKeyOrFK", bPrimaryKeyOrFKs, "Value", "Text", "")
+    </td>
+    <td>
+        @Html.DropDownList("bRepeat", bRepeats, "Value", "Text", "")
+    </td>
+@*    <td>
+        <input type='text' class='form-control' data-queryen='string'
+            data-fieldqueryen='查询字段En' id='QueryEn' name='QueryEn' value='' />
+    </td>
+    <td>
+        <input type='text' class='form-control' data-querycn='string'
+            data-fieldquerycn='查询字段Cn' id='QueryCn' name='QueryCn' value='' />
+    </td>*@
+    <td>
+        @Html.DropDownList("bOperLog", bOperLogs, "Value", "Text", "")
+    </td>
+
+    <td>字典</td>
+    <td>
+        @Html.DropDownList("Calformula", Calformulas, "Value", "Text", "")
+
+    </td>
+    <td>
+        <input type='text' class='form-control' data-width='int'
+            data-fieldwidth='宽度' id='Width' name='Width' value='' />
+    </td>
+    <td>
+        @Html.DropDownList("Align", Aligns, "Value", "Text", "")
+    </td>
+</tr>

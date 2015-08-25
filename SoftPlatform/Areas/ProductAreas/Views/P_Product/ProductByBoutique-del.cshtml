@@ -1,0 +1,9 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Buy.cshtml";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+
+    var conts = ViewContext.Controller as BaseController;
+}
+@Html.Partial("DataListContext", Model)

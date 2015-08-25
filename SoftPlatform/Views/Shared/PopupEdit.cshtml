@@ -1,0 +1,25 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.LoginModulerBtns(modulars.ModularOrFunCode, 3);
+}
+<div id='editP' class="operArea targetdom">
+    <div class='modal-body clearfix mastEditArea editArea'>
+        <form>
+            <div class="container-fluid">
+                <div class='form-horizontal merge '>
+                    <ul class="form-horizontal merge">
+                        @Html.FormEleHtml(Model.Item,Model.ModularOrFunCode, 6)
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-close" data-dismiss="modal">关闭</button>
+        @Html.BtnFooterHtml(Model.Item,Model.ModularOrFunCode,btns)
+    </div>
+</div>

@@ -1,0 +1,91 @@
+﻿@model MyResponseBase
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登陆页面</title>
+    <link rel="stylesheet" href="/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/Content/css/mycss.css" />
+</head>
+
+<body class="bg-blue">
+
+    <div class="haed">
+        <div class="logo pull-left hidden-xs">
+            <a href="/">
+                @*<img src="../../Content/images/logo.png">*@</a>
+        </div>
+    </div>
+
+    <div class="container ">
+
+        <div class="row">
+            <div class="logo  text-center visible-xs-block">
+                <a href="/">
+                    <img src="../../Content/images/logo.png"></a>
+            </div>
+            <div class="signin ">
+
+                <h1 class="hidden-xs">香磨五谷云服务系统<br />
+                    </h1>
+                <h1 class="text-center visible-xs-block">香磨五谷云服务系统<br />
+                    </h1>
+                <div class="form tool-bar ">
+                    @if (!string.IsNullOrEmpty(Model.Item.ErrorMessage))
+                    {
+                        <div class="alert  alert-danger" role="alert"><span class="glyphicon glyphicon-ban-circle"></span>@Model.Item.ErrorMessage</div>
+                    }
+
+                    <form action="~/BaseInfoAreas/Sys_LoginInfo/Login" method="post">
+                        <div class="form-horizontal margin-top-15">
+                            <ul class="ul-not-style">
+                                @*<li class="col-lg-3">
+                                    <label class="control-label">登录角色：</label>
+                                </li>*@
+                                @*                                <li class="col-lg-9">
+                                    <select name="Item.LoginCategory"  class="form-control">
+                                        <option value="1" @(Model.Item.LoginCategory==1? "selected" : "")>员工</option>
+                                        <option value="2" @(Model.Item.LoginCategory==2? "selected" : "")>客户</option>
+                                    </select>
+                                </li>*@
+                                <li class="col-lg-12">
+                                    <input type="text" placeholder="用户名" name="Item.MobilePhone" class="form-control" data-required="true" value="@Model.Item.MobilePhone" />
+                                </li>
+                                <li class="col-lg-12">
+                                    <input type="password" placeholder="密码" name="Item.PasswordDigest" class="form-control" data-required="true" />
+                                </li>
+                                <li class="col-lg-12">
+                                    <button type="submit" class="btn btn-primary  col-sm-4 col-sm-offset-4">登陆</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                        @* <div class=" margin-top-15">
+                            
+                        </div>
+                        <div class=" margin-top-15">
+                            
+                        </div>
+                        <div class=" margin-top-15 text-center">
+                                <div class="form-group">
+                                        <div class="checkbox ">
+                                        </div>
+                                    </div>
+                           <a href="#" class="btn btn-primary  col-sm-4 col-sm-offset-4">登 陆</a>
+                        </div>*@
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

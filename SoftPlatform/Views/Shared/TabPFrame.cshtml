@@ -1,0 +1,29 @@
+﻿@model MyResponseBase
+
+@{
+    var conts = ViewContext.Controller as BaseController;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var modulars = conts.Design_ModularOrFun;
+
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = Model.BaseAction
+    };
+}
+<div>
+    <div>
+        @*@Html.RenderBreadcrumb()*@
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+
+    @Html.Action(Model.BaseAction.ActionNameEn, Model.BaseAction.ControllName, request)
+    <div class="container-fluid">
+        <ul class="nav nav-tabs mybottabs">
+            @Html.TabHtml(Model.Item, Model.ModularOrFunCode)
+        </ul>
+    </div>
+
+    @Html.Partial(Model.ViewContextName, Model)
+</div>

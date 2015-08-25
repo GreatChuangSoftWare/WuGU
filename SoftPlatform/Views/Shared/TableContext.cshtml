@@ -1,0 +1,51 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+    
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.ToolBarBtns(Model.Item,modulars.ModularOrFunCode, 1);
+
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = Model.BaseAction
+    };
+    var BscrollBar = "";
+}
+
+<div class="container-fluid targetdom childTableSelect" >
+    <div class='operArea' data-searchmethod='@modulars.SearchMethod' data-url="@modulars.ActionPath" data-targetdom=".targetdom">
+        @if (btns != null && btns.Count > 0 || modulars.QueryFormEleTypeName != null)
+        {
+            <div class="search-bar">
+                <div class="tool-bar search-bar ">
+                    <div class="col-sm-@modulars.ToolbarButtonAreaWidth">
+                        @Html.ToolBarHtml(Model.Item, modulars, btns)
+                    </div>
+                    <div class="col-sm-@modulars.ToolbarSearchAreaWidth text-right form-inline"  id="SearchArea">
+                        @Html.QueryHtml( Model.Querys, Model.ModularOrFunCode,Model.Item)
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div style="clear: both; margin-bottom: 10px;"></div>
+        <div class="@BscrollBar" style="width: 100%; " data-width="@modulars.TableWidth">
+            <div class="mylist container" style="width:@modulars.TableWidth;overflow:inherit;">
+                <table id='tbList' class="table table-bordered table-hover table-striped FwtabletoTab" style="width: 100%;">
+                    @Html.TableHtml(Model.Items, Model.ItemTotal, Model.PageQueryBase.RankInfos, Model.ModularOrFunCode)
+                </table>
+            </div>
+        </div>
+        <!-- 分页 -->
+        @if (modulars.bPage == 1)
+        {
+            <div class="page-bar">
+                @Html.Partial("_PagingOption", Model.PageQueryBase)
+
+            </div>
+        }
+    </div>
+</div>

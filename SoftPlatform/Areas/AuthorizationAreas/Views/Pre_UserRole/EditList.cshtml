@@ -1,0 +1,20 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+
+    var disabled = "";
+    if (Model.FunNameEn == "Detail")
+    {
+        disabled = "disabled='disabled'";
+    }
+
+}
+<li class="col-lg-12 overflow-auto">
+    <div class='form-group'>
+        <label class='col-lg-1 control-label'>角色</label>
+        <div class='col-lg-11 margin-left'>
+            @Html.ChecksButtonList("Item.Pre_RoleIDs", Model.Items, "Pre_RoleID", "RoleName", disabled)
+        </div>
+    </div>
+</li>

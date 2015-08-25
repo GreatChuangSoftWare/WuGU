@@ -1,0 +1,415 @@
+功能模块：
+	功能模块、权限、权限=>权限对应按钮
+
+按钮：是否有此Action方法
+权限：具有哪些action
+	权限在哪个页面
+jfbj-150513-016
+localhost:6370/SysAreas/Design_ModularOrFun/Edit?Item.Design_ModularOrFunID=1061
+6631
+ata-width="100%"
+
+经营项目：
+1、五谷
+2、AAA
+4、DDD
+
+产品介绍、产品功效、症状、成分、案例
+
+
+/P_ProductAreas/P_Attachment/Index
+
+localhost:6370/C_CustomerAreas/C_Customer/Edit?Item.C_CustomerID=4
+
+localhost:6370/T_ToolArea/T_ToolCategory/Index
+localhost:6370/T_ToolArea/T_Tool/Index
+
+localhost:6370/AuthorizationAreas/Pre_Organization/Index
+
+localhost:6370/AuthorizationAreas/Pre_Role/Index
+
+localhost:6370/AuthorizationAreas/Pre_User/Index?
+
+localhost:6370/P_ProductAreas/P_ProductCategory/Index?
+
+localhost:6370/P_ProductAreas/P_Product/Index?
+
+QueryFormEleTypes(modulars);// PageFormEleTypes
+
+http://localhost:6370/C_CustomerAreas/C_Visit/Index?
+VisitDate___greaterequal=2015-02-03&
+
+功能权限-哪个页面
+
+
+Querys[0].FieldName=VisitDate___greaterequal&Querys[0].Value=2015-02-03&
+Querys[1].FieldName=VisitDate___lessequal&
+
+C_CustomerID___equal=3&
+Querys[2].FieldName=C_CustomerID___equal&Querys[2].Value=3
+&PageQueryBase.PageIndex=1&PageQueryBase.PageSize=50&
+
+01 00384401010746 17 190831 301101022034239
+
+IndexCompany
+IndexFra
+
+/C_CustomerAreas/C_CustomerOrderDetail/EditList
+
+<a href="javascript:void(0);" data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" class="btn btn-primary btn-xs   btn-FwRowUIPopup">
+ <span class="glyphicon glyphicon-trash"></span>删除</a>
+
+
+
+
+351
+
+/11/12/
+/11/12/
+field.FormEleType
+
+Design_ModularOrFun/Design_ModularOrFunID
+BPrem
+ActionMethodCn
+DataRightDict
+
+ParentToolCategoryID
+ToolCategoryParentID
+
+Pre_RolesPremSet.AddSave
+Pre_RolePremSet.AddSave
+
+MethodReturnTypeID
+MethodReturnTypeID
+
+<a href="javascript:void(0);" data-tableid="#tbList" class="btn btn-success  btn-FwBtnSubmit" data-posturl="/SysAreas/Design_ModularOrFunBtn/Row" data-fun="10">
+                            <span class="glyphicon glyphicon-plus"></span>添加按钮</a>
+
+添加隐藏字段：用于保存工具附件ID
+保存时，如果无，则删除
+	如果有，不处理
+	如果为""，则导入。
+
+ProductName__ProductModel__Specifications
+
+V_Design_ModularPageField_Design
+V_V_Design_ModularPageField_DesignNew
+
+localhost:6370/CA_CaseArea/CA_CaseCategory/Index
+
+localhost:6370/CA_CaseArea/CA_Case/Index
+
+localhost:6370/CA_CaseArea/CA_Case/WaitAuditIndex
+
+localhost:6370/CA_CaseArea/CA_Case/BrowseIndex
+
+/Fra_FranchiseeAreas/Fra_Franchisee/Index
+
+
+
+localhost:6370/ProductAreas/P_Product/Index
+
+http://localhost:6370/P_ProductAreas/P_Product/Index
+http://localhost:6370/P_ProductAreas/P_Product/Add?
+
+CaseAuditStatuID、CaseAuditDate、CaseAuditDescription、CaseAuditPersonID、CaseAuditPerson
+#	Result	Protocol	Host	URL	Body	Caching	Content-Type	Process	Comments	Custom	
+5	 - 	HTTP	localhost:6370	/CA_CaseArea/CA_Case/AuditNext?Item.CA_CaseID=5?	-1			firefox:4352			
+
+
+http://localhost:6370/C_CustomerAreas/C_Visit/?
+Querys[0].FieldName=VisitDate___greaterequal&
+Querys[1].FieldName=VisitDate___lessequal&
+
+VisitPerson___like=%E6%9D%8E%E5%9B%9B&
+Querys[2].FieldName=VisitPerson___like&Querys[2].Value=%E6%9D%8E%E5%9B%9B&
+C_CustomerID___equal=4&
+Querys[3].FieldName=C_CustomerID___equal&Querys[3].Value=4&
+
+PageQueryBase.PageIndex=1&
+PageQueryBase.PageSize=50&
+
+///////////////////////////////////
+http://localhost:6370/C_CustomerAreas/C_Visit/?
+VisitDate___greaterequal=2013-02-05&
+Querys[0].FieldName=VisitDate___greaterequal&Querys[0].Value=2013-02-05&
+VisitDate___lessequal=2013-10-11&
+Querys[1].FieldName=VisitDate___lessequal&Querys[1].Value=2013-10-11&
+Querys[2].FieldName=VisitPerson___like&
+C_CustomerID___equal=4&
+Querys[3].FieldName=C_CustomerID___equal&Querys[3].Value=4&
+PageQueryBase.PageIndex=1&PageQueryBase.PageSize=50&
+
+2749
+
+
+弹窗--选择
+弹窗--添加
+
+
+页面字段类型
+
+
+1:--
+1:thead-data
+2:tbody-data
+3:thead|tbody-data
+
+
+Item.Design_ModularPageFields[{0}].FormEleType
+Item.Design_ModularPageFields[{0}].FieldFunTypeID
+
+
+
+
+<a href="javascript:void(0);" data-btnbehavior="11" data-fun="41" 
+data-btnnamecn="删除" 
+class="btn btn-primary btn-xs   btn-FwRowPopup">
+                                            <span class="glyphicon glyphicon-trash"></span>删除</a>
+
+
+<input title="" data-original-title="" disabled="'disabled'" 
+class="form-control OrderNum" 
+data-calrow="#Item_OrderNum|mul|#Item_Price$#Item_PriceTotal|3|val&amp;#Item_PriceTotalFm|5|html" 
+data-calcol="OrderNum|sum|1,PriceTotal|sum|5" 
+data-tabnextcol="OrderNum" 
+data-datatype="int" 
+data-minval="1" 
+data-required="true" 
+id="Item_OrderNum" 
+name="Item.Sa_SalesOrderDetails[{0}].OrderNum" 
+value="20" data-fieldnamecn="数量" type="text">
+
+
+3530
+targetdom.is('select')
+targetdom.is('input')
+
+#Numer|mul|#Price$.PriceTotal|3
+#Numer|mul|#Price$.PriceTotal|3
+
+.Numer|sum|1
+Numer
+calele
+
+.Numer|sum|1,.PriceTotal|sum|1,
+
+
+@Html.TableRowsHtml(Model)
+
+获取模块对象
+获取行按钮
+获取页面字段
+	过滤显示字段
+	过滤thead_datas字段
+	过滤tbody_datas字段
+	合并为tr-datas字段
+根据Items数据进行显示
+	调用WriteRowTdHtml显示行。
+
+
+C_CustomerOrderDetail/EditList
+Model.Item.C_CustomerOrderID
+
+2098
+Item.Items[0].Price:"20.0000"
+
+<a href="javascript:void(0);" data-btnbehavior="11" data-fun="41" 
+data-btnnamecn="删除" class="btn btn-primary btn-xs   btn-FwRowUIPopup">
+
+删除</a>
+
+<button class="btn btn-xs  btn-primary btn-FwRowUIPopup" data-targetdom="" data-masteditarea="" data-childtableselect="" data-fun="41" data-tableselect="" data-pkname="C_CustomerOrderDetailID" data-btnbehavior="11" data-btnnamecn="删除" data-popupwidth="" data-modularname="客户订单明细管理">删除</button>
+
+
+<a href="javascript:void(0);" class="btn btn-primary btn-xs btn-DeleteUI"><span class="glyphicon glyphicon-trash"></span>删除</a>
+<a href="javascript:void(0);" class="btn btn-primary btn-xs  btn-DeleteUI"><span class="glyphicon glyphicon-trash"></span>删除</a>
+
+
+OrderNum|sum|1,PriceTotal|sum|5
+OrderNum|sum|1,PriceTotal|sum|5
+data-calcol
+
+<a href="javascript:void(0);" data-tableid="#tbList" class="btn btn-primary  btn-BatchDeleteUI"><span class="glyphicon glyphicon-trash"></span>删除产品</a>
+
+
+
+<button class="btn  btn-primary btn-FwBtnSubmit" data-targetdom="" data-masteditarea="" data-childtableselect="" data-fun="121" data-tableselect="" data-pkname="C_CustomerOrderID" data-posturl="/C_CustomerAreas/C_CustomerOrder/EditSave" data-targeturl="/C_CustomerAreas/C_CustomerOrder/Index" data-targeturlparamname="C_CustomerID">保存并返回</button>
+
+FwBtnSubmit
+<button class="btn  btn-primary btn-FwBtnSubmit" data-targetdom="" data-masteditarea="" data-childtableselect="" data-fun="121" data-tableselect="" data-pkname="Design_ModularOrFunBtnID" data-posturl="/SysAreas/Design_ModularOrFunBtn/EditListSave" data-targeturl="/SysAreas/Design_ModularOrFunBtn/EditList" data-targeturlparamname="Design_ModularOrFunID">
+                        保存</button>
+
+
+var title = "";
+    if (fun == 0)//查看，不显示确定按钮
+    {
+        title = "【" + "" + btnnamecn + modularname + "】";
+        btnnamecn = "";
+    }
+    else {
+        title: '【' + btnnamecn + modularname + '确定】';
+    }
+
+    var popupwidth = currobj.data("popupwidth");
+    if (Framework.Tool.isUndefined(popupwidth))
+        popupwidth = 600;
+    var btnnamecn = currobj.data("btnnamecn");
+
+            else
+                popup.find(".close").trigger("click");
+
+
+
+C_CustomerAreas
+
+http://localhost:6370/BC_PartnerAreas/BC_Partner/Edit?Item.C_CustomerID=19
+http://localhost:6370/C_CustomerAreas/C_Customer/Edit?Item.C_CustomerID=4
+
+
+localhost:6370/BC_PartnerAreas/BC_Partner/Index
+
+localhost:6370/C_CustomerAreas/C_Customer/Index
+
+
+弹窗：列表
+
+
+.Numer|sum|1,.PriceTotal|sum|1
+
+.BCPartnerOrderDetailNumer|.BCPartnerOrderDetailPriceTotal|sum|1
+.BCPartnerOrderDetailNumer|sum|1,.BCPartnerOrderDetailPriceTotal|sum|1
+
+#.BCPartnerOrderDetailNumer|mul|#BCPartnerOrderDetailPrice$.BCPartnerOrderDetailPriceTotal|3
+
+
+#.BCPartnerOrderDetailNumer|mul|#BCPartnerOrderDetailPrice$.BCPartnerOrderDetailPriceTotal|3
+
+
+WHERE   (Pu_StorageOrderProductSNDetailID IN (751, 752, 753, 754))
+ORDER BY Pu_StorageOrderProductSNDetailID
+
+
+WHERE   (Pu_StorageOrderProductSNDetailID IN (751))
+ORDER BY Pu_StorageOrderProductSNDetailID
+
+
+BJFC-150427-016
+
+Sa_OutboundOrderProductSNDetail.BySalesOrderDetailIDAutoDistribution
+Sa_OutboundOrderProductSNDetail.BySalesOrderDetailIDAutoDistribution
+
+
+Item.Design_ModularOrFunDomainID=1059
+Item.Design_ModularOrFunDomainID
+
+
+2227
+3239
+
+查询：根据地址进行查询：
+3012
+
+
+http://localhost:6370/CA_CaseArea/CA_CaseCategory/Index/?CaseCategoryName___like=ss&
+Querys[0].FieldName=CaseCategoryName___like&
+Querys[0].Value=ss
+
+&PageQueryBase.PageIndex=1&PageQueryBase.PageSize=50&
+
+
+未审核
+进入审核
+
+CA_CaseArea.CA_Case.Detail
+
+CaseAuditPersonID
+
+CaseAuditPerson
+
+
+CaseAuditStatuID,CaseAuditDate,CaseAuditDescription,CaseAuditPersonID,CaseAuditPerson
+
+
+Ajax查询
+Url查询
+
+提交：
+
+Button
+组织机构管理--添加保存
+
+Pre_Organization.GetAll
+
+
+//复选框处理：显示
+//
+/SysAreas/Design_ModularOrFunDomain/AddSaveMethod
+
+/SysAreas/Design_ModularOrFunDomain/AddSaveMethod
+
+bSelect
+
+UserRoleSelect
+
++		Pre_RoleIDs	null	System.Collections.Generic.List<int>
+
+
++		Pre_RoleIDs	null	System.Collections.Generic.List<int>
+Pre_RoleIDs
+Pre_RoleIDs
+
+Item.
+Pre_RoleIDs[0]:"2"
+
+Design_ModularOrFunID
+1、
+2:主键不为空检查
+
+13:根据主键查询--显示
+14:根据主键查询--编辑
+11:列表查询
+、23、26
+12、
+
+工具类别=null
+
+拼接1个：
+值为0：的记录
+
+CaseCategoryParentID
+ParentCaseCategoryID
+
+框架待完善：删除操作
+
+管理页面的返回：在列表中
+
+BMenu,MenuName,PageType,TableWidth,ToolbarButtonAreaWidth
+
+            var Fields = PageFormEleTypes(Design_ModularOrFun);
+            //p.PageFormEleSort = p.Page01FormEleSort; p.PageFormElePos = p.Page01FormElePos;
+            var TableDispInfos = Fields.Where(p => p.PageFormElePos == null || ((((int)p.PageFormElePos) & 1) == 1)).OrderBy(p => p.PageFormEleSort).ToList();// CacheDomain.Design_ModularPageFields.Where(p => p.ModularOrFunCode == Design_ModularOrFun.ModularOrFunCode).OrderBy(p => p.TableInfoSort).ToList();
+            //thead-data
+            var thead_datas = Fields.Where(p => p.PageFormElePos != null && (((int)p.PageFormElePos) & 2) == 2);
+
+            //tbody-data
+            var tbody_datas = Fields.Where(p => p.PageFormElePos != null && (((int)p.PageFormElePos) & 4) == 4);
+
+            //tr-data
+            var tr_datas = thead_datas.Union(tbody_datas);
+
+待处理订单：
+	查询条件：起始订单日期、结束订单日期、加盟商
+	排序：订单日期，加盟商
+	内容不变
+	操作按钮：处理。
+
+加盟商订单查询：
+	查询条件：起始订单日期、结束订单日期、加盟商
+	排序：订单日期，加盟商
+	内容不变
+	操作按钮：无
+	
+
+
+

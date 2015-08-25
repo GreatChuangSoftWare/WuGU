@@ -1,0 +1,62 @@
+﻿@{
+    var conts = ViewContext.Controller as BaseController;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "修改密码";
+    //var modulars = conts.Design_ModularOrFun;
+}
+<div>
+    <div>
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>修改密码</li>
+        </ul>
+    </div>
+    <div style="clear: both; margin-bottom: 10px;"></div>
+    <div class="targetdom container-fluid">
+        <div class='mastEditArea editArea'>
+            <form>
+                <div class="container-fluid">
+                    <div class='form-horizontal merge '>
+                        <ul class="form-horizontal merge">
+                            <li class="list-unstyled">
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">密码</label>
+                                    <div class="col-md-3">
+                                        <input type='password' data-required="true" class='form-control' data-datatype='string' data-len='2|50' data-fieldnamecn='密码' id='Item_PasswordDigest' name='Item.PasswordDigest' />
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-unstyled">
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">确认密码</label>
+                                    <div class="col-md-3">
+                                        <input type="password" data-required="true" data-compare="2|Equal|Item_PasswordDigest" class='form-control' data-datatype='string' data-len='2|50' data-fieldnamecn='确认密码' id='Item_RePasswordDigest' name='Item.RePasswordDigest' />
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-unstyled">
+                                <div class="form-group">
+                                    <label class="col-md-1 control-label">
+                                        <a class="btn   btn-primary btn-FwBtnSubmit" data-fun="300" data-masteditarea=""
+                                            data-childtableselect="" data-targetdom="" data-posturl="/BaseInfoAreas/Sys_LoginInfo/ChangePassSave"
+                                            data-targeturl="/Home/Index">保存</a>
+                                    </label>
+                                    <div class="col-md-3">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class='editArea'>
+            <div class="container-fluid">
+                <div class="form-footer1">
+                    <div class=" col-md-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

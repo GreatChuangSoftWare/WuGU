@@ -1,0 +1,151 @@
+﻿@model MyResponseBase
+
+@{
+    //ViewBag.Title = "标题";
+    Layout = null;
+
+
+    var disabled = "disabled='disabled'";
+    if (Model.FunNameEn == "Add" || Model.FunNameEn == "Edit")
+    {
+        disabled = "";
+    }
+}
+
+<div class="modal-body clearfix">
+    <form>
+        <input type='hidden' id='Item_De_MemberID' name='Item.De_MemberID' value='@Model.Item.De_MemberID' />
+        <ul class="form-horizontal merge">
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">顾客姓名<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='顾客姓名' id='Item_De_MemberName' data-required="true"  name='Item.De_MemberName' value='@Model.Item.De_MemberName' />
+                    </div>
+                </div>
+            </li>
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">顾客编号<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='顾客编号' id='Item_De_MemberNo' 
+                         data-required="true"  name='Item.De_MemberNo' value='@Model.Item.De_MemberNo' />
+                    </div>
+                </div>
+            </li>
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">身份证号<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='身份证号' id='Item_IdentityCard' 
+                         data-required="true"  name='Item.IdentityCard' value='@Model.Item.IdentityCard' />
+                    </div>
+                </div>
+            </li>
+
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">身份证号<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='登录名' id='Item_LoginName' 
+                         data-required="true"  name='Item.LoginName' value='@Model.Item.LoginName' />
+                    </div>
+                </div>
+            </li>
+
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">出生日期<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='出生日期' id='Item_Birth' 
+                         data-required="true"  name='Item.Birth' value='@Model.Item.Formats.Birth' />
+                    </div>
+                </div>
+            </li>
+
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">教育程度<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='教育程度' id='Item_EducationID' 
+                         data-required="true"  name='Item.EducationID' value='@Model.Item.EducationID' />
+                    </div>
+                </div>
+            </li>
+
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">婚姻情况<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='婚姻情况' id='Item_MaritalID' 
+                         data-required="true"  name='Item.MaritalID' value='@Model.Item.MaritalID' />
+                    </div>
+                </div>
+            </li>
+
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">婚姻情况<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='电话' id='Item_Tel' 
+                         name='Item.Tel' value='@Model.Item.Tel' />
+                    </div>
+                </div>
+            </li>
+
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">性别<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='性别' id='Item_SexID' 
+                         name='Item.SexID' value='@Model.Item.SexID' />
+                    </div>
+                </div>
+            </li>
+
+            <li class='col-lg-6'>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">地址<font color="666">*</font></label>
+                    <div class="col-md-9">
+                        <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|200' data-fieldnamecn='性别' id='Item_Address' 
+                         name='Item.Address' value='@Model.Item.Address' />
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+    @Html.BtnFooterHtml(Model)
+    @*    <button type="button" class="btn btn-info btn-primary">保存并添加</button>
+    <button type="button" class="btn btn-Close">保存并关闭</button>*@
+</div>
+
+
+<div class="container-fluid set-height">
+    <div class="form-horizontal merge">
+        @{
+            var pagefields = ProjectCache.Design_ModularPageFields.Where(p => p.PageCode == "UserEdit").OrderBy(p => p.TableInfoSort).ToList();
+        }
+        <ul class='list-unstyled'>
+            @foreach (var field in pagefields)
+            {
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>@field.NameCn
+                            @if (field.Required == 1)
+                            { 
+                                <font color="red">*</font>
+                            }
+                        </label>
+                        <div class='col-lg-9'>
+                            @Html.FormEleHtml(field, Model.Item)
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,284 @@
+﻿@model MyResponseBase
+
+@{
+    //Layout = "~/Views/Shared/_LayoutDesign.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //数据类型：56：整数   106：小数    167：字符串   61：日期
+
+    //字段类型：1：表字段   2：实体字段   3：表和实体字段
+
+    List<TextValue> FieldTypeIDs = new List<TextValue>
+    { 
+        new TextValue{Text="表和实体",Value="3"},
+        new TextValue{Text="表字段",Value="1"},
+        new TextValue{Text="实体字段",Value="2"},
+    };
+
+    List<TextValue> DataTypes = new List<TextValue>
+    { 
+        new TextValue{Text="整数",Value="56"},
+        new TextValue{Text="小数",Value="106"},
+        new TextValue{Text="字符串",Value="167"},
+        new TextValue{Text="日期",Value="61"},
+    };
+
+    List<TextValue> Requireds = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+
+    List<TextValue> bPrimaryKeyOrFKs = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="主键",Value="1"},
+        new TextValue{Text="外键",Value="2"},
+    };
+
+    List<TextValue> bOperLogs = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+    List<TextValue> bRepeats = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+
+    List<TextValue> Calformulas = new List<TextValue>
+    { 
+        new TextValue{Text="==",Value=""},
+        new TextValue{Text="Sum",Value="Sum"},
+        new TextValue{Text="Avg",Value="Avg"},
+    };
+
+    List<TextValue> Aligns = new List<TextValue>
+    { 
+        new TextValue{Text="中",Value=""},
+        new TextValue{Text="左",Value="align-left"},
+        new TextValue{Text="右",Value="align-right"}
+    };
+}
+
+<div id='editP' class="operArea">
+    <div>
+        @*@Html.Navigation(Model.ModularOrFunCode)*@
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>设计管理</li>
+            <li><a href="/SysAreas/Design_ModularOrFun/">模块字段</a></li>
+            <li>修改</li>
+        </ul>
+    </div>
+    @Html.Partial("Tab", Model)
+    <div class='mastEditArea editArea  '>
+        <form>
+            <div class="container-fluid margin-top-15">
+                <div class='form-horizontal merge targetdom'>
+                    <input type='hidden' id="Item_Design_ModularOrFunID" name='Item.Design_ModularOrFunID' value='@Model.Item.Design_ModularOrFunID' />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid childTableSelect">
+        <div class='operArea' data-searchmethod='' data-url="">
+            <div class="search-bar">
+                <div class="tool-bar search-bar">
+                    <div class="col-sm-2">
+                        <a href='javascript:void(0);' data-tableid="#tbList" class='btn btn-success  btn-FwBtnSubmit'
+                            data-posturl="/SysAreas/Design_ModularField/Row"
+                            data-fun="200">
+                            <span class="glyphicon glyphicon-plus"></span>添加字段</a>
+                    </div>
+                    <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>
+            <div class="scrollBar scrollBarAuto" style="width: 100%; overflow: auto;" data-width="2100">
+                <div class="mylist container-fluid container" style="width: 2100px;">
+                    <table id='tbList' class=" table table-bordered table-hover table-striped" style="width: 100%">
+
+                        @*                        <div class="scrollBar scrollBarAuto" style="width: 1800px;" data-width="1800">
+                            <div class="mylist container-fluid container" style="width: %;">
+                                <table id='tbList' class="table table-bordered table-hover table-striped " style="width: 100%;">*@
+                        <thead>
+                            <tr>
+                                <th class="lockhead">序号 </th>
+                                <th class="lockhead">操作 </th>
+                                <th class="lockhead" style="width: 70px;">排序</th>
+                                <th class="lockhead">字段类型</th>
+                                <th class="lockhead">字段名En</th>
+                                <th class="lockhead">字段名Cn</th>
+                                <th class="lockhead" style="width: 110px;">数据类型</th>
+                                <th class="lockhead" style="width: 80px;">长度</th>
+                                <th class="lockhead" style="width: 80px;">显示格式</th>
+                                <th class="lockhead" style="width: 90px;">必填</th>
+                                <th class="lockhead" style="width: 80px;">默认值</th>
+                                <th class="lockhead" style="width: 110px;">主键或外键</th>
+                                <th class="lockhead" style="width: 90px;">是否可重复</th>
+                                @*                                <th class="lockhead" style="width: 180px;">查询字段En</th>
+                                <th class="lockhead" style="width: 180px;">查询字段Cn</th>*@
+                                <th class="lockhead" style="width: 90px;">是否为日志</th>
+                                <th class="lockhead" style="width: 100px;">字典</th>
+                                <th class="lockhead" style="width: 90px;">计算</th>
+                                <th class="lockhead" style="width: 80px;">宽度</th>
+                                <th class="lockhead" style="width: 80px;">对齐</th>
+                                <th class="lockhead" style="width: 100px;">备注</th>
+                            </tr>
+                        </thead>
+                        <tbody data-collsname="Design_ModularFields" data-design_modularfieldid="Design_ModularFieldID" data-colid="colid">
+                            @for (var i = 0; i < Model.Items.Count; i++)
+                            {
+                                var item = Model.Items[i];
+                                <tr data-design_modularfieldid="@item.Design_ModularFieldID" data-colid="@item.colid">
+                                    <td>
+                                        @(i + 1)
+                                    </td>
+                                    <td>
+                                        <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" class='btn btn-primary btn-xs   btn-FwRowUIPopup'>
+                                            <span class='glyphicon glyphicon-trash'></span>删除</a>
+                                        @*<a href="~/AuthorizationAreas/Pre_Role/Detail?Item.Pre_RoleID=@item.Pre_RoleID" class='btn btn-xs  btn-primary'>删除</a>*@
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='排序序号' id='Sort' name='Sort' value='@item.Sort' />
+                                    </td>
+
+                                    <td>
+                                        @Html.DropDownList("FieldTypeID", FieldTypeIDs, "Value", "Text", item.FieldTypeID)
+                                    </td>
+
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='字段名En' id='name' name='name' value='@item.name' />
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='字段名Cn' id='NameCn' name='NameCn' value='@item.NameCn' />
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("xtype", DataTypes, "Value", "Text", item.xtype)
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-DataTypeLen='int' 
+                                        data-fieldDataTypeLen='长度' id='length' name='length' value='@item.length' />
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-DisFormat='string' 
+                                        data-fieldDisFormat='显示格式' id='DisFormat' name='DisFormat' value='@item.DisFormat' />
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("Required", Requireds, "Value", "Text", item.Required)
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-DefaultValue='string' 
+                                        data-fieldDefaultValue='默认值' id='DefaultValue' name='DefaultValue' value='@item.DefaultValue' />
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("bPrimaryKeyOrFK", bPrimaryKeyOrFKs, "Value", "Text", item.bPrimaryKeyOrFK)
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("bRepeat", bRepeats, "Value", "Text", item.bRepeat)
+                                    </td>
+                                    @*                                    <td>
+                                        <input type='text'  class='form-control'  data-QueryEn='string' 
+                                        data-fieldQueryEn='查询字段En' id='QueryEn' name='QueryEn' value='@item.QueryEn' />
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-QueryCn='string' 
+                                        data-fieldQueryCn='查询字段Cn' id='QueryCn' name='QueryCn' value='@item.QueryCn' />
+                                    </td>*@
+                                    <td>
+                                        @Html.DropDownList("bOperLog", bOperLogs, "Value", "Text", item.bOperLog)
+                                    </td>
+
+                                    <td>
+                                        <input type='text'  class='form-control'  data-DefaultValue='string' 
+                                        data-fieldDefaultValue='字典' id='Dicts' name='Dicts' value='@item.Dicts' />
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("Calformula", Calformulas, "Value", "Text", item.Calformula)
+
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-Width='int' 
+                                        data-fieldWidth='宽度' id='Width' name='Width' value='@item.Width' />
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("Align", Aligns, "Value", "Text", item.Align)
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-Width='int' 
+                                        data-fieldWidth='备注' id='ModularFieldRemark' name='ModularFieldRemark' value='@item.ModularFieldRemark' />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+            </div>
+        </div>
+    </div>
+    <div class='editArea'>
+        <div class="container-fluid">
+            <div class="form-footer1">
+                <div class="text-right col-md-12">
+                    <button class="btn  btn-primary btn-FwBtnSubmit"
+                        data-targetdom=""
+                        data-masteditarea=""
+                        data-childtableselect=""
+                        data-fun="300"
+                        data-tableselect=""
+                        data-pkname="Design_ModularFieldID"
+                        data-posturl="/SysAreas/Design_ModularField/EditListSave"
+                        data-targeturl="/SysAreas/Design_ModularField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                        data-targeturlparamname="">
+                        保存</button>
+
+                    <button class="btn  btn-primary btn-FwBtnSubmit"
+                        data-targetdom=""
+                        data-masteditarea=""
+                        data-childtableselect=""
+                        data-fun="300"
+                        data-tableselect=""
+                        data-pkname="Design_ModularFieldID"
+                        data-posturl="/SysAreas/Design_ModularField/CreateTable"
+                        data-targeturl="/SysAreas/Design_ModularField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                        data-targeturlparamname="">
+                        生成表</button>
+
+                    <button class="btn  btn-primary btn-FwBtnSubmit"
+                        data-targetdom=""
+                        data-masteditarea=""
+                        data-childtableselect=""
+                        data-fun="300"
+                        data-tableselect=""
+                        data-pkname="Design_ModularFieldID"
+                        data-posturl="/SysAreas/Design_ModularField/BulidEntity"
+                        data-targeturl="/SysAreas/Design_ModularField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                        data-targeturlparamname="">
+                        生成表和实体</button>
+
+                    @*                    <button class="btn  btn-primary btn-FwBtnSubmit" data-targetdom="" data-masteditarea=""
+                        data-childtableselect="" data-fun="26" data-tableselect=""
+                        data-pkname="Design_ModularFieldID"
+                        data-posturl="/SysAreas/Design_ModularField/CreateTable"
+                        data-targeturl="" data-targeturlparamname="">
+                        生成表</button>
+                    <button class="btn  btn-primary btn-FwBtnSubmit" data-targetdom="" data-masteditarea=""
+                        data-childtableselect="" data-fun="26" data-tableselect=""
+                        data-pkname="Design_ModularFieldID"
+                        data-posturl="/SysAreas/Design_ModularField/BulidEntity"
+                        data-targeturl="" data-targeturlparamname="">
+                        生成实体</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

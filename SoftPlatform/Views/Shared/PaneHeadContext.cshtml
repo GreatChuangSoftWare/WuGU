@@ -1,0 +1,124 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.LoginModulerBtns(modulars.ModularOrFunCode, 1);
+    var btnsrows = conts.LoginModulerBtns(modulars.ModularOrFunCode, 2);
+        //var btns = ProjectCache.Design_ModularOrFunBtns.Where(p => p.ModularOrFunCode == modulars.ModularOrFunCode && (p.OperPos == 1)).OrderBy(p => p.Sort).ToList();
+
+        //modulars.ToolbarButtonAreaWidth = 1;
+        //modulars.ToolbarSearchAreaWidth = 11;
+}
+
+<div class="container-fluid targetdom" style="margin-top: 5px">
+    <div class='operArea' data-searchmethod='@modulars.SearchMethod' data-url="@modulars.ActionPath" data-targetdom=".targetdom">
+        @if (btns != null && btns.Count > 0 || modulars.QueryFormEleTypeName != null)
+        {
+            <div class="search-bar">
+                <div class="tool-bar search-bar ">
+                    <div class="col-sm-@modulars.ToolbarButtonAreaWidth">
+                        @Html.ToolBarHtml(Model.Item, modulars, btns)
+                    </div>
+                    <div class="col-sm-@modulars.ToolbarSearchAreaWidth text-right form-inline" id="SearchArea">
+                        @Html.QueryHtml(Model.Querys, Model.ModularOrFunCode, Model.Item)
+                    </div>
+                </div>
+            </div>
+        }
+        <div style="clear: both; margin-bottom: 10px;"></div>
+        @if (!string.IsNullOrEmpty(modulars.SortCol))
+        {
+            <div class="sortArea">
+                <div class="dandupaixu">
+                    <div class="col-md-9">
+                        <label class="contorl-label pull-left">排序：</label>
+                        @Html.SortHtml(Model.PageQueryBase.RankInfos)
+                    </div>
+                    <div class="col-md-3 row pull-right">
+                        <div class=" visible-lg-block list-nameber">总<span class="green">@Model.PageQueryBase.TotalItems</span>条，当前 @Model.PageQueryBase.PageIndex/@Model.PageQueryBase.TotalPages 页</div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div style="clear: both; margin-bottom: 10px;"></div>
+        <!-- 分页 -->
+        <div style="clear: both"></div>
+        <div id='editPItems'>
+            @if (Model.Items.Count > 0)
+            {
+                foreach (var Item in Model.Items)
+                {
+                <div class="editPItem">
+                    <div class="main_wrap">
+                        <div class="kPanel_wrap panel panel-primary closePanel" style="width: 100%;">
+                            <div class="panel-heading" style="overflow: hidden">
+                                <div class="kPanel_title_text">
+                                    <ul class="form-horizontal">
+                                        @Html.FormEleHtmlHead(Item, Model.ModularOrFunCode, 4)
+                                    </ul>
+                                </div>
+                                <div class="pull-right  js_close pannle-close ">
+                                    <span class="caret"></span>
+                                </div>
+                            </div>
+
+                            <div class="kPanel_content_wrap panel-body" style="display: none;">
+                                <div class="kPanel_content">
+                                    <div class='mastEditArea editArea'>
+                                        <form>
+                                            <div class="container-fluid">
+                                                <div class='form-horizontal merge '>
+                                                    <ul class="form-horizontal merge table-panel">
+                                                        @Html.FormEleHtmlHeadContext(Item, Model.ModularOrFunCode, 4)
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div style="clear: both"></div>
+                                    <!--无列表页面-->
+                                    @if (Model.ChildAction != null)
+                                    {
+                                        var requestItem = SoftProject.Domain.ProjectCommon.BulidRequest(Item, Model.ChildAction);
+
+                                        var request = new
+                                        {
+                                            FunNameEn = Model.FunNameEn,
+                                            Item = requestItem
+                                        };
+                                        @Html.Action(Model.ChildAction.ActionNameEn, Model.ChildAction.ControllName, request)
+                                    }
+                                </div>
+                                @if (btnsrows.Count > 0)
+                                {
+                                    <div class="panel-footer" style="overflow: hidden; margin-left: 15px; margin-right: 15px;">
+                                        <div class="pull-left">
+                                            @*<button class="btn btn-primary js_addPanel btn-sm"><span class="glyphicon glyphicon-plus-sign"></span>增加一套房产</button>*@
+                                        </div>
+                                        <div class="mybtntool pull-right">
+                                            @Html.BtnFooterHtml(Item, Model.ModularOrFunCode, btnsrows)
+                                        </div>
+                                        <div style="clear: both"></div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                }
+            }
+        </div>
+        <!-- 分页 -->
+        @if (modulars.bPage == 1)
+        {
+            <div class="page-bar">
+                @Html.Partial("_PagingOption", Model.PageQueryBase)
+
+            </div>
+        }
+    </div>
+</div>
+

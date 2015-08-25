@@ -1,0 +1,21 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+    ViewBag.Title = Model.FunNameCn;
+
+    var disabled = "";
+    if (Model.FunNameEn == "Detail")
+    {
+        disabled = "disabled='disabled'";
+    }
+}
+
+<div class="col-md-12 padding20">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><span class="glyphicon glyphicon-tree-conifer"></span>权限</div>
+        <div class="panel-body fixed-height setText-horizontal">
+            @Html.PermAssignTable("Sys_PermSetID", Model.Items, "form-control", disabled)
+        </div>
+    </div>
+</div>

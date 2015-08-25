@@ -1,0 +1,15 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+}
+
+<div class="targetdom container-fluid">
+    @for (var i = 0; i < Model.Items.Count; i++)
+    { 
+        var item=Model.Items[i];
+        @*<a><i class="glyphicon glyphicon-paperclip"></i>附件1</a>*@
+
+        <a href="@item.AttachmentFileNameGuid" >@item.AttachmentFileName</a>
+    }
+</div>

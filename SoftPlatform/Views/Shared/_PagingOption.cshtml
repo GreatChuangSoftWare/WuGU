@@ -1,0 +1,43 @@
+﻿@model Framework.Core.PageQueryBase
+@{
+    Layout = null;
+
+    int[] ints = new int[] {5, 10, 20, 30, 50 };
+}
+
+@*<div class="col-md-3 visible-lg-block list-nameber">总<span class="green">@Model.TotalItems</span>条，当前@((Model.PageIndex - 1) * Model.PageSize + 1) - @(Model.TotalPages != Model.PageIndex ? Model.PageIndex * Model.PageSize : Model.TotalItems)条</div>*@
+<div class="col-md-3 visible-lg-block list-nameber">总<span class="green">@Model.TotalItems</span>条，当前 @Model.PageIndex/@Model.TotalPages 页</div>
+
+<div class="col-md-9 text-right form-inline">
+    @Html.Paging(Model)
+@*    <ul class="pagination">
+        <li><a href="javascript:;" data-val="1" class="pageIndex">1</a></li>
+        <li><a href="javascript:;" data-val="2" class="pageIndex">2</a></li>
+        <li><a href="javascript:;" data-val="3" class="pageIndex">3</a></li>
+    </ul>*@
+
+    @if (Model.ShowGoto)
+    {
+        <div class="input-group hidden-xs">
+            <input type="text" class="form-control gotoNumber" data-type="number" max="@(Model.TotalPages)" min="1"  data-max="@(Model.TotalPages)" data-min="1" placeholder="转到第几页？">
+
+            <span class="input-group-btn">
+                <button class="btn btn-success pageindexgoto" type="button">转到</button>
+            </span>
+        </div>
+    }
+    @if (Model.ShowPageSize)
+    {
+        <div class="input-group hidden-xs page-select">
+            <select class="form-control" id='PageSize' name="PageSize" style="display: table-cell">
+                <option @(Model.PageSize == 5 ? "selected" : "")>5</option>
+                <option @(Model.PageSize == 10 ? "selected" : "")>10</option>
+                <option @(Model.PageSize == 20 ? "selected" : "")>20</option>
+                <option @(Model.PageSize == 30 ? "selected" : "")>30</option>
+                <option @(Model.PageSize == 50 ? "selected" : "")>50</option>
+            </select>
+        </div>
+    }
+</div>
+
+

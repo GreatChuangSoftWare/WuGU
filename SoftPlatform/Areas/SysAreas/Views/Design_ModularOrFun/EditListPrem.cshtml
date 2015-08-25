@@ -1,0 +1,142 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<TextValue> BMenus = new List<TextValue>
+    { 
+        new TextValue{Text="==菜单显示==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+
+    List<TextValue> LoginCategoryIDs = new List<TextValue>
+    { 
+        new TextValue{Text="用户和代理商",Value="3"},
+        new TextValue{Text="用户",Value="1"},
+        new TextValue{Text="代理商",Value="2"},
+    };
+
+}
+
+<div id='editP' class="operArea">
+    <div>
+        @*@Html.Navigation(Model.ModularOrFunCode)*@
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>设计管理</li>
+            <li>子功能配置</li>
+        </ul>
+    </div>
+    @Html.Partial("Tab", Model)
+
+    <div class='mastEditArea editArea  '>
+        <form>
+            <div class="container-fluid margin-top-15">
+                <div class='form-horizontal merge targetdom'>
+                    <input type='hidden' id='Item_Design_ModularOrFunID' name='Item.Design_ModularOrFunID' value='@Model.Item.Design_ModularOrFunID' />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container-fluid childTableSelect">
+        <div class='operArea' data-searchmethod='' data-url="">
+            <div class="search-bar">
+                <div class="tool-bar search-bar">
+                    <div class="col-sm-8">
+                        <a href="javascript:void(0);" data-tableid="#tbList" class="btn btn-success  btn-FwBtnSubmit"
+                            data-posturl="/SysAreas/Design_ModularOrFun/RowPrem" data-fun="200">
+                            <span class="glyphicon glyphicon-plus"></span>添加配置</a>
+                    </div>
+                    <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>
+            <div class="scrollBar scrollBarAuto" style="width: 100%; overflow: auto;" data-width="2000">
+                <div class="mylist container-fluid container" style="width: 100%;">
+                    <table id='tbList' class=" table table-bordered table-hover table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th class="lockhead" style="width: 80px;">序号 </th>
+                                <th class="lockhead" style="width: 200px;">操作 </th>
+                                <th class="lockhead" style="width: 120px;">排序</th>
+                                <th class="lockhead" style="width: 200px;">权限名称</th>
+                                <th class="lockhead" style="width: 300px;">权限类别</th>
+                                <th class="lockhead">数据权限字典名</th>
+                                <th class="lockhead">权限父节点</th>
+                                <th class="lockhead">权限父节名称</th>
+                            </tr>
+                        </thead>
+                        <tbody data-collsname="Design_ModularOrFuns" data-design_modularorfunid="Design_ModularOrFunID">
+                            @for (var i = 0; i < Model.Items.Count; i++)
+                            {
+                                var item = Model.Items[i];
+                                <tr data-design_modularorfunid="@item.Design_ModularOrFunID" >
+                                    <td>
+                                        @(i + 1)
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" class="btn btn-primary btn-xs   btn-FwRowUIPopup">
+                                            <span class="glyphicon glyphicon-trash"></span>删除</a>
+                                        @*<a href="~/SysAreas/Design_ModularOrFunRefControll/EditList?Item.Design_PremSetID=@item.Design_ModularOrFunID&Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>权限控制器配置</a>*@
+                                          <a href="~/SysAreas/Design_ModularOrFunRefBtn/EditList?Item.Design_PremSetID=@item.Design_ModularOrFunID&Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>权限按钮</a></td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='排序序号' id='Sort' name='Sort' value='@item.Sort' />
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='权限名称' id='ModularName' name='ModularName' value='@item.ModularName' />
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("LoginCategoryID", LoginCategoryIDs, "Value", "Text", item.LoginCategoryID)
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='数据权限' id='DataRightDropDown' name='DataRightDropDown' value='@item.DataRightDropDown' />
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='权限父级节点ID' id='ParentPremID' name='ParentPremID' value='@item.ParentPremID' />
+                                    </td>
+                                    <td>
+                                        @item.ParentModularName
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+            </div>
+        </div>
+    </div>
+    <div class='editArea'>
+        <div class="container-fluid">
+            <div class="form-footer1">
+                <div class="text-right col-md-12">
+                    @*<button class="btn  btn-primary btn-FwBtnSubmit" data-targetdom="" data-masteditarea=""
+                        data-childtableselect="" data-fun="26" data-tableselect=""
+                        data-pkname="Design_ModularOrFunID"
+                        data-posturl="/SysAreas/Design_ModularOrFun/EditSave"
+                        data-targeturl="" data-targeturlparamname="">
+                        保存</button>*@
+                    <button class="btn  btn-primary btn-FwBtnSubmit"
+                        data-targetdom=""
+                        data-masteditarea=""
+                        data-childtableselect=""
+                        data-fun="300"
+                        data-tableselect=""
+                        data-pkname="Design_ModularOrFunID"
+                        data-posturl="/SysAreas/Design_ModularOrFun/EditListPremSave"
+                        data-targeturl="/SysAreas/Design_ModularOrFun/EditListPrem?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                        data-targeturlparamname="">
+                        保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

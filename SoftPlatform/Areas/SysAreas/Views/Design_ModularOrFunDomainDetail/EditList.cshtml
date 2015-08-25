@@ -1,0 +1,177 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+    //业务类型：1:查询  2：主鍵不能为空    10:更新 20:添加  30:删除  40：不能重复  41：初始化
+    List<TextValue> DomainTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+        //new TextValue{Text="C#语句块(设置值、实例化对象等)",Value="101"},        
+        //new TextValue{Text="if",Value="81"},
+        //new TextValue{Text="else",Value="82"},
+        //new TextValue{Text="elseif",Value="83"},
+        //new TextValue{Text="结束语句块",Value="84"},
+        //new TextValue{Text="for",Value="85"},
+        //new TextValue{Text="foreach",Value="87"},    
+        //new TextValue{Text="自定义Sql-事务",Value="62"},
+        //new TextValue{Text="自定义Sql-非事务",Value="63"},
+        //new TextValue{Text="清空缓存",Value="65"},
+
+        new TextValue{Text="开始事务及try",Value="71"},
+        new TextValue{Text="结束事务及try",Value="72"},        
+        new TextValue{Text="提交事务",Value="73"},
+
+        //new TextValue{Text="构造函数",Value="1"},
+        //new TextValue{Text="主键不为空检查",Value="2"},
+        
+        ////new TextValue{Text="不能重复",Value="6"},
+        
+        //new TextValue{Text="列表查询",Value="11"},
+        //new TextValue{Text="列表查询--初始条件",Value="12"},
+        //new TextValue{Text="根据主键查询-显示",Value="13"},
+        //new TextValue{Text="根据主键查询-编辑",Value="14"},
+        
+        ////new TextValue{Text="添加查询",Value="21"},
+        //new TextValue{Text="添加查询-带初始值",Value="22"},//添加查询-带外键初始
+
+        //new TextValue{Text="添加保存",Value="23"},
+        //new TextValue{Text="编辑保存",Value="26"},
+        
+        //new TextValue{Text="添加保存+子表",Value="41"},
+        //new TextValue{Text="编辑保存+子表",Value="42"},
+        //new TextValue{Text="Merger",Value="51"},
+        //new TextValue{Text="子表Merger",Value="52"},
+    };
+
+    List<TextValue> DomainTypeTemps = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+        //new TextValue{Text="C#语句块(设置值、实例化对象等)",Value="101"},
+        //new TextValue{Text="if",Value="81"},
+        //new TextValue{Text="else",Value="82"},
+        //new TextValue{Text="elseif",Value="83"},
+        //new TextValue{Text="结束语句块",Value="84"},
+        //new TextValue{Text="for",Value="85"},
+        //new TextValue{Text="foreach",Value="87"},    
+        //new TextValue{Text="自定义Sql-事务",Value="62"},
+        //new TextValue{Text="自定义Sql-非事务",Value="63"},
+        //new TextValue{Text="清空缓存",Value="65"},
+
+        //new TextValue{Text="开始事务及try",Value="71"},
+        //new TextValue{Text="结束事务及try",Value="72"},        
+        //new TextValue{Text="提交事务",Value="73"},
+
+        new TextValue{Text="构造函数",Value="1"},
+        new TextValue{Text="主键不为空检查",Value="2"},
+        
+        //new TextValue{Text="不能重复",Value="6"},
+        
+        new TextValue{Text="列表查询",Value="11"},
+        new TextValue{Text="列表查询--初始条件",Value="12"},
+        new TextValue{Text="根据主键查询-显示",Value="13"},
+        new TextValue{Text="根据主键查询-编辑",Value="14"},
+        
+        //new TextValue{Text="添加查询",Value="21"},
+        new TextValue{Text="添加查询-带初始值",Value="22"},//添加查询-带外键初始
+
+        new TextValue{Text="添加保存--事务",Value="23"},
+        new TextValue{Text="编辑保存--事务",Value="26"},
+        
+        //new TextValue{Text="添加保存+子表",Value="41"},
+        //new TextValue{Text="编辑保存+子表",Value="42"},
+        new TextValue{Text="Merger",Value="51"},
+        new TextValue{Text="结束事务及try模板",Value="53"},
+        
+        //new TextValue{Text="子表Merger",Value="52"},
+    };
+}
+
+<div class="container-fluid childTableSelect">
+    <div class='operArea' data-searchmethod='' data-url="">
+        <div class="search-bar">
+            <div class="tool-bar search-bar">
+                <div class="col-sm-2">
+                    @*                    <a href='javascript:void(0);' data-tableid="#tbList" class='btn btn-success  btn-FwBtnSubmit'
+                        data-posturl="/SysAreas/Design_ModularOrFunDomainDetail/Row"
+                        data-fun="10">
+                        <span class="glyphicon glyphicon-plus"></span>业务步骤</a>*@
+                    <div class='mastEditArea  '>
+                        @*                        @Html.DropDownList("Item.DomainTypeTemp", DomainTypeTemps, "Value", "Text", "==业务步骤==")*@
+                        <a href='javascript:void(0);' data-tableid="#tbList"
+                            class='btn btn-success  btn-FwBtnSubmit'
+                            data-posturl="/SysAreas/Design_ModularOrFunDomainDetail/Row"
+                            data-fun="200">添加业务步骤</a>
+
+                        @*                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="103"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunDomainDetailID"
+                            data-posturl="/SysAreas/Design_ModularOrFunDomainDetail/Row"
+                            data-targeturl="/SysAreas/Design_ModularOrFunDomainDetail/Row"
+                            data-targeturlparamname="Design_ModularOrFunDomainID">
+                            添加业务步骤</button>*@
+                        </>
+                    </div>
+                </div>
+                <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                </div>
+            </div>
+        </div>
+        <div style="clear: both; margin-bottom: 10px;"></div>
+        <div class="scrollBar scrollBarAuto" style="width: 100%;" data-width="2000">
+            <div class="mylist container-fluid container" style="width: 100%;">
+                <table id='tbList' class=" table table-bordered table-hover table-striped FwtabletoTab" style="width: 100%"
+                    data-tabdirection="ver"
+                    data-deletefun="2">
+                    <thead>
+                        <tr>
+                            <th class="lockhead" style="width: 50px">序号 </th>
+                            <th class="lockhead" style="width: 50px">操作 </th>
+
+                            <th class="lockhead" style="width: 60px;">排序</th>
+                            <th class="lockhead" style="width: 250px;">基本数据项</th>
+                            <th class="lockhead" style="width: 500px;">参数设置</th>
+                        </tr>
+                    </thead>
+                    <tbody data-design_modularorfundomaindetailid="Design_ModularOrFunDomainDetailID">
+                        @for (var i = 0; i < Model.Items.Count; i++)
+                        {
+                            //,Design_ModularOrFunDomainID,DomainType,Design_ModularOrFunSqlID,,FixedValue
+                            var item = Model.Items[i];
+                            <tr data-design_modularorfundomaindetailid="@item.Design_ModularOrFunDomainDetailID" >
+                                <td>
+                                    @(i + 1)
+                                </td>
+                                <td>
+                                    <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除"
+                                        class='btn btn-primary btn-xs   btn-FwRowUIPopup'>删除</a>
+                                </td>
+                                <td>
+                                    <input type='text'  class='form-control Serial'  data-datatype='int' 
+                           data-tabnextcol="Serial"   data-fieldnamecn='排序序号' id='Serial' name='Serial' value='@item.Serial' />
+                                </td>
+                                <td>
+                                    <input type='text'  class='form-control ModularOrFunDomainDetailName'  data-datatype='string' 
+                           data-tabnextcol="ModularOrFunDomainDetailName"   data-fieldnamecn='流程名称' placeholder="流程名称" id='ModularOrFunDomainDetailName' name='ModularOrFunDomainDetailName' value='@item.ModularOrFunDomainDetailName' />
+                                    @*                                    @Html.DropDownList("DomainType", DomainTypes, "Value", "Text", item.DomainType)*@
+                                    <input type='text'  class='form-control DBOperCode'  data-datatype='string' 
+                           data-tabnextcol="Design_DBOperCode"   data-fieldnamecn='数据库操作编码' placeholder="数据库操作编码" id='DBOperCode' name='DBOperCode' value='@item.DBOperCode' />
+                                </td>
+                                <td>
+                                    <textarea class='form-control ParamName' data-datatype='string' rows="5"
+                                        data-tabnextcol="ParamName" data-fieldnamecn='参数设置' id='ParamName' name='ParamName'>@HttpUtility.UrlDecode(item.ParamName)</textarea>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- 分页 -->
+        <div class="page-bar">
+        </div>
+    </div>
+</div>

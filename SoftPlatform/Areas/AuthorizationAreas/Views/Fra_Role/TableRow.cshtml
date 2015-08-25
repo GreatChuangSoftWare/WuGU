@@ -1,0 +1,29 @@
+﻿@model MyResponseBase<Pre_RolesView>
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+}
+
+<tr   data-pre_rolesid='@Model.Item.Pre_RolesID'   data-rolename='@Model.Item.RoleName' >
+    <td></td>
+    <td>
+        <input type='checkbox' class='checkbox jq-checkall-item' />
+    </td>
+    <td>
+        @if (conts.UserHasPermission("Pre_Roles.Detail"))
+        {
+            <button class='btn btn-xs btn-Detail btn-info'><i class='fa fa-edit fa-1'></i>详情</button>
+        }
+        @if (conts.UserHasPermission("Pre_Roles.Edit"))
+        {
+            <button class='btn btn-xs btn-Edit btn-info'><i class='fa fa-edit fa-1'></i>编辑</button>
+        }
+        @if (conts.UserHasPermission("Pre_Roles.Delete"))
+        {
+            <button class='btn btn-xs btn-Delete btn-info'><i class='fa fa-edit fa-1'></i>删除</button>
+        }
+
+    </td>
+    <td>@Model.Item.RoleName</td>
+
+</tr>

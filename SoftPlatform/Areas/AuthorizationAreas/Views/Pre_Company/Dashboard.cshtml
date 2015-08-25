@@ -1,0 +1,57 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.FunNameCn;
+
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    //var btns = conts.LoginModulerBtns(modulars.ModularOrFunCode, 3);
+
+    var disabled = "";
+
+    var requestLastOrder = new
+    {
+        //FunNameEn = request.FunNameEn,
+        Item = new SoftProjectAreaEntity
+            {
+                Pre_CompanyID = Model.Item.Pre_CompanyID,
+            },
+        area = "OrderAreas",
+    };
+    var requestLastActivity = new
+    {
+        //FunNameEn = request.FunNameEn,
+        Item = new SoftProjectAreaEntity
+        {
+            Pre_CompanyID = Model.Item.Pre_CompanyID,
+        },
+        area = "ActivityAreas",
+    };
+
+    var requestLastGuidance = new
+    {
+        //FunNameEn = request.FunNameEn,
+        Item = new SoftProjectAreaEntity
+        {
+            Pre_CompanyID = Model.Item.Pre_CompanyID,
+        },
+        area = "FranchiseeAreas",
+    };
+
+}
+
+<div id="editP" class="operArea">
+    <div>
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+
+    最近1个订单：
+     @Html.Action("LastOrder", "O_Order", requestLastOrder)
+    最后1次活动：
+     @Html.Action("Last", "Fra_Activity", requestLastActivity)
+    最后1次指导：
+     @Html.Action("Last", "Fra_Guidance", requestLastActivity)
+
+</div>
+

@@ -1,0 +1,71 @@
+﻿@model MyResponseBase
+
+@{  
+    //Layout = null;// "~/Views/Shared/_CompMagerLayout.cshtml";
+    //var conts = ViewContext.Controller as BaseController;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.LoginModulerBtns(modulars.ModularOrFunCode, 3);
+}
+
+<div id="editP" class="operArea">
+    <div>
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+    <div class="targetdom">
+        <div class="mastEditArea editArea">
+            <form>
+                <div class="container-fluid">
+                    <div class="form-horizontal merge ">
+                        <ul class="nav nav-tabs mybottabs1">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">申请活动</a>
+                            </li>
+                            <li class="">
+                                <a href="#tab2" data-toggle="tab">调研表</a>
+                            </li>
+                            <li class="">
+                                <a href="#tab3" data-toggle="tab">活动总结</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content box">
+                            <div class="tab-pane fade in active" id="tab1">
+                                <ul class="form-horizontal merge table-panel" style="margin-left: 10%; margin-right: 10%;">
+                                    @Html.FormEleHtml2(Model.Item, Model.ModularOrFunCode, 4)
+                                </ul>
+                            </div>
+                            <div class="tab-pane  fade" id="tab2">
+                                @*调研表*@
+                                <div class='frmHtml' data-name='ActivitySelfAtudyTable'>
+                                    @Html.Raw(Model.Item.ActivitySelfAtudyTable)
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab3">
+                                @*活动总结*@
+                                @if (Model.FunNameEn == "Examine")
+                                {
+                                    @Model.Item.ActivityConclusion
+                                }
+                                else
+                                {
+                                    <textarea class="form-control" rows="6" id="Item_ActivityConclusion" name="Item.ActivityConclusion" data-datatype="string" placeholder="活动总结" data-fieldnamecn="活动总结" data-len="0|4000">@Model.Item.ActivityConclusion</textarea>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="editArea">
+            <div class="container-fluid">
+                <div class="form-footer1">
+                    <div class="text-right col-md-12">
+                        @Html.BtnFooterHtml(Model.Item, Model.ModularOrFunCode, btns)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

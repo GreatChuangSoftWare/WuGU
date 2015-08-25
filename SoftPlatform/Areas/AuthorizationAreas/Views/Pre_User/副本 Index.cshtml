@@ -1,0 +1,82 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "用户管理";
+    //权限
+    //var conts = ViewContext.Controller as BaseController;
+    //conts.Breadcrumb.Items.Clear();
+    //conts.Breadcrumb.Items = new List<BreadcrumbItem>
+    //{
+    //    new BreadcrumbItem{Name="权限管理",URL=""},
+    //};
+
+}
+
+@section PageCssSection{
+}
+
+@section PageJavascriptSection
+{
+    @*    <script type='text/javascript' src='@Url.Content("~/Scripts/jquery.FixedTable.js")'></script>
+    <script type='text/javascript' src='@Url.Content("~/Areas/AuthorizationAreas/Scripts/Pre_Users.js")'></script>*@
+}
+<div id='IndexP'>
+
+    <div>
+        @*@Html.RenderBreadcrumb()*@
+    </div>
+    <div class="container-fluid">
+        <div class='operArea' data-searchmethod='Framework.FwSearch' data-url="AuthorizationAreas/Pre_User/Index">
+            <div class="tool-bar">
+                <div class="col-sm-4">
+                    <a href="~/AuthorizationAreas/Pre_User/Add" class='btn btn-success'><span class='glyphicon glyphicon-plus'></span>新增</a>
+                </div>
+                <div class="col-sm-8 text-right form-inline">
+                    <div class='fastWhere'>
+                        <input type='text' class='form-control' id='UserName_like' name='UserName___like' value='@Model.Querys.GetValue("UserName_like")' placeholder='姓名' data-datatype='string' data-len='0|100' data-fieldnamecn='姓名' />
+                        <input type='text' class='form-control' id='IdentityCard___like' name='IdentityCard___like' value='@Model.Querys.GetValue("IdentityCard___like")' placeholder='身份证' data-datatype='string' data-len='0|100' data-fieldnamecn='身份证' />
+                        <input type='text' class='form-control' id='MobilePhone1___like' name='MobilePhone1___like' value='@Model.Querys.GetValue("MobilePhone1___like")' placeholder='电话' data-datatype='string' data-len='0|100' data-fieldnamecn='电话' />
+                        <button class="btn btn-primary btn-Search"><span class="glyphicon glyphicon-search"></span>查询</button>
+                        <button class="btn btn-primary btn-AdvSearch" id="advSearch" data-module="advSearchArea" data-parents="SearchArea">
+                            <span class="glyphicon glyphicon-search"></span>高级查询</button>
+                    </div>
+                    <div style="width: 700px; display: none; background-color: rgb(255, 255, 255); top: 163px; right: 30px; box-shadow: 3px 1px 24px rgb(136, 136, 136); padding: 10px; z-index: 9999;"
+                        class="SearchAreaDetail" id="advSearchArea">
+                        <a style="top: 5px; right: 10px; position: absolute; cursor: pointer;" id="module_close"><i class="glyphicon glyphicon-remove"></i></a>
+                        <div class="moreWhere">
+                            <ul style="margin-bottom: 0px; margin-top: 10px; list-style: outside none none;" class="container-fluid">
+                                <li class="col-sm-4 text-left">
+                                    <input type='text' class='form-control' id='LoginName___like' name='LoginName___like' 
+                                        value='@Model.Item.LoginName' placeholder='登录名' data-datatype='string' data-len='0|50' 
+                                        data-fieldnamecn='登录名' />
+                                </li>
+                                <li class="col-sm-4 text-left">
+                                    @Html.DropDownList("EducationID___equal", ProjectCache.GetByCategory("EducationID"), "DValue", "DText", Model.Querys.GetValue("StorageDate__greaterequal"), "", "==教育程序==")
+                                </li>
+                                <li class="col-sm-4 text-left">
+                                    <input type='text' class=' form-control datepicker ' id='Birth___greaterequal' name='Birth___greaterequal' value='@Model.Querys.GetValue("Birth___greaterequal")' placeholder='出生起始日期' data-datatype='date' data-fieldnamecn='出生起始日期' /></li>
+                                <li class="col-sm-4 text-left">
+                                    <input type='text' class=' form-control datepicker ' id='Birth___lessequal' name='Birth___lessequal' value='@Model.Querys.GetValue("Birth___lessequal")' placeholder='出生结束日期' data-datatype='date' data-fieldnamecn='出生结束日期' />
+                                </li>
+                                <li class="col-sm-4 text-right pull-right">
+                                    <button class="btn btn-primary pull-righ btn-FwAdvSearch"><span class="glyphicon glyphicon-search"></span>查询</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scrollBar scrollBarAuto" style="width: 100%; overflow: auto;" data-width="1200">
+                <div class="mylist container-fluid container" style="width: 1200px;">
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+@*                @Html.Partial("_PagingOption", Model.PageQueryBase)*@
+            </div>
+        </div>
+    </div>
+</div>

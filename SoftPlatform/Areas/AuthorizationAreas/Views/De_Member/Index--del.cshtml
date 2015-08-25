@@ -1,0 +1,40 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section PageCssSection{
+}
+
+<div id='IndexP'>
+    <div>
+        @Html.Navigation(Model.ModularOrFunCode)
+    </div>
+    <div class="container-fluid">
+        <div class='operArea' data-searchmethod='Framework.FwSearch' data-url="AuthorizationAreas/De_Member/Index">
+            <div class="search-bar">
+                <div class="tool-bar search-bar">
+                    <div class="col-sm-2">
+                        @Html.ToolBarHtml()
+                    </div>
+                    <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                        @Html.QueryHtml(Model.Querys)
+                    </div>
+                </div>
+            </div>
+
+            <div class="scrollBar scrollBarAuto" style="width: 100%; overflow: auto;" data-width="1800">
+                <div class="mylist container-fluid container" style="width: 1800px;">
+                    <table id='tbList' class="table table-bordered table-hover table-striped " style="width: 100%;">
+                        @Html.TableHtml(Model.Items, Model.PageQueryBase.RankInfos)
+                    </table>
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+                @Html.Partial("_PagingOption", Model.PageQueryBase)
+            </div>
+        </div>
+    </div>
+</div>

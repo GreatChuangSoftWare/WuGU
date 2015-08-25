@@ -1,0 +1,49 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    //List<TextValue> ActionNames = new List<TextValue>
+    //{ 
+    //    new TextValue{Text="ActionResult",Value="1"},
+    //    new TextValue{Text="HJsonResult",Value="2"},
+    //};
+    ////返回的View名称：1:Index   20:Edit 22:PopupEdit  25:EditPartial  40:Row  
+    //List<TextValue> ViewNames = new List<TextValue>
+    //{ 
+    //    new TextValue{Text="==返回视图==",Value=""},
+    //    new TextValue{Text="Index",Value="1"},
+    //    new TextValue{Text="Edit",Value="20"},
+    //    new TextValue{Text="PopupEdit",Value="22"},
+
+    //    new TextValue{Text="EditPartial",Value="25"},
+    //    new TextValue{Text="Row",Value="40"},
+    //};
+}
+@for (var i = 0; i < Model.Items.Count; i++)
+{
+    var item = Model.Items[i];
+    <tr data-design_premsetcontrollid="@item.Design_PremSetControllID"
+        data-design_modularorfuncontrollid="@item.Design_ModularOrFunControllID">
+        <td>
+            @(i + 1)
+        </td>
+        <td>
+            <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" class='btn btn-primary btn-xs   btn-FwRowUIPopup'>
+                <span class='glyphicon glyphicon-trash'></span>删除</a>
+        </td>
+        <td>
+            <input type='text'  class='form-control PremSetControllSort'  data-datatype='int' 
+                           data-tabnextcol="PremSetControllSort"  data-fieldnamecn='序号' id='PremSetControllSort' name='PremSetControllSort' value='@item.PremSetControllSort' />
+        </td>
+        <td>
+            @item.ControllName
+        </td>
+        <td>
+            @item.ActionMethod
+        </td>
+        <td>
+            @item.ActionMethodCn
+        </td>
+    </tr>
+}

@@ -1,0 +1,341 @@
+﻿@model MyResponseBase
+
+@{
+    //Layout = "~/Views/Shared/_LayoutDesign.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ////表单控件类型：1：文本框  2:标签  4：下拉列表框  8：Hidden  16:Radion  32:CheckBox
+    //List<TextValue> FormEleTypes = new List<TextValue>
+    //{ 
+    //    new TextValue{Text="文本框",Value="1"},
+    //    new TextValue{Text="标签",Value="2"},
+    //    new TextValue{Text="下拉",Value="4"},
+    //    new TextValue{Text="隐藏",Value="8"},
+
+    //    new TextValue{Text="单选",Value="16"},
+    //    new TextValue{Text="复选框",Value="32"}
+    //};
+    //List<SoftProjectAreaEntity> Design_ModularOrFuns = new List<SoftProjectAreaEntity> { 
+    //    new SoftProjectAreaEntity{PageFormEleTypeName="Page1FormEleType",QueryFormEleTypeName="Query2",ModularName="列表页"},
+    //    new SoftProjectAreaEntity{PageFormEleTypeName="Page2FormEleType",QueryFormEleTypeName="Query3",ModularName="添加页"},
+    //    new SoftProjectAreaEntity{PageFormEleTypeName="Page3FormEleType",QueryFormEleTypeName="Query4",ModularName="编辑页"},
+    //    new SoftProjectAreaEntity{PageFormEleTypeName="Page4FormEleType",QueryFormEleTypeName="Query5",ModularName="查看页"},
+    //};
+
+    //字段类型：1：td  2:thead-data  4: tbody-data  6：thead|tbody-data
+    List<TextValue> TablePoss = new List<TextValue>
+    { 
+        new TextValue{Text="==功能类型==",Value=""},
+        new TextValue{Text="td",Value="1"},
+        new TextValue{Text="thead-data",Value="2"},
+        new TextValue{Text="td|thead-data",Value="3"},
+        new TextValue{Text="tbody-data",Value="4"},
+        new TextValue{Text="td|tbody-data",Value="5"},
+        new TextValue{Text="thead|tbody-data",Value="6"},
+        new TextValue{Text="td|thead|tbody-data",Value="7"},
+
+    };
+
+    //字段类型：1：td  2:thead-data  4: tbody-data  6：thead|tbody-data
+    List<TextValue> PanlHeadPoss = new List<TextValue>
+    { 
+        new TextValue{Text="==位置==",Value=""},
+        new TextValue{Text="head",Value="1"},
+        new TextValue{Text="Context",Value="2"},
+    };
+
+    List<TextValue> DetailPoss = new List<TextValue>
+    { 
+        new TextValue{Text="==位置==",Value=""},
+        new TextValue{Text="MainTitle",Value="1"},
+        new TextValue{Text="Subtitle",Value="2"},
+        new TextValue{Text="Context",Value="3"},
+    };
+
+
+    //表单控件类型：1：文本框  2:标签  4：下拉列表框  8：Hidden  16:Radion  32:CheckBox
+    List<TextValue> FormEleTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+        new TextValue{Text="td",Value="0"},        
+        new TextValue{Text="文本框",Value="1"},
+        new TextValue{Text="标签",Value="2"},
+        new TextValue{Text="下拉",Value="4"},
+        new TextValue{Text="下拉树",Value="128"},
+        new TextValue{Text="隐藏",Value="8"},
+
+        new TextValue{Text="单选",Value="16"},
+        new TextValue{Text="复选框(按位)",Value="32"},
+        new TextValue{Text="文本框(只读)",Value="64"},
+    };
+
+    //查询类型：1:模糊   2:等值   3:范围
+    List<TextValue> QueryTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+        new TextValue{Text="模糊",Value="1"},
+        new TextValue{Text="等值",Value="2"},
+        new TextValue{Text="范围",Value="3"},
+    };
+
+    List<TextValue> bTabVers = new List<TextValue>
+    { 
+        new TextValue{Text="==回车垂直==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+
+    List<TextValue> QueryPoss = new List<TextValue>
+    { 
+        new TextValue{Text="==查询位置==",Value=""},
+        new TextValue{Text="快速查询",Value="1"},
+        new TextValue{Text="高级查询",Value="2"},
+    };
+
+    var Design_ModularOrFuns = Model.Item.Design_ModularOrFuns;
+    Design_ModularOrFuns = Design_ModularOrFuns.Where(p => p.bFieldsConfigDisp == 1).ToList();
+}
+<div id='editP' class="operArea">
+    <div>
+        @*@Html.Navigation(Model.ModularOrFunCode)*@
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>设计管理</li>
+            <li><a href="/SysAreas/Design_ModularOrFun/">模块字段</a></li>
+            <li>修改</li>
+        </ul>
+    </div>
+    @Html.Partial("Tab", Model)
+    <div class='mastEditArea editArea  '>
+        <form>
+            <div class="container-fluid margin-top-15">
+                <div class='form-horizontal merge targetdom'>
+                    <input type='hidden' id="Item_Design_ModularOrFunID" name='Item.Design_ModularOrFunID' value='@Model.Item.Design_ModularOrFunID' />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid childTableSelect">
+        <div class='operArea' data-searchmethod='' data-url="">
+            <div class="search-bar">
+                <div class="tool-bar search-bar">
+                    <div class="col-sm-6">
+                        <a href='javascript:void(0);' data-tableid="#tbList" class='btn btn-success  btn-FwPopup'
+                            data-popupurl="/SysAreas/Design_ModularField/Popup"
+                            data-popupaddrepeat="0"
+                            data-targeturl="/SysAreas/Design_ModularPageField/Rows"
+                            data-pkname="Design_ModularFieldID"
+                            data-refdataarea=".mastEditArea"><span class="glyphicon glyphicon-plus"></span>添加字段</a>
+
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunID"
+                            data-posturl="/SysAreas/Design_ModularPageField/BulidRecord"
+                            data-targeturl="/SysAreas/Design_ModularPageField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-targeturlparamname="">
+                            生成字段</button>
+
+@*                        <a href='javascript:void(0);' data-tableid="#tbList" class='btn btn-success  btn-FwPopup'
+                            data-popupurl="/SysAreas/Design_ModularField/Popup"
+                            data-popupaddrepeat="0"
+                            data-targeturl="/SysAreas/Design_ModularPageField/Rows"
+                            data-pkname="Design_ModularFieldID"
+                            data-refdataarea=".mastEditArea"><span class="glyphicon glyphicon-plus"></span>添加字段</a>*@
+                    </div>
+                    <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>
+            <div class="scrollBar scrollBarAuto" style="width: 100%; overflow: auto;" data-width="2400">
+                <div class="mylist container-fluid container" style="width: 2400px;">
+                    <table id='tbList' class=" table table-bordered table-hover table-striped FwtabletoTab" style="width: 100%"
+                        data-tabdirection="ver"
+                        data-deletefun="2">
+                        @*                        <div class="scrollBar scrollBarAuto" style="width: 1800px;" data-width="1800">
+                            <div class="mylist container-fluid container" style="width: %;">
+                                <table id='tbList' class="table table-bordered table-hover table-striped " style="width: 100%;">*@
+                        <thead data-namecn="字段名">
+                            <tr>
+                                <th class="lockhead" style="width: 50px"></th>
+                                <th class="lockhead" style="width: 50px"></th>
+
+                                <th class="lockhead" style="width: 60px;"></th>
+                                <th class="lockhead" style="width: 100px;"></th>
+                                <th class="lockhead"></th>
+                                @for (int m = 0; m < Design_ModularOrFuns.Count; m++)
+                                {
+                                    var i = 0;
+                                    if (Design_ModularOrFuns[m].PageType == 1)//Table列表页
+                                    {
+                                        i = 3 + 3;//字段、查询
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8)//Pan列表页
+                                    {
+                                        //Pand：
+                                        //字段：位置(暂不定义、表单元素       、	排序号
+                                        //      位置(Context)、表单元素(标签) 、	序号(1)
+                                        //查询字段：
+                                        //    表单元素、查询类型、位置(快速区、高级区)
+                                        //排序字段：排序号
+                                        i = 2 + 3 + 1;
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 4)//PanHead列表页
+                                    {
+                                        //PaneHead：
+                                        //    字段：位置、表单元素、排序号
+                                        //        例如：	加盟商名称：	位置(head)、表单元素(标签)、序号(1)
+                                        //                  指导日期：	    位置(context)、表单元素(标签)、序号(3)
+                                        //    查询字段：
+                                        //        表单元素、查询类型、位置(快速区、高级区)
+                                        //    排序字段：排序号
+                                        i = 3 + 3 + 1;
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 2)//编辑页面
+                                    {
+                                        i = 2;
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 5)//详情页面
+                                    {
+                                        i = 2;//位置、字段、序号
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 6)//扼要页
+                                    {
+                                        i = 1;//序号，标签
+                                    }
+                                    //else if (Design_ModularOrFuns[m].PageType == 7)//tab页面
+                                    //{
+                                    //    //i = 1;//序号，标签
+                                    //}
+                                    if (i > 0)
+                                    {
+                                    <th class="lockhead" colspan="@i">@Design_ModularOrFuns[m].ModularName</th>
+                                    }
+                                }
+                                <th class="lockhead"></th>
+                                <th class="lockhead"></th>
+                                <th class="lockhead"></th>
+                                <th class="lockhead"></th>
+                            </tr>
+                            <tr>
+                                <th class="lockhead" style="width: 50px">序号 </th>
+                                <th class="lockhead" style="width: 50px">操作 </th>
+
+                                <th class="lockhead" style="width: 80px;">排序</th>
+                                <th class="lockhead">字段名</th>
+                                <th class="lockhead">字段名CN</th>
+                                @for (int m = 0; m < Design_ModularOrFuns.Count; m++)
+                                {
+                                    if (Design_ModularOrFuns[m].PageType == 1)
+                                    {
+                                        if (!string.IsNullOrEmpty(Design_ModularOrFuns[m].PageFormEleTypeName))
+                                        {
+                                    <th class="lockhead" style="width: 80px">显示序号</th>
+                                    <th class="lockhead">位置</th>
+                                    <th class="lockhead">表单元素</th>
+                                        }
+                                        if (!string.IsNullOrEmpty(Design_ModularOrFuns[m].QueryFormEleTypeName))
+                                        {
+                                    <th class="lockhead">查询位置</th>
+                                    <th class="lockhead">查询表单元素</th>
+                                    <th class="lockhead">查询类型</th>
+                                        }
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8)
+                                    {
+                                        if (!string.IsNullOrEmpty(Design_ModularOrFuns[m].PageFormEleTypeName))
+                                        {
+                                    <th class="lockhead" style="width: 80px">显示序号</th>
+@*<th class="lockhead">位置(Context)</th>*@
+                                    <th class="lockhead">表单元素</th>
+                                        }
+                                        if (!string.IsNullOrEmpty(Design_ModularOrFuns[m].QueryFormEleTypeName))
+                                        {
+                                    <th class="lockhead">查询位置</th>                                    
+                                    <th class="lockhead">查询表单元素</th>
+                                    <th class="lockhead">查询类型</th>
+                                        }
+                                        if (!string.IsNullOrEmpty(Design_ModularOrFuns[m].SortCol))
+                                        {
+                                    <th class="lockhead" style="width: 80px">排序序号</th>
+                                        }
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 4)
+                                    {
+                                        if (!string.IsNullOrEmpty(Design_ModularOrFuns[m].PageFormEleTypeName))
+                                        {
+                                    <th class="lockhead" style="width: 80px">显示序号</th>
+                                    <th class="lockhead">位置(head、Context)</th>
+                                    <th class="lockhead">表单元素</th>
+                                        }
+                                        if (!string.IsNullOrEmpty(Design_ModularOrFuns[m].QueryFormEleTypeName))
+                                        {
+                                    <th class="lockhead">查询位置</th>
+                                    <th class="lockhead">查询表单元素</th>
+                                    <th class="lockhead">查询类型</th>
+                                        }
+                                        if (!string.IsNullOrEmpty(Design_ModularOrFuns[m].SortCol))
+                                        {
+                                    <th class="lockhead" style="width: 80px">排序序号</th>
+                                        }
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 2)
+                                    {
+                                    <th class="lockhead" style="width: 80px">显示序号</th>
+                                    <th class="lockhead">表单元素</th>
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 5)//标题页
+                                    {
+                                    <th class="lockhead" style="width: 80px">显示序号</th>
+                                    <th class="lockhead">位置(主\副)标题(正文)</th>
+@*<th class="lockhead">表单元素</th>*@
+                                    }
+                                    else if (Design_ModularOrFuns[m].PageType == 6)//扼要信息
+                                    {
+                                    <th class="lockhead" style="width: 50px">显示序号</th>
+                                    }
+                                }
+                                <th class="lockhead">附加信息</th>
+                                <th class="lockhead">回车垂直移动</th>
+                                <th class="lockhead">列计算</th>
+                                <th class="lockhead">行计算</th>
+                                <th class="lockhead">编辑区域名</th>
+
+                            </tr>
+                        </thead>
+                        <tbody data-collsname="Design_ModularPageFields" data-design_modularfieldid="Design_ModularFieldID"
+                            data-design_modularpagefieldid="Design_ModularPageFieldID">
+                            @Html.Partial("Rows", Model)
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+            </div>
+        </div>
+    </div>
+    <div class='editArea'>
+        <div class="container-fluid">
+            <div class="form-footer1">
+                <div class="text-right col-md-12">
+                    <button class="btn  btn-primary btn-FwBtnSubmit"
+                        data-targetdom=""
+                        data-masteditarea=""
+                        data-childtableselect=""
+                        data-fun="300"
+                        data-tableselect=""
+                        data-pkname=""
+                        data-posturl="/SysAreas/Design_ModularPageField/EditListSave"
+                        data-targeturl="/SysAreas/Design_ModularPageField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                        data-targeturlparamname="">
+                        保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

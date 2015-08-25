@@ -1,0 +1,94 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div id='editP' class="operArea">
+    <div>
+        @*@Html.Navigation(Model.ModularOrFunCode)*@
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>设计管理</li>
+@*            <li><a href="/SysAreas/Design_ModularOrFun/EditListPrem?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID&Item.Design_PremSetID=@Model.Item.Design_PremSetID">权限配置</a></li>*@
+            <li><a href="/SysAreas/Design_ModularOrFun/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID">权限配置</a></li>
+            <li>权限按钮配置</li>
+        </ul>
+    </div>
+    <div class='mastEditArea editArea  '>
+        <form>
+            <div class="container-fluid margin-top-15">
+                <div class='form-horizontal merge targetdom'>
+                    <input type='hidden' id='Item_Design_ModularOrFunID' name='Item.Design_ModularOrFunID' value='@Model.Item.Design_ModularOrFunID' />
+                    <input type='hidden' id='Item_Design_PremSetID' name='Item.Design_PremSetID' value='@Model.Item.Design_PremSetID' />
+                    权限名称：【@Model.Item.ModularName】
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container-fluid childTableSelect">
+        <div class='operArea' data-searchmethod='' data-url="">
+            <div class="search-bar">
+                <div class="tool-bar search-bar">
+                    <div class="col-sm-2">
+                        <a href='javascript:void(0);' data-tableid="#tbList" class='btn btn-success  btn-FwPopup'
+                            data-popupurl="/SysAreas/Design_ModularOrFunRefBtn/Popup"
+                            data-popupaddrepeat="0"
+                            data-targeturl="/SysAreas/Design_ModularOrFunRefBtn/Rows"
+                            data-pkname="Design_ModularOrFunBtnID"
+                            data-refdataarea=".mastEditArea"><span class="glyphicon glyphicon-plus"></span>添加按钮</a>
+                    </div>
+                    <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>
+            <div class="scrollBar scrollBarAuto" style="width: 100%;" data-width="100%">
+                <div class="mylist container-fluid container" style="width: 100%;">
+                    <table id='tbList' class=" table table-bordered table-hover table-striped FwtabletoTab"
+                        style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th class="lockhead" style="width: 60px;">序号 </th>
+                                <th class="lockhead">操作 </th>
+                                <th class="lockhead">排序 </th>
+                                <th class="lockhead">页面名称</th>
+                                <th class="lockhead">页面按钮</th>
+                            </tr>
+                        </thead>
+                        <tbody
+                            data-design_modularorfunrefbtnid="Design_ModularOrFunRefBtnID"
+                            data-design_premsetid="Design_PremSetID"
+                            data-design_modularorfunbtnid="Design_ModularOrFunBtnID">
+                            @Html.Partial("Rows", Model)
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+            </div>
+        </div>
+    </div>
+    <div class='editArea'>
+        <div class="container-fluid">
+            <div class="form-footer1">
+                <div class="text-right col-md-12">
+                    <button class="btn  btn-primary btn-FwBtnSubmit"
+                        data-targetdom=""
+                        data-masteditarea=""
+                        data-childtableselect=""
+                        data-fun="300"
+                        data-tableselect=""
+                        data-pkname="Design_ModularOrFunRefBtnID"
+                        data-posturl="/SysAreas/Design_ModularOrFunRefBtn/EditListSave"
+                        data-targeturl="/SysAreas/Design_ModularOrFunRefBtn/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID&Item.Design_PremSetID=@Model.Item.Design_PremSetID"
+                        data-targeturlparamname="">
+                        保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

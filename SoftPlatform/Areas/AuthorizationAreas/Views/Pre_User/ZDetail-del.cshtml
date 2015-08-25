@@ -1,0 +1,136 @@
+﻿@model MyResponseBase<Pre_UsersView>
+
+@{
+                //ViewBag.Title = "";
+                //Layout = null;
+}
+<div id='DeletePPre_Users'>
+    <table>
+        <input type='hidden' id="Item_Pre_UsersID" name='Item.Pre_UsersID' />
+        <tr>
+            <td>员工编码</td>
+            <td>@Model.Item.UserNo /></td>
+        </tr>
+        <tr>
+            <td>用户名</td>
+            <td>@Model.Item.UserName /></td>
+        </tr>
+        <tr>
+            <td>身份证号</td>
+            <td>@Model.Item.IdentityCard /></td>
+        </tr>
+        <tr>
+            <td>登录名</td>
+            <td>@Model.Item.LoginName /></td>
+        </tr>
+        <tr>
+            <td>密码</td>
+            <td>@Model.Item.PasswordDigest /></td>
+        </tr>
+        <tr>
+            <td>出生日期</td>
+            <td>@Model.Item.Birth /></td>
+        </tr>
+        <tr>
+            <td>教育程序</td>
+            <td>@Model.Item.Education /></td>
+        </tr>
+        <tr>
+            <td>婚姻状态</td>
+            <td>@Model.Item.MaritalStatus /></td>
+        </tr>
+        <tr>
+            <td>电话</td>
+            <td>@Model.Item.Tel /></td>
+        </tr>
+        <tr>
+            <td>手机号1</td>
+            <td>@Model.Item.MobilePhone1 /></td>
+        </tr>
+        <tr>
+            <td>手机号2</td>
+            <td>@Model.Item.MobilePhone2 /></td>
+        </tr>
+        <tr>
+            <td>传真</td>
+            <td>@Model.Item.Fax /></td>
+        </tr>
+        <tr>
+            <td>公司邮箱</td>
+            <td>@Model.Item.Email /></td>
+        </tr>
+        <tr>
+            <td>性别</td>
+            <td>@Model.Item.Gender /></td>
+        </tr>
+        <tr>
+            <td>组织机构ID</td>
+            <td>@Model.Item.OrganizationID /></td>
+        </tr>
+        <tr>
+            <td>地区ID</td>
+            <td>@Model.Item.DistrictID /></td>
+        </tr>
+        <tr>
+            <td>邮编</td>
+            <td>@Model.Item.ZIPCode /></td>
+        </tr>
+        <tr>
+            <td>地址</td>
+            <td>@Model.Item.Address /></td>
+        </tr>
+        <tr>
+            <td>永久地址</td>
+            <td>@Model.Item.PermanentAddress /></td>
+        </tr>
+        <tr>
+            <td>紧急联系人</td>
+            <td>@Model.Item.EmergencyPerson /></td>
+        </tr>
+        <tr>
+            <td>紧急联系人电话</td>
+            <td>@Model.Item.EmergencyTele /></td>
+        </tr>
+        <tr>
+            <td>QQ</td>
+            <td>@Model.Item.QQ /></td>
+        </tr>
+        <tr>
+            <td>MSN</td>
+            <td>@Model.Item.MSN /></td>
+        </tr>
+        <tr>
+            <td>说明</td>
+            <td>@Model.Item.Note /></td>
+        </tr>
+        <tr>
+            <td>配偶姓名</td>
+            <td>@Model.Item.SpouseName /></td>
+        </tr>
+        <tr>
+            <td>配偶电话</td>
+            <td>@Model.Item.SpouseTele /></td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>@Model.Item.Status /></td>
+        </tr>
+        <tr>
+            <td>入职时间</td>
+            <td>@Model.Item.EntryTime /></td>
+        </tr>
+        <tr>
+            <td>转正时间</td>
+            <td>@Model.Item.PositiveTime /></td>
+        </tr>
+        <tr>
+            <td>离职时间</td>
+            <td>@Model.Item.QuitDate /></td>
+        </tr>
+        <tr>
+            <td>离职原因</td>
+            <td>@Model.Item.QuitReason /></td>
+        </tr>
+
+    </table>
+</div>

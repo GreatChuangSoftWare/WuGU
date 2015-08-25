@@ -1,0 +1,226 @@
+﻿@{
+    Layout = null;
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+
+    if (modulars == null)
+    {
+        modulars = new SoftProjectAreaEntity();
+    }
+    ViewBag.Title = modulars.MenuName;
+    var Item = new SoftProjectAreaEntity();
+    if (Model != null)
+    {
+        try
+        {
+            if (Model.Item != null)
+            {
+                Item = Model.Item;
+            }
+        }
+        catch(Exception ex)
+        {}
+    }
+    //var MenuPostion = conts.MenuPostion();
+    //var menus = conts.Menu(Item);
+}
+
+<!DOCTYPE html>
+<html lang="@culture">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap.min.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/font-awesome.min.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap-multiselect.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/mycss.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/jquery.datetimepicker.css")" />
+    <link href="/Scripts/uploadify.css" rel="stylesheet" />
+
+    <link href="/Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" />
+    @RenderSection("PageCssSection", required: false)
+
+</head>
+<body>
+    <!-- haad开始 -->
+    <div class="haed hidden-print">
+        <div class="logo pull-left">
+            <a href="/">香磨五谷云服务系统
+            </a>
+        </div>
+        <div class="h-nav">
+            <a class="" href="/Home/Index">首页</a>
+
+
+            <a class="" href="/SysAreas/Design_ModularOrFun/IndexByModular">配置</a>
+
+            <a class="" href="/DocArea/Doc_BaseDocment/DetailHome?Item.Doc_BaseDocmentID=3">联系我们</a>
+            <a class="" href="/DocArea/Doc_BaseDocment/DetailHome?Item.Doc_BaseDocmentID=2">关于我们</a>
+
+            <a class="" href="/DocArea/Doc_BaseDocment/DetailHome?Item.Doc_BaseDocmentID=4">功能介绍</a>
+
+            <a href="/BaseInfoAreas/Sys_LoginInfo/LogOut" tabindex="-1"><i class="glyphicon glyphicon-off"></i>退出</a>
+        </div>
+        <h4 class="pull-left sys-name"></h4>
+        <div class="pull-right user">
+            @conts.LoginInfo.UserName
+        </div>
+        <div class="clear-both "></div>
+    </div>
+    <!-- head end -->
+
+    <div class="main">
+        <!-- menu strat -->
+        <div id="main_left" class="main-left pull-left hidden-print">
+
+            <div class="menu-title">
+                <span>功能菜单</span>
+                <div class="menu-collapse" id="menu-collapse" data-open="open"><i class="icon-double-angle-left"></i></div>
+            </div>
+
+
+
+
+            <ul class="mymenu" id="mymenu">
+                @Html.Menu(Item)
+
+
+
+
+
+
+
+
+
+                @*                <li>
+                    <a href="/AuthorizationAreas/Pre_User/ChangePass">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>修改密码</span>
+                    </a>
+                </li>*@
+                @*                <li>
+                    <a href="/P_ProductAreas/P_Product/IndexTechnology">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>待完善商品描述</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/P_ProductAreas/P_Product/IndexQuality">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>待完善商品介绍</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/P_ProductAreas/P_Product/Index">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>商品管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Pu_PurchaseAreas/Pu_Purchase/AuditingOrder">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>审核中采购单</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/P_ProductAreas/P_Product/IndexPurchaseInput">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>录入采购单</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Pu_PurchaseAreas/Pu_Purchase/WaitAuditingOrder">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>待审核订单</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Pu_PurchaseAreas/Pu_Purchase/Index">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>采购单查询</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/CompanyAreas/Comp_Company/DetailComp">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>公司信息查看</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/CompanyAreas/Comp_Company/EditComp">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>公司信息编辑</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/CompanyAreas/Comp_User/Index">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>企业用户管理</span>
+                    </a>
+                </li>*@
+                @*                <li>
+                    <a href="/BaseInfoAreas/Sys_LoginInfo/ChangePass">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>个人信息</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/BaseInfoAreas/Sys_LoginInfo/ChangePass">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        <span>修改密码</span>
+                    </a>
+                </li>*@
+            </ul>
+        </div>
+        <script src="/Scripts/jquery-1.9.1.js"></script>
+        <script src="/Scripts/bootstrap.min.js"></script>
+
+        @*<script src="/Scripts/bootstrap.js"></script>*@
+        <script src="/Scripts/bootstrap-multiselect.js"></script>
+        <script type='text/javascript' src="~/Scripts/jquery.datetimepicker.js"></script>
+        <script src="~/Scripts/jquery.linq.js"></script>
+        <!-- 配置文件 -->
+        <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+        <!-- 编辑器源码文件 -->
+        <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+
+        @*<script src="/Scripts/swfobject.js"></script>*@
+        @*<script src="/Scripts/jquery.uploadify.v2.1.4-min.js"></script>*@
+        <script src="/Scripts/jquery.uploadify.min.js"></script>
+
+        <script src="/Scripts/jquery-ui-1.8.20.min.js"></script>
+
+        <script src="~/Scripts/Framework.js"></script>
+        <script src="~/Scripts/my.js"></script>
+        <script src="~/Scripts/MyJs.js"></script>
+
+        <div class="main-right" id="main-right">
+            @RenderBody()
+        </div>
+
+        <!-- 正文 end -->
+        <div style="clear: both;"></div>
+    </div>
+
+    <script type="text/javascript">
+        @*        var Framework = Framework || {};
+        Framework.Page = Framework.Page || {};
+        $.extend(Framework.Page, {
+            BaseURL: "@Url.Content("~/")",
+            AppTime: Date.getUTCDate(new Date()),
+        });
+
+        $(function () {
+            App.init();
+        })*@
+
+    </script>
+
+    @RenderSection("PageJavascriptSection", required: false)
+</body>
+</html>

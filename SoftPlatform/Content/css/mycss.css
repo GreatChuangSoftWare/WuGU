@@ -1,0 +1,1635 @@
+﻿
+
+/*全局样式*/
+/*编辑于2014-11-12 V.Yao*/
+html, body, .height100 {
+    height: 100%;
+}
+
+body {
+    padding-bottom: 58px;
+    font-family: "Microsoft YaHei";
+}
+/**/
+span.glyphicon {
+    padding-right: 5px;
+}
+
+.action .selected {
+    color: #03F;
+}
+
+@media (min-width: 1200px) {
+    li[class^="col-"] {
+        list-style: none;
+        height: 50px;
+       
+    }
+
+    .form-horizontal .control-label {
+        text-align: left;
+    }
+
+    .container-fluid .merge {
+        padding-bottom: 20px;
+    }
+
+    .merge .col-lg-8 .col-lg-3, .merge .col-md-8 .col-md-3 {
+        width: 12.5%;
+    }
+
+    .merge .col-lg-8 .col-lg-9, .merge .col-md-8 .col-md-9 {
+        width: 87.5%;
+    }
+
+    .height-lg-100 {
+        height: 100%;
+    }
+}
+
+.padding20 {
+    padding: 20px;
+}
+
+.padding8 {
+    padding: 8px;
+}
+
+.padding0 {
+    padding: 0!important;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+
+/*排序图标样式*/
+.sort-icon {
+    display: block;
+    float: right;
+    position: relative;
+    top: 0px;
+    right: 0px;
+}
+
+    .sort-icon .caret {
+        border-top: 7px solid;
+        display: block;
+        position: absolute;
+        right: 0px;
+        top: 11px;
+    }
+
+    .sort-icon .down {
+        border-bottom: 7px solid;
+        border-top: 0;
+        top: 1px;
+    }
+
+.disabled {
+    color: #999;
+}
+/*排序图标样式结束*/
+.icon-adsd:before {
+    content: "\f000";
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+.margin-left-15 {
+    margin-left: 15px;
+}
+
+.margin-right-15 {
+    margin-right: 15px;
+}
+/*head*/
+.haed {
+    height: 58px;
+    background: #3397d3;
+}
+
+.logo {
+    line-height:58px;
+}
+.logo a {
+    font-size:18px;
+    color:#FFF;
+}
+.haed .sys-name {
+    color: #fff;
+    padding-top: 10px;
+    padding-left: 14px;
+}
+
+.user {
+    padding-top: 22px;
+    padding-right: 40px;
+    font-size:15px;
+    color:#FFF;
+}
+
+.user .dropdown-toggle {
+    color: #fff;
+}
+
+.user .dropdown-menu {
+    min-width: 140px;
+}
+.user a{
+    color: #FFF;
+    margin-right: 15px;
+}
+
+/*menu*/
+.main-left { /*position:fixed; z-index:100;*/
+    position: absolute;
+    width: 202px;
+    background: #f3f3f3;
+    left: 0;
+    border-right: 1px solid #ccc;
+    min-height: 100%;
+    z-index: 11;
+}
+
+.menu-title {
+    height: 50px;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+}
+
+    .menu-title span {
+        margin-left: 20px;
+        line-height: 50px;
+    }
+
+.menu-collapse {
+    position: absolute;
+    right: 0;
+    top: 13px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    background: #898989;
+    color: #fff;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.mymenu, .mymenu ul {
+    list-style: none;
+    padding: 0;
+}
+
+    .mymenu a {
+        color: #585858;
+    }
+
+        .mymenu a:hover {
+            text-decoration: none;
+        }
+
+    .mymenu > li > a:hover, .mymenu > li > a.active, .mymenu > li.active > a {
+        background: #fff;
+        border-left: 3px solid #3397d3;
+        color: #3397d3;
+        padding-left: 17px;
+    }
+
+.submenu a:hover, .submenu a.active {
+}
+
+.menu-title, .mymenu li {
+    position: relative;
+}
+
+    .mymenu li a {
+        border-bottom: 1px solid #ccc;
+        display: block;
+        height: 100%;
+    }
+
+    .mymenu li span {
+        line-height: 40px;
+        font-size: 14px;
+    }
+
+.mymenu > li > a {
+    padding-left: 20px;
+    z-index: 2;
+    position: relative;
+}
+
+.mymenu > li:hover {
+}
+
+.mymenu > li > .submenu:before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    border: 1px dotted #9dbdd6;
+    border-width: 0 0 0 1px;
+}
+
+.submenu {
+    display: none;
+}
+
+    .submenu > li a {
+        padding-left: 34px;
+        background: #fff;
+        border-bottom: 1px dotted #e4e4e4;
+    }
+
+        .submenu > li a span {
+            font-size: 13px;
+        }
+
+.mymenu b {
+    font-size: 18px;
+}
+
+.mymenu b {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.mymenu > li > .submenu > li:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 7px;
+    left: 20px;
+    top: 19px;
+    border-top: 1px dotted #9dbdd6;
+}
+
+.mymenu > li > .submenu > li a:hover {
+    color: #3397d3;
+}
+
+
+/*右侧正文*/
+.main-right {
+    margin-left: 202px;
+}
+
+
+
+/*表单样式  李卫制作*/
+.merge .control-label, .form-head .control-label {
+    white-space: nowrap;
+}
+
+.form-head.form-horizontal {
+    background: #eee;
+    overflow: hidden;
+    height: 35px;
+}
+
+.form-head .form-control {
+    box-shadow: none;
+}
+
+.mydisabled[readonly] {
+    border: none;
+    cursor: auto;
+}
+
+.mydisabled:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.box, .tabsbox {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-top: none;
+}
+
+.form-footer {
+    position: relative;
+    z-index: 10;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /*background:#ddd;*/
+    text-align: right;
+    padding: 5px 15px;
+    clear: both;
+}
+
+.form-horizontal .form-group {
+    list-style: none;
+}
+
+.form-horizontal {
+    padding: 0;
+}
+
+.radio-inline .radio {
+    display: inline;
+}
+/*
+.checker{ display:inline-block;}
+ */
+/*表单样式  李卫制作END*/
+
+.container-fluid {
+    margin-top:10px;
+}
+
+/*搜索条*/
+.search-bar, .tool-bar {
+    /*margin-bottom: 15px;*/
+    overflow: inherit
+}
+
+    .search-bar .form-control {
+        margin-right: 10px;
+    }
+
+@media (max-width: 768px) {
+    .search-bar .btn, .tool-bar .btn {
+        width: 100%;
+    }
+
+    .search-bar .form-control, .search-bar .btn, .tool-bar .btn {
+        margin: 10px 0;
+    }
+}
+/*搜索条END*/
+/*列表页表格*/
+.mylist {
+    overflow: auto;
+}
+
+    .mylist > .table {
+        min-width: 800px;
+    }
+
+    .mylist .table thead, .mylist.table thead {
+        background: #f2f2f2;
+    }
+
+        .mylist .table thead tr th, .mylist.table thead tr th {
+            text-align: center;
+        }
+
+    .mylist .btn-xs {
+        margin: 0 5px;
+    }
+
+    .mylist .table, .mylist.table {
+        margin-bottom: 0;
+    }
+
+.btn-delete, .btn-Delete {
+    background: #aaa;
+    color: #fff;
+}
+
+    .btn-delete:hover, .btn-Delete:hover {
+        background: #999999;
+        color: #fff;
+    }
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table a .glyphicon {
+    padding: 0 6px;
+}
+
+.visible-lg.fenge-bar {
+    position: absolute;
+    height: 100%;
+    width: 10px;
+    background: #aaa;
+    margin-left: -20px;
+}
+
+.hidden-lg.fenge-bar {
+    width: 100%;
+    height: 10px;
+    background: #aaa;
+    margin-bottom: 30px;
+}
+
+.visible-lg.fenge-bar1 {
+    width: 100%;
+    height: 10px;
+    background: #aaa;
+    margin-bottom: 30px;
+}
+/*列表页表格END*/
+/*分页*/
+.page-bar {
+    margin-top: 20px;
+}
+
+    .page-bar .input-group input.form-control {
+        width: 56px;
+    }
+
+    .page-bar .input-group {
+        vertical-align: inherit;
+        margin-left: 5px;
+    }
+
+        .page-bar .input-group select.form-control {
+            width: 70px;
+        }
+
+    .page-bar .pagination {
+        margin: 0;
+    }
+
+    .page-bar .list-nameber {
+        white-space: nowrap;
+        padding-top: 9px;
+    }
+
+/*分页 李卫制作END*/
+
+/*当前位置 */
+.myjuxing {
+    border-radius: 0;
+}
+
+    .myjuxing.breadcrumb {
+        /*height: 0px;
+        padding-top: 0px;*/
+        margin-bottom:0px;
+        padding-left: 28px;
+        border-bottom: solid 1px #ccc;
+        white-space: nowrap;
+    }
+
+.breadcrumb .icon-home {
+    font-size: 18px;
+    padding-right: 5px;
+}
+
+/*模态窗表单 李卫制作*/
+.modal-body .control-label {
+    text-align: right;
+}
+/*模态窗表单 李卫制作END*/
+
+/*组织架构 李卫制作*/
+.organ-tree {
+    min-height: 200px;
+}
+/*组织架构END 李卫制作*/
+
+
+/*	公告新增修改Style */
+.my_form {
+    width: 760px;
+    margin: 100px auto;
+    font-family: 'STHeitiSC-Light', 'Heiti SC Light', 'Heiti SC';
+    font-size: 13px;
+}
+/*	公告新增修改 End */
+
+/*编辑于2014-11-12 V.Yao*/
+.main {
+    position: relative;
+    height: 100%;
+}
+
+/*End*/
+
+/*表格固定列行插件 2014-11-12 Mr.k */
+.table tbody .hoverMe {
+    background: #f7f6f6 !important;
+}
+
+.table {
+    background: #fff;
+    margin-bottom: 0px;
+}
+/*End*/
+
+
+/*编辑于 2014-11-12 V.Yao*/
+/*页面小于768,左侧浮动菜单不占页面位置*/
+/*由于菜单有隐藏显示事件 所以使用了 !important */
+@media screen and (max-width:768px) {
+    .main-right {
+        margin-left: 0px !important;
+    }
+
+    .haed {
+        height: auto;
+    }
+
+    .user {
+        padding-right: 10px;
+    }
+
+    .open .dropdown-menu {
+        left: -58px;
+    }
+}
+/*End*/
+
+
+
+/*登陆页面样式*/
+.bg-blue {
+    background: #3397d3;
+}
+
+.signin {
+    width: 460px;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px;
+    border: solid 1px #e7e7e7;
+    margin: 60px auto;
+    box-shadow: 0px 0px 2px 0px;
+    border-radius: 3px;
+}
+.signin:after {
+    display:table;
+    content:'';
+    clear:both;
+}
+.sign_title {
+    font-weight: 300;
+    padding: 30px 0 20px 0;
+}
+
+@media (min-width: 1200px) {
+    .signin {
+        width: 570px;
+    }
+}
+
+@media (max-width: 767px) {
+    .signin {
+        width: 100%;
+        margin: 20px auto;
+    }
+}
+/*End*/
+/*手机页面 margin-top 20*/
+@media (max-width: 768px) {
+    .phone-margin-top-20 {
+        margin-top: 20px;
+    }
+}
+/*End*/
+/*设置Border为solid颜色为#ddd*/
+.border-solid-ddd {
+    border: 1px solid #ddd;
+}
+/**/
+/*用于采购订单弹窗页-树行插件*/
+.my-tree-menu {
+    height: 80%;
+    margin: 0px;
+    padding: 10px 15px 20px 15px;
+}
+
+    .my-tree-menu ul {
+        margin: 0px;
+        padding: 0;
+        list-style: none;
+    }
+
+        .my-tree-menu ul li {
+            position: relative;
+        }
+
+    .my-tree-menu a {
+        position: relative;
+        color: #000;
+        display: block;
+        background-color: #FFF;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+        .my-tree-menu a:first-child {
+            padding-top: 10px;
+        }
+
+        .my-tree-menu a:hover, .my-tree-menu a:focus {
+            text-decoration: none;
+        }
+
+    .my-tree-menu ul.sub {
+        padding-left: 15px;
+    }
+
+        .my-tree-menu ul.sub:before {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: 1;
+            left: 5px;
+            top: 0;
+            bottom: 0;
+            border: 1px dotted #9dbdd6;
+            border-width: 0 0 0 1px;
+        }
+
+        .my-tree-menu ul.sub > li:before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            width: 7px;
+            left: -10px;
+            top: 19px;
+            border-top: 1px dotted #9dbdd6;
+        }
+
+        .my-tree-menu ul.sub > li:last-child:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 10px;
+            height: 100%;
+            left: -10px;
+            top: 20px;
+            background-color: #FFF;
+            z-index: 2;
+        }
+
+    .my-tree-menu .glyphicon {
+        margin-right: 6px;
+    }
+
+.active a.selected {
+    color: #03F;
+}
+
+.active a i {
+    color: #000;
+}
+/*End*/
+
+
+/*用于入库单页面*/
+.panel-group h4:hover, .panel-group h4:focus {
+    cursor: pointer;
+}
+
+.panel-group h4 a:hover,
+.panel-group h4 a:focus {
+    text-decoration: none;
+}
+/*End*/
+
+
+
+/*设置Table 中文本内容对齐*/
+.table th.align-left,
+.table td.align-left {
+    text-align: left;
+}
+
+.table th.align-right,
+.table td.align-right {
+    text-align: right;
+}
+
+.table td.valign-middle {
+    vertical-align: middle;
+}
+
+/*日历插件样式*/
+.datepicker-days .switch {
+    text-align: center;
+    cursor: pointer;
+}
+
+.datepicker-days .prev:before {
+    content: "\e091";
+}
+
+.datepicker-days .next:before {
+    content: "\e092";
+}
+
+.datepicker-days .prev, .datepicker-days .next {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: pointer;
+    margin: 0 2px;
+}
+
+    .datepicker-days .prev:hover, .datepicker-days .next:hover, .datepicker-days .switch:hover, .datepicker-months.month:hover {
+        border-radius: 1px;
+        background: #eee;
+    }
+
+.datepicker-days .day {
+    text-align: center;
+    cursor: pointer;
+}
+
+    .datepicker-days .day:hover {
+        border-radius: 2px;
+        background: #eee;
+    }
+
+.uploadifyQueueItem.uploadifyError {
+    width: 100%;
+    height: 100%;
+}
+/*日历插件样式结束 */
+
+
+
+.validaterrorpro {
+    border: 1px solid red;
+}
+
+
+
+
+/*IE 8 hack*/
+.col-lg-1, .col-md-1, .col-sm-1, .col-xs-1,
+.col-lg-2, .col-md-2, .col-sm-2, .col-xs-2,
+.col-lg-3, .col-md-3, .col-sm-3, .col-xs-3,
+.col-lg-4, .col-md-4, .col-sm-4, .col-xs-4,
+.col-lg-5, .col-md-5, .col-sm-5, .col-xs-5,
+.col-lg-6, .col-md-6, .col-sm-6, .col-xs-6,
+.col-lg-7, .col-md-7, .col-sm-7, .col-xs-7,
+.col-lg-8, .col-md-8, .col-sm-8, .col-xs-8,
+.col-lg-9, .col-md-9, .col-sm-9, .col-xs-9,
+.col-lg-10, .col-md-10, .col-sm-10, .col-xs-10,
+.col-lg-11, .col-md-11, .col-sm-11, .col-xs-11,
+.col-lg-12, .col-md-12, .col-sm-12, .col-xs-12 {
+    float: left\0;
+}
+
+
+.col-lg-1, .col-md-1, .col-sm-1, .col-xs-1 {
+    width: 8.33333333%\0;
+}
+
+.col-lg-2, .col-md-2, .col-sm-2, .col-xs-2 {
+    width: 16.66666667%\0;
+}
+
+.col-lg-3, .col-md-3, .col-sm-3, .col-xs-3 {
+    width: 25%\0;
+}
+
+.col-lg-4, .col-md-4, .col-sm-4, .col-xs-4 {
+    width: 33.33333333%\0;
+}
+
+.col-lg-5, .col-md-5, .col-sm-5, .col-xs-5 {
+    width: 41.66666667%\0;
+}
+
+.col-lg-6, .col-md-6, .col-sm-6, .col-xs-6 {
+    width: 50%\0;
+}
+
+.col-lg-7, .col-md-7, .col-sm-7, .col-xs-7 {
+    width: 58.33333333%\0;
+}
+
+.col-lg-8,
+.col-md-8,
+.col-sm-8,
+.col-xs-8 {
+    width: 66.66666667%\0;
+}
+
+.col-lg-9,
+.col-md-9,
+.col-sm-9,
+.col-xs-9 {
+    width: 75%\0;
+}
+
+.col-lg-10,
+.col-md-10,
+.col-sm-10,
+.col-xs-10 {
+    width: 83.33333333%\0;
+}
+
+.col-lg-11,
+.col-md-11,
+.col-sm-11,
+.col-xs-11 {
+    width: 91.66666667%\0;
+}
+
+.col-lg-12,
+.col-md-12,
+.col-sm-12,
+.col-xs-12 {
+    width: 100%\0;
+}
+
+.col-xs-offset-1, .col-sm-offset-1, .col-lg-offset-1, .col-ld-offset-1 {
+    margin-left: 8.33333333%\0;
+}
+
+.col-xs-offset-2, .col-sm-offset-2, .col-lg-offset-2, .col-ld-offset-2 {
+    margin-left: 16.66666667%\0;
+}
+
+.col-xs-offset-3, .col-sm-offset-3, .col-lg-offset-3, .col-ld-offset-3 {
+    margin-left: 25%\0;
+}
+
+.col-xs-offset-4, .col-sm-offset-4, .col-lg-offset-4, .col-ld-offset-4 {
+    margin-left: 33.33333333%\0;
+}
+
+.col-xs-offset-5, .col-sm-offset-5, .col-lg-offset-5, .col-ld-offset-5 {
+    margin-left: 41.66666667%\0;
+}
+
+.col-xs-offset-6, .col-sm-offset-6, .col-lg-offset-6, .col-ld-offset-6 {
+    margin-left: 50%\0;
+}
+
+.col-xs-offset-7, .col-sm-offset-7, .col-lg-offset-7, .col-ld-offset-7 {
+    margin-left: 58.33333333%\0;
+}
+
+.col-xs-offset-8, .col-sm-offset-8, .col-lg-offset-8, .col-ld-offset-8 {
+    margin-left: 66.66666667%\0;
+}
+
+.col-xs-offset-9, .col-sm-offset-9, .col-lg-offset-9, .col-ld-offset-9 {
+    margin-left: 75%\0;
+}
+
+.col-xs-offset-10, .col-sm-offset-10, .col-lg-offset-10, .col-ld-offset-10 {
+    margin-left: 83.33333333%\0;
+}
+
+.col-xs-offset-11, .col-sm-offset-11, .col-lg-offset-11, .col-ld-offset-11 {
+    margin-left: 91.66666667%\0;
+}
+
+.col-xs-offset-12, .col-sm-offset-12, .col-lg-offset-12, .col-ld-offset-12 {
+    margin-left: 100%\0;
+}
+
+.form-control {
+    width: 100%\0;
+}
+
+.form-inline .form-control {
+    width: auto\0;
+    display: inline-block\0;
+}
+
+.form-inline {
+    float: left\0;
+}
+
+    .form-inline .input-group {
+        display: inline-table\0;
+    }
+
+.input-group {
+    width: 107px\0;
+}
+/**/
+
+/*自动补全输入框 李卫制作END*/
+/*表格树 */
+.tabletreeplus {
+    background: url(/Content/images/plus.gif) no-repeat;
+    height: 16px;
+    width: 16px;
+    float: left;
+    cursor: pointer;
+}
+
+.tabletreeminus {
+    background: url(/Content/images/minus.gif) no-repeat;
+    height: 16px;
+    width: 16px;
+    float: left;
+    cursor: pointer;
+}
+
+/*设置padding或者margin*/
+.padding-top-bottom-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.padding-top-20 {
+    padding-top: 20px;
+}
+
+.padding-bottom-20 {
+    padding-bottom: 20px;
+}
+
+.padding-left-20 {
+    padding-left: 20px;
+}
+
+.padding-left-40 {
+    padding-left: 40px;
+}
+
+.padding-right-15 {
+    padding-right: 15px;
+}
+
+.margin-top-0 {
+    margin-top: 0px;
+}
+
+.text-indent-2em {
+    text-indent: 2em;
+}
+
+.text-indent-4em {
+    text-indent: 4em;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+/**/
+/*设置单元格内容垂直居中*/
+.mylist table > tbody > tr > td,
+.mylist table > tfoot > tr > td {
+    vertical-align: middle;
+}
+
+.table > thead > tr > th {
+    text-align: center;
+}
+
+.mylist .table-bordered > thead > tr > th,
+.mylist .table-bordered > thead > tr > td {
+    border-bottom-width: 0;
+}
+/*水平线*/
+.hr {
+    border-bottom: 1px solid #999;
+    top: -5px;
+    position: relative;
+}
+/*权限管理--角色管理--添加--权限部分布局*/
+.setText-horizontal .mylist .checker {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.setText-horizontal .mylist .tabletreeplus {
+    background-position-y: 5px;
+}
+
+.container-fluid .overflow-auto {
+    overflow: auto;
+    height: auto;
+}
+
+.margin-left .checkbox-inline {
+    margin-left: 0px;
+}
+/*首页样式*/
+.banner-auto {
+    margin: 20px 0;
+    padding: 25px;
+    background-color: #d9f4f7;
+    border-radius: 5px;
+    border: 1px solid #b2e2ed;
+}
+
+    .banner-auto ul {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+    }
+
+        .banner-auto ul li {
+            display: inline-block;
+            color: #31708F;
+            margin-right: 20px;
+            vertical-align: middle;
+        }
+
+            .banner-auto ul li span {
+                font-size: 18px;
+            }
+
+                .banner-auto ul li span i {
+                    margin: 0 5px 0 0;
+                    padding: 0px;
+                }
+
+                .banner-auto ul li span a {
+                    cursor: pointer;
+                    width: 24px;
+                    height: 24px;
+                    display: inline-block;
+                    border-radius: 10px;
+                    background-color: #ccc;
+                    text-align: center;
+                }
+
+    .banner-auto .title {
+        font-size: 24px;
+        font-family: 'STHeitiSC-Medium', 'Heiti SC Medium', 'Heiti SC';
+        font-weight: 200;
+    }
+
+.inline-horizontal ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+    .inline-horizontal ul li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+.border-bottom {
+    border-bottom: 1px solid #999;
+}
+
+.table-text-left .table thead tr th,
+.table-text-left table thead tr th,
+.table-text-left table tbody tr td {
+    text-align: left;
+}
+/*End*/
+/*清浮动*/
+.clear-both {
+    clear: both;
+}
+
+.ul-not-style {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+/**/
+
+
+
+/*table 鼠标选中高亮*/
+.table-hover > tbody > tr.tbrow-ighlight > td,
+.table-hover > tbody > tr.tbrow-ighlight > th {
+    background-color: #AFEED9;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 6px 8px;
+}
+/**/
+/**/
+#uploadify {
+    display: inline-block;
+    height: 32px;
+}
+
+/*table 表头锁定样式*/
+.lockhead {
+    position: relative; /*absolute;*/ /*relative;*/
+    background-color: #f2f2f2;
+    z-index: 999;
+    vertical-align: middle !important;
+}
+
+    .lockhead .sort-icon {
+        display: block;
+        position: absolute;
+        right: 5px;
+    }
+
+/*table 表头锁定样式*/
+.lockhead2 {
+    position: relative; /*absolute;*/ /*relative;*/
+    background-color: #f2f2f2;
+    z-index: 999;
+    vertical-align: middle !important;
+}
+
+    .lockhead2 .sort-icon {
+        display: block;
+        position: absolute;
+        right: 5px;
+    }
+
+/* 固定总数值*/
+.total-count-banner {
+    position: relative;
+    background-color: #FFF;
+    z-index: 999;
+}
+
+.total-count {
+    width: auto;
+    display: inline-block;
+    position: relative;
+}
+/**/
+.company-scroll {
+    border: 1px solid #ddd;
+    overflow: auto;
+    position: relative;
+}
+
+    .company-scroll > .checkbox-inline {
+        margin-left: 10px;
+    }
+/**/
+#advSearchArea select {
+    min-width: 96%;
+    max-width: 96%;
+}
+/**/
+
+/*打印style*/
+.color-00ff00 {
+    color: #00ff00;
+}
+
+.color-0000ff {
+    color: #0000ff;
+}
+
+.print-page {
+    width: 796px;
+    margin: 20px auto;
+    padding: 0px 20px;
+    box-shadow: 10px 20px 150px #000;
+    max-width: 1120px;
+}
+
+    .print-page.width-auto {
+        width: auto;
+    }
+
+    .print-page .font-red {
+        color: red;
+    }
+
+    .print-page td {
+        padding: 2px;
+        min-width: 37px;
+        line-height: 24px;
+        vertical-align: top;
+    }
+
+    .print-page p {
+        line-height: 28px;
+        margin-bottom: 0px;
+    }
+
+.border-bottom-1 {
+    display: block;
+    height: 18px;
+    width: 100%;
+    border-bottom: 1px solid #000;
+}
+
+.td-not-padding {
+    padding: 0px !important;
+}
+
+.td-not-border {
+    border: none !important;
+}
+
+@media print {
+    html, body, p, a, td, th {
+        font-size: 3.88mm;
+    }
+
+    .print-style table {
+        width: 960px;
+    }
+
+    .print-style td,
+    .print-style th {
+        font-size: 3mm;
+    }
+
+    .print-style .lockhead {
+        position: static;
+    }
+
+    h3 > font.color-00ff00 {
+        color: #00ff00 !important;
+    }
+
+    h3 > font.color-0000ff {
+        color: #0000ff !important;
+    }
+
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+        border: 1px solid #000 !important;
+    }
+
+    .print-page {
+        width: auto;
+        box-shadow: none;
+        max-width: 100%;
+        margin-top: 0;
+    }
+
+    h1, .h1, h2, .h2, h3, .h3, .padding20 {
+        margin-top: 0mm;
+        padding-top: 0mm;
+    }
+
+    .padding-top-bottom-20 {
+        margin: 0px;
+        padding: 0px;
+    }
+}
+
+/*打印按钮浮动*/
+.print-btn {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+}
+/**/
+
+.dandupaixu {
+    background: #f4f4f4;
+    height: 40px;
+    line-height: 40px;
+}
+
+    .dandupaixu .col-md-9 div {
+        float: left;
+        padding: 0 15px;
+    }
+
+.fanyeliwei {
+    padding-right: 15px;
+    text-align: right;
+}
+
+    .fanyeliwei a {
+        display: block;
+        float: right;
+        height: 30px;
+        line-height: 30px;
+        padding: 0px 10px;
+        margin-top: 5px;
+        background: #fff;
+        margin-left: 10px;
+    }
+
+.dandupaixu .sort-icon {
+    right: -10px;
+    top: 10px;
+}
+
+
+/*///////////////////////////////////////*/
+.table-panel {
+    margin-bottom: 0;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+}
+
+.container-fluid .table-panel {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.table-panel li[class^="col-"] {
+    height: auto;
+    line-height: 30px;
+}
+
+.table-panel .form-group {
+    margin-bottom: 0px;
+}
+
+.table-panel li {
+    border: 1px solid #eaeaea;
+    border-right: none;
+    margin-top: -2px;
+}
+
+.panel-body .merge {
+    padding-bottom: 0;
+}
+
+.table-panel .form-group > div {
+    background: #fff;
+    border-left: 1px solid #eaeaea;
+    white-space: inherit;
+}
+
+.table-panel div.control-label, .table-panel label.control-label {
+    white-space: inherit;
+}
+
+.table-panel li {
+    background: #f4f4f4;
+}
+
+.table-panel .col-lg-1, .table-panel .col-md-1 {
+}
+
+.mybottabs {
+    margin-bottom: 0px;
+}
+
+.targetdom {
+}
+
+.panel-body .mylist {
+    margin-top: 15px;
+}
+
+
+.panel-heading li {
+    height: auto;
+}
+
+.panel-heading {
+    position: relative;
+}
+
+.pannle-close {
+    height: 30px;
+    padding: 0 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 14px;
+}
+
+.panel-heading li {
+    top: -5px;
+}
+
+
+
+/*头部导航*/
+.h-nav {
+    display: block;
+    width: 400px;
+    position: absolute;
+    top: 22px;
+    right: 80px;
+}
+.h-nav a {
+    color:#FFF;
+    margin-right:15px;
+}
+
+/*首页商品样式*/
+.index.item {
+    width:375px;
+    display:block;
+    padding:10px;
+    float:left;
+}
+.index.item .img-box,
+.index.item .c-box {
+    display:block;
+    float:left;
+}
+.index.item .img-box {
+    width:155px;
+}
+.index.item .c-box {
+    width:200px;
+    padding:0 10px
+}
+.index.item .img-box img {
+    width:155px;
+    height:155px;
+
+}
+.index.item .c-box ul {
+    margin:0px;
+    padding:0px;
+}
+.index.item .c-box ul li {
+    list-style:none;
+    margin:0 0 4px 0;
+    padding:0;
+    font-size:12px;
+}
+.index.item .c-box ul li .name {
+    font-weight:bold;
+}
+.index.item .c-box ul li input[type=text]{
+    width:80px;
+    height: 20px;
+}
+/*商品详情也样式*/
+.p-info {
+    display:block;
+     margin-bottom:30px;
+}
+.p-info .img-box,
+.p-info .c-box{
+    float:left;
+    display:block;
+}
+.p-info .img-box {
+    width:267px;
+       
+}
+.p-info .jd-imbox {
+    margin-bottom:5px;
+}
+.p-info .jd-imbox img {
+    width:267px;
+}
+.p-info .thumb img{
+    width:50px;
+}
+.p-info .c-box ul {
+    margin:0px;
+    padding:0px 0  0 20px;
+}
+.p-info .c-box ul li{
+    list-style:none;
+    margin-bottom:5px;
+}
+.p-info .c-box ul li div {
+    padding:4px;
+}
+.p-info .c-box ul li .name {
+    font-weight:bold;
+}
+.p-info .c-box ul li .cx {
+    background-color:#f7f7f7;
+    padding-right:20px;
+}
+.p-info .c-box ul li .cx em {
+        font-style:normal;
+        font-size:12px;
+        padding:2px;
+        margin:4px;
+        background-color:#f00;
+        color:#fff;
+}
+.p-info .c-box ul li .cx span {
+    color:#F00;
+}
+.p-info .c-box ul li .btn {
+    margin-top:30px;
+        
+}
+/*加入购物车样式*/
+.queer-banner{
+
+	height: 170px;
+	position: relative;
+	margin-bottom: 20px;
+    text-align:center;
+}
+.queer-banner .queer-row{
+	width: 490px;
+    padding-top: 150px;
+    margin:0 auto;
+}
+.queer-row h3,
+.queer-row button,
+.queer-row a{
+	float: left;
+}
+.queer-row h3{
+	margin: 0;
+	color: #79BD53;
+	font-size: 24px;
+	margin-right: 10px;
+}
+.queer-row a.btn{
+	background-color: #DF3133;
+	font-size: 15px;
+	color: #FFF;
+	margin-right: 10px;
+    line-height: 20px;
+
+}
+.queer-row a{
+	line-height: 36px;
+}
+/*菜单样式*/
+.main-left ul{
+
+
+}
+.main-left li{
+    list-style:none;
+    margin-bottom:5px;
+
+}
+.main-left li a {
+    color:#666;
+}
+/**/
+table#tbList .btn-xs {
+    margin:0px
+}
+.btn-group .dropdown-menu {
+    min-width:100px;
+}
+li[class^="col-"] {
+    list-style:none;
+    height:50px\0;
+}
+/**/
+ul.multiselect-container.dropdown-menu {
+    width:100%;
+
+}
+ul.multiselect-container.dropdown-menu > li {
+    padding-left:15px;
+}
+ul.multiselect-container.dropdown-menu > li > a {
+    margin-top:0px;
+    margin-bottom:0px;
+}
+/*禁止文本框样式*/
+input[type=text]:disabled,
+textarea:disabled{
+    background-color:transparent;
+    border:none;
+}
+textarea {
+    width:100%;
+    height:100%;
+    margin: 0px;
+}
+
+.panel-heading h3 {
+    margin:0;
+    font-size: 18px;
+}
+.panel-body.top h2 {
+    padding:0 15px
+}
+.panel-body.top span {
+    margin-right:15px
+}
+.panel-body .beizhu {
+    margin:20px 10px;
+    padding:10px;
+    border-radius:4px;
+    background-color:#D9EDF7;
+}
+.panel-body .attach-panel {
+    margin:10px;
+}
+.panel-body .attach-panel a {
+    margin-right:10px;
+    padding:4px;
+    cursor:pointer;
+}
+.panel-body .attach-panel a i {
+    margin-right:5px
+}
+.panel-body .attach-panel:after {
+    display:table;
+    content:'';
+    clear:both;
+}

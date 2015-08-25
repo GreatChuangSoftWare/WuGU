@@ -1,0 +1,52 @@
+﻿@model MyResponseBase<Areas.SysAreas.Sys_OperLogDetail>
+
+@{
+    var conts = ViewContext.Controller as BaseController;
+    Layout = "~/Views/Shared/_CompFraDashboard.cshtml";    
+}
+<div id='editP' class="operArea">
+    <div>
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li><a href="/FranchiseeAreas/Fra_Franchisee/Index">加盟商管理</a></li>
+            <li>登录列表</li>
+        </ul>
+    </div>
+
+    <div id='IndexP' class="targetdom">
+        <div class="container-fluid childTableSelect">
+            <div class='operArea' data-searchmethod='' data-url="" data-targetdom=".targetdom">
+                @*            <div class="search-bar">
+                <div class="tool-bar search-bar ">
+                    <div class="col-sm-@modulars.ToolbarButtonAreaWidth">
+                    </div>
+                    <div class="col-sm-@modulars.ToolbarSearchAreaWidth text-right form-inline"  id="SearchArea">
+                        @Html.QueryHtml(Model.Querys, Model.ModularOrFunCode) &nbsp
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>*@
+                <div class="scrollBar scrollBarAuto" style="width: 100%; overflow: auto;" data-width="100%">
+                    <div class="mylist container-fluid container" style="width: 100%; overflow: inherit;">
+                        <table id='tbList' class="table table-bordered table-hover table-striped FwtabletoTab" style="width: 100%;">
+                            <thead>
+                                <tr><td>序号</td><td>登录日期</td></tr>
+                            </thead>
+                            <tbody>
+                                @for(var i=0;i<Model.Items.Count;i++)
+                                {
+                                    var item = Model.Items[i];
+                                    <tr><td>@(i+1)</td><td>@item.OperDate</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- 分页 -->
+                <div class="page-bar">
+                    @Html.Partial("_PagingOption", Model.PageQueryBase)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.FunNameCn;
+
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.LoginModulerBtns(modulars.ModularOrFunCode, 3);
+
+    var disabled = "";
+
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = new SoftProjectAreaEntity
+        {
+            Fra_RoleID = Model.Item.Fra_RoleID,
+        }
+    };
+}
+
+@section PageJavascriptSection
+{
+    <script type='text/javascript' src='@Url.Content("~/Areas/AuthorizationAreas/Scripts/Fra_Roles.js")'></script>
+}
+
+<div id="editP" class="operArea">
+    <div>
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+    <div class="targetdom">
+        <div class='mastEditArea editArea'>
+            <form>
+                <div class="container-fluid">
+                    <div class='form-horizontal merge '>
+                        <ul class="form-horizontal merge">
+                            @Html.FormEleHtml(Model.Item, Model.ModularOrFunCode, 4)
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        @Html.Action("EditList", "Fra_RolePremSet", request)
+        <div class='editArea'>
+            <div class="container-fluid">
+                <div class="form-footer1">
+                    <div class="text-right col-md-12">
+                        @Html.BtnFooterHtml(Model.Item, Model.ModularOrFunCode, btns)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

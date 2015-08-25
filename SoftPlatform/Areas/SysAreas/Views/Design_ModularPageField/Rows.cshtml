@@ -1,0 +1,2874 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    //字段类型：1：td  2:thead-data  4: tbody-data  6：thead|tbody-data
+    List<TextValue> TablePoss = new List<TextValue>
+    { 
+        new TextValue{Text="==位置==",Value=""},
+        new TextValue{Text="td",Value="1"},
+        new TextValue{Text="thead-data",Value="2"},
+        new TextValue{Text="td|thead-data",Value="3"},
+        new TextValue{Text="tbody-data",Value="4"},
+        new TextValue{Text="td|tbody-data",Value="5"},
+        new TextValue{Text="thead|tbody-data",Value="6"},
+        new TextValue{Text="td|thead|tbody-data",Value="7"},
+
+    };
+
+    //字段类型：1：td  2:thead-data  4: tbody-data  6：thead|tbody-data
+    List<TextValue> PanlHeadPoss = new List<TextValue>
+    { 
+        new TextValue{Text="==位置==",Value=""},
+        new TextValue{Text="head",Value="1"},
+        new TextValue{Text="Context",Value="2"},
+    };
+
+    List<TextValue> DetailPoss = new List<TextValue>
+    { 
+        new TextValue{Text="==位置==",Value=""},
+        new TextValue{Text="MainTitle",Value="1"},
+        new TextValue{Text="Subtitle",Value="2"},
+        new TextValue{Text="Context",Value="3"},
+    };
+
+
+    //表单控件类型：1：文本框  2:标签  4：下拉列表框  8：Hidden  16:Radion  32:CheckBox
+    List<TextValue> FormEleTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+        new TextValue{Text="td",Value="0"},        
+        new TextValue{Text="文本框",Value="1"},
+        new TextValue{Text="标签",Value="2"},
+        new TextValue{Text="下拉",Value="4"},
+        new TextValue{Text="下拉复选框(按位)",Value="8192"},
+        new TextValue{Text="下拉复选框(','分隔)",Value="8193"},
+        new TextValue{Text="下拉树",Value="128"},
+        new TextValue{Text="隐藏",Value="8"},
+        new TextValue{Text="密码",Value="10"},
+
+        new TextValue{Text="单选",Value="16"},
+        new TextValue{Text="复选框",Value="2048"},
+        new TextValue{Text="复选框组(按位)",Value="32"},
+        new TextValue{Text="复选框组(按值)",Value="4096"},
+        new TextValue{Text="文本框(只读)",Value="64"},
+        new TextValue{Text="图片",Value="256"},
+        new TextValue{Text="上传(表格)",Value="16384"},
+        new TextValue{Text="上传(编辑)",Value="32768"},
+        new TextValue{Text="Html编辑器",Value="512"},
+        new TextValue{Text="Html元素",Value="1024"},
+        new TextValue{Text="超链接",Value="65536"},
+        new TextValue{Text="子查询",Value="12"},
+    };
+
+    //查询类型：1:模糊   2:等值   3:范围
+    List<TextValue> QueryTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+        new TextValue{Text="模糊",Value="1"},
+        new TextValue{Text="等值",Value="2"},
+        new TextValue{Text="范围",Value="3"},
+    };
+
+    List<TextValue> bTabVers = new List<TextValue>
+    { 
+        new TextValue{Text="==回车垂直==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+
+    List<TextValue> QueryPoss = new List<TextValue>
+    { 
+        new TextValue{Text="==查询位置==",Value=""},
+        new TextValue{Text="快速查询",Value="1"},
+        new TextValue{Text="高级查询",Value="2"},
+    };
+
+
+    //List<SoftProjectAreaEntity> Design_ModularOrFuns = new List<SoftProjectAreaEntity> { 
+    //    new SoftProjectAreaEntity{PageFormEleTypeName="Page1FormEleType",QueryFormEleTypeName="Query2",ModularName="列表页"},
+    //    new SoftProjectAreaEntity{PageFormEleTypeName="Page2FormEleType",QueryFormEleTypeName="Query3",ModularName="添加页"},
+    //    new SoftProjectAreaEntity{PageFormEleTypeName="Page3FormEleType",QueryFormEleTypeName="Query4",ModularName="编辑页"},
+    //    new SoftProjectAreaEntity{PageFormEleTypeName="Page4FormEleType",QueryFormEleTypeName="Query5",ModularName="查看页"},
+    //};
+    var Design_ModularOrFuns = Model.Item.Design_ModularOrFuns;
+    Design_ModularOrFuns = Design_ModularOrFuns.Where(p => p.bFieldsConfigDisp == 1).ToList();
+
+}
+
+@for (var i = 0; i < Model.Items.Count; i++)
+{
+    var item = Model.Items[i];
+    <tr data-design_modularfieldid="@item.Design_ModularFieldID" data-design_modularpagefieldid="@item.Design_ModularPageFieldID"
+        data-namecn="@item.NameCn">
+        <td>
+            @(i + 1)
+        </td>
+        <td>
+            <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除"
+                class='btn btn-primary btn-xs   btn-FwRowUIPopup'>删除</a>
+        </td>
+        <td>
+            <input type='text'  class='form-control TableInfoSort'  data-datatype='int' 
+                           data-tabnextcol="TableInfoSort"   data-fieldnamecn='排序序号' id='TableInfoSort' name='TableInfoSort' value='@item.TableInfoSort' />
+        </td>
+        <td>
+            @item.name
+        </td>
+        <td>
+            @item.NameCn
+        </td>
+        @for (int m = 0; m < Design_ModularOrFuns.Count; m++)
+        {
+            if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page01FormEleType")
+            {
+                {
+            <td>
+                <input type='text'  class='form-control Page01FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page01FormEleSort"   data-fieldnamecn='排序序号' id='Page01FormEleSort' 
+                    name='Page01FormEleSort' value='@item.Page01FormEleSort' />
+            </td>
+                    if (Design_ModularOrFuns[m].PageType != 6)
+                    {
+                        if (Design_ModularOrFuns[m].PageType == 1)
+                        {
+            <td>
+                @Html.DropDownList("Page01FormElePos", TablePoss, "Value", "Text", item.Page01FormElePos)
+            </td>
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 4)
+                        { 
+            <td>
+                @Html.DropDownList("Page01FormElePos", PanlHeadPoss, "Value", "Text", item.Page01FormElePos)
+            </td>                
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 5)
+                        { 
+            <td>
+                @Html.DropDownList("Page01FormElePos", DetailPoss, "Value", "Text", item.Page01FormElePos)
+            </td>               
+                        }
+                        if (Design_ModularOrFuns[m].PageType != 5)
+                        {
+            <td>
+                @Html.DropDownList("Page01FormEleType", FormEleTypes, "Value", "Text", item.Page01FormEleType)
+            </td>
+                        }
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page02FormEleType")
+            {
+@*if (item.Design_ModularFieldID < 100 && Design_ModularOrFuns[m].PageType != 1)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 2 || Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8 || Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    {
+            <td></td>
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 6)
+                    {
+            <td></td>
+                    }
+                }
+                else*@
+                {
+            <td>
+                <input type='text'  class='form-control Page02FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page02FormEleSort"   data-fieldnamecn='排序序号' id='Page02FormEleSort' 
+                    name='Page02FormEleSort' value='@item.Page02FormEleSort' />
+            </td>
+                    if (Design_ModularOrFuns[m].PageType != 6)
+                    {
+                        if (Design_ModularOrFuns[m].PageType == 1)
+                        {
+            <td>
+                @Html.DropDownList("Page02FormElePos", TablePoss, "Value", "Text", item.Page02FormElePos)
+            </td>
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 4)
+                        { 
+            <td>
+                @Html.DropDownList("Page02FormElePos", PanlHeadPoss, "Value", "Text", item.Page02FormElePos)
+            </td>                
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 5)
+                        { 
+            <td>
+                @Html.DropDownList("Page02FormElePos", DetailPoss, "Value", "Text", item.Page02FormElePos)
+            </td>                
+                        }
+                        if (Design_ModularOrFuns[m].PageType != 5)
+                        {
+            <td>
+                @Html.DropDownList("Page02FormEleType", FormEleTypes, "Value", "Text", item.Page02FormEleType)
+            </td>
+                        }
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page03FormEleType")
+            {
+@*if (item.Design_ModularFieldID < 100 && Design_ModularOrFuns[m].PageType != 1)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 2 || Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8 || Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    {
+            <td></td>
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 6)
+                    {
+            <td></td>
+                    }
+                }
+                else*@
+                {
+            <td>
+                <input type='text'  class='form-control Page03FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page03FormEleSort"   data-fieldnamecn='排序序号' id='Page03FormEleSort' 
+                    name='Page03FormEleSort' value='@item.Page03FormEleSort' />
+            </td>
+                    if (Design_ModularOrFuns[m].PageType != 6)
+                    {
+                        if (Design_ModularOrFuns[m].PageType == 1)
+                        {
+            <td>
+                @Html.DropDownList("Page03FormElePos", TablePoss, "Value", "Text", item.Page03FormElePos)
+            </td>
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 4)
+                        { 
+            <td>
+                @Html.DropDownList("Page03FormElePos", PanlHeadPoss, "Value", "Text", item.Page03FormElePos)
+            </td>                
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 5)
+                        { 
+            <td>
+                @Html.DropDownList("Page03FormElePos", DetailPoss, "Value", "Text", item.Page03FormElePos)
+            </td>                
+                        }
+                        if (Design_ModularOrFuns[m].PageType != 5)
+                        {
+            <td>
+                @Html.DropDownList("Page03FormEleType", FormEleTypes, "Value", "Text", item.Page03FormEleType)
+            </td>
+                        }
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page04FormEleType")
+            {
+@*if (item.Design_ModularFieldID < 100 && Design_ModularOrFuns[m].PageType != 1)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 2 || Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8 || Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    {
+            <td></td>
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 6)
+                    {
+            <td></td>
+                    }
+                }
+                else*@
+                {
+            <td>
+                <input type='text'  class='form-control Page04FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page04FormEleSort"   data-fieldnamecn='排序序号' id='Page04FormEleSort' 
+                    name='Page04FormEleSort' value='@item.Page04FormEleSort' />
+            </td>
+                    if (Design_ModularOrFuns[m].PageType != 6)
+                    {
+                        if (Design_ModularOrFuns[m].PageType == 1)
+                        {
+            <td>
+                @Html.DropDownList("Page04FormElePos", TablePoss, "Value", "Text", item.Page04FormElePos)
+            </td>
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 4)
+                        { 
+            <td>
+                @Html.DropDownList("Page04FormElePos", PanlHeadPoss, "Value", "Text", item.Page04FormElePos)
+            </td>                
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 5)
+                        { 
+            <td>
+                @Html.DropDownList("Page04FormElePos", DetailPoss, "Value", "Text", item.Page04FormElePos)
+            </td>                
+                        }
+                        if (Design_ModularOrFuns[m].PageType != 5)
+                        {
+            <td>
+                @Html.DropDownList("Page04FormEleType", FormEleTypes, "Value", "Text", item.Page07FormEleType)
+            </td>
+                        }
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page05FormEleType")
+            {
+@*if (item.Design_ModularFieldID < 100 && Design_ModularOrFuns[m].PageType != 1)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 2 || Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8 || Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    {
+            <td></td>
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 6)
+                    {
+            <td></td>
+                    }
+                }
+                else*@
+                {
+            <td>
+                <input type='text'  class='form-control Page05FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page05FormEleSort"   data-fieldnamecn='排序序号' id='Page05FormEleSort' 
+                    name='Page05FormEleSort' value='@item.Page05FormEleSort' />
+            </td>
+                    if (Design_ModularOrFuns[m].PageType != 6)
+                    {
+                        if (Design_ModularOrFuns[m].PageType == 1)
+                        {
+            <td>
+                @Html.DropDownList("Page05FormElePos", TablePoss, "Value", "Text", item.Page05FormElePos)
+            </td>
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 4)
+                        { 
+            <td>
+                @Html.DropDownList("Page05FormElePos", PanlHeadPoss, "Value", "Text", item.Page05FormElePos)
+            </td>                
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 5)
+                        { 
+            <td>
+                @Html.DropDownList("Page05FormElePos", DetailPoss, "Value", "Text", item.Page05FormElePos)
+            </td>                
+                        }
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page05FormEleType", FormEleTypes, "Value", "Text", item.Page05FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page06FormEleType")
+            {
+@*if (item.Design_ModularFieldID < 100 && Design_ModularOrFuns[m].PageType != 1)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 2 || Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8 || Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    {
+            <td></td>
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 6)
+                    {
+            <td></td>
+                    }
+                }
+                else*@
+                {
+            <td>
+                <input type='text'  class='form-control Page06FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page06FormEleSort"   data-fieldnamecn='排序序号' id='Page06FormEleSort' 
+                    name='Page06FormEleSort' value='@item.Page06FormEleSort' />
+            </td>
+                    if (Design_ModularOrFuns[m].PageType != 6)
+                    {
+                        if (Design_ModularOrFuns[m].PageType == 1)
+                        {
+            <td>
+                @Html.DropDownList("Page06FormElePos", TablePoss, "Value", "Text", item.Page06FormElePos)
+            </td>
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 4)
+                        { 
+            <td>
+                @Html.DropDownList("Page06FormElePos", PanlHeadPoss, "Value", "Text", item.Page06FormElePos)
+            </td>                
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 5)
+                        { 
+            <td>
+                @Html.DropDownList("Page06FormElePos", DetailPoss, "Value", "Text", item.Page06FormElePos)
+            </td>                
+                        }
+                        if (Design_ModularOrFuns[m].PageType != 5)
+                        {
+            <td>
+                @Html.DropDownList("Page06FormEleType", FormEleTypes, "Value", "Text", item.Page06FormEleType)
+            </td>
+                        }
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page07FormEleType")
+            {
+@*if (item.Design_ModularFieldID < 100 && Design_ModularOrFuns[m].PageType != 1)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 2 || Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8 || Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    {
+            <td></td>
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 6)
+                    {
+            <td></td>
+                    }
+                }
+                else*@
+                {
+            <td>
+                <input type='text'  class='form-control Page07FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page07FormEleSort"   data-fieldnamecn='排序序号' id='Page07FormEleSort' 
+                    name='Page07FormEleSort' value='@item.Page07FormEleSort' />
+            </td>
+                    if (Design_ModularOrFuns[m].PageType != 6)
+                    {
+                        if (Design_ModularOrFuns[m].PageType == 1)
+                        {
+            <td>
+                @Html.DropDownList("Page07FormElePos", TablePoss, "Value", "Text", item.Page07FormElePos)
+            </td>
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 4)
+                        { 
+            <td>
+                @Html.DropDownList("Page07FormElePos", PanlHeadPoss, "Value", "Text", item.Page07FormElePos)
+            </td>                
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 5)
+                        { 
+            <td>
+                @Html.DropDownList("Page07FormElePos", DetailPoss, "Value", "Text", item.Page07FormElePos)
+            </td>                
+                        }
+                        if (Design_ModularOrFuns[m].PageType != 5)
+                        {
+            <td>
+                @Html.DropDownList("Page07FormEleType", FormEleTypes, "Value", "Text", item.Page07FormEleType)
+            </td>
+                        }
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page08FormEleType")
+            {
+@*if (item.Design_ModularFieldID < 100 && Design_ModularOrFuns[m].PageType != 1)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 2 || Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8 || Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    {
+            <td></td>
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 6)
+                    {
+            <td></td>
+                    }
+                }
+                else *@
+                {
+            <td>
+                <input type='text'  class='form-control Page08FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page08FormEleSort"   data-fieldnamecn='排序序号' id='Page08FormEleSort' 
+                    name='Page08FormEleSort' value='@item.Page08FormEleSort' />
+            </td>
+                    if (Design_ModularOrFuns[m].PageType != 6)
+                    {
+                        if (Design_ModularOrFuns[m].PageType == 1)
+                        {
+            <td>
+                @Html.DropDownList("Page08FormElePos", TablePoss, "Value", "Text", item.Page08FormElePos)
+            </td>
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 4)
+                        { 
+            <td>
+                @Html.DropDownList("Page08FormElePos", PanlHeadPoss, "Value", "Text", item.Page08FormElePos)
+            </td>                
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 5)
+                        { 
+            <td>
+                @Html.DropDownList("Page08FormElePos", DetailPoss, "Value", "Text", item.Page08FormElePos)
+            </td>                
+                        }
+                        if (Design_ModularOrFuns[m].PageType != 5)
+                        {
+            <td>
+                @Html.DropDownList("Page08FormEleType", FormEleTypes, "Value", "Text", item.Page08FormEleType)
+            </td>
+                        }
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page09FormEleType")
+            {
+@* if (item.Design_ModularFieldID < 100 && Design_ModularOrFuns[m].PageType != 1)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 2 || Design_ModularOrFuns[m].PageType == 3 || Design_ModularOrFuns[m].PageType == 8 || Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    {
+            <td></td>
+            <td></td>
+            <td></td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 6)
+                    {
+            <td></td>
+                    }
+                }
+                else*@
+                {
+            <td>
+                <input type='text'  class='form-control Page09FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page09FormEleSort"   data-fieldnamecn='排序序号' id='Page09FormEleSort' 
+                    name='Page09FormEleSort' value='@item.Page09FormEleSort' />
+            </td>
+                    if (Design_ModularOrFuns[m].PageType != 6)
+                    {
+                        if (Design_ModularOrFuns[m].PageType == 1)
+                        {
+            <td>
+                @Html.DropDownList("Page09FormElePos", TablePoss, "Value", "Text", item.Page09FormElePos)
+            </td>
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 4)
+                        { 
+            <td>
+                @Html.DropDownList("Page09FormElePos", PanlHeadPoss, "Value", "Text", item.Page09FormElePos)
+            </td>                
+                        }
+                        else if (Design_ModularOrFuns[m].PageType == 5)
+                        { 
+            <td>
+                @Html.DropDownList("Page09FormElePos", DetailPoss, "Value", "Text", item.Page09FormElePos)
+            </td>                
+                        }
+                        if (Design_ModularOrFuns[m].PageType != 5)
+                        {
+            <td>
+                @Html.DropDownList("Page09FormEleType", FormEleTypes, "Value", "Text", item.Page09FormEleType)
+            </td>
+                        }
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page10FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page10FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page10FormEleSort"   data-fieldnamecn='排序序号' id='Page10FormEleSort' 
+                    name='Page10FormEleSort' value='@item.Page10FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page10FormElePos", TablePoss, "Value", "Text", item.Page10FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page10FormElePos", PanlHeadPoss, "Value", "Text", item.Page10FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page10FormElePos", DetailPoss, "Value", "Text", item.Page10FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page10FormEleType", FormEleTypes, "Value", "Text", item.Page10FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page11FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page11FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page11FormEleSort"   data-fieldnamecn='排序序号' id='Page11FormEleSort' 
+                    name='Page11FormEleSort' value='@item.Page11FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page11FormElePos", TablePoss, "Value", "Text", item.Page11FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page11FormElePos", PanlHeadPoss, "Value", "Text", item.Page11FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page11FormElePos", DetailPoss, "Value", "Text", item.Page11FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page11FormEleType", FormEleTypes, "Value", "Text", item.Page11FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page12FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page12FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page12FormEleSort"   data-fieldnamecn='排序序号' id='Page12FormEleSort' 
+                    name='Page12FormEleSort' value='@item.Page12FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page12FormElePos", TablePoss, "Value", "Text", item.Page12FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page12FormElePos", PanlHeadPoss, "Value", "Text", item.Page12FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page12FormElePos", DetailPoss, "Value", "Text", item.Page12FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page12FormEleType", FormEleTypes, "Value", "Text", item.Page12FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page13FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page13FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page13FormEleSort"   data-fieldnamecn='排序序号' id='Page13FormEleSort' 
+                    name='Page13FormEleSort' value='@item.Page13FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page13FormElePos", TablePoss, "Value", "Text", item.Page13FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page13FormElePos", PanlHeadPoss, "Value", "Text", item.Page13FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page13FormElePos", DetailPoss, "Value", "Text", item.Page13FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page13FormEleType", FormEleTypes, "Value", "Text", item.Page13FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page14FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page14FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page14FormEleSort"   data-fieldnamecn='排序序号' id='Page14FormEleSort' 
+                    name='Page14FormEleSort' value='@item.Page14FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page14FormElePos", TablePoss, "Value", "Text", item.Page14FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page14FormElePos", PanlHeadPoss, "Value", "Text", item.Page14FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page14FormElePos", DetailPoss, "Value", "Text", item.Page14FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page14FormEleType", FormEleTypes, "Value", "Text", item.Page14FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page15FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page15FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page15FormEleSort"   data-fieldnamecn='排序序号' id='Page15FormEleSort' 
+                    name='Page15FormEleSort' value='@item.Page15FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page15FormElePos", TablePoss, "Value", "Text", item.Page15FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page15FormElePos", PanlHeadPoss, "Value", "Text", item.Page15FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page15FormElePos", DetailPoss, "Value", "Text", item.Page15FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page15FormEleType", FormEleTypes, "Value", "Text", item.Page15FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page16FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page16FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page16FormEleSort"   data-fieldnamecn='排序序号' id='Page16FormEleSort' 
+                    name='Page16FormEleSort' value='@item.Page16FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page16FormElePos", TablePoss, "Value", "Text", item.Page16FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page16FormElePos", PanlHeadPoss, "Value", "Text", item.Page16FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page16FormElePos", DetailPoss, "Value", "Text", item.Page16FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page16FormEleType", FormEleTypes, "Value", "Text", item.Page16FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page17FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page17FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page17FormEleSort"   data-fieldnamecn='排序序号' id='Page17FormEleSort' 
+                    name='Page17FormEleSort' value='@item.Page17FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page17FormElePos", TablePoss, "Value", "Text", item.Page17FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page17FormElePos", PanlHeadPoss, "Value", "Text", item.Page17FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page17FormElePos", DetailPoss, "Value", "Text", item.Page17FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page17FormEleType", FormEleTypes, "Value", "Text", item.Page17FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page18FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page18FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page18FormEleSort"   data-fieldnamecn='排序序号' id='Page18FormEleSort' 
+                    name='Page18FormEleSort' value='@item.Page18FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page18FormElePos", TablePoss, "Value", "Text", item.Page18FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page18FormElePos", PanlHeadPoss, "Value", "Text", item.Page18FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page18FormElePos", DetailPoss, "Value", "Text", item.Page18FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page18FormEleType", FormEleTypes, "Value", "Text", item.Page18FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page19FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page19FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page19FormEleSort"   data-fieldnamecn='排序序号' id='Page19FormEleSort' 
+                    name='Page19FormEleSort' value='@item.Page19FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page19FormElePos", TablePoss, "Value", "Text", item.Page19FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page19FormElePos", PanlHeadPoss, "Value", "Text", item.Page19FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page19FormElePos", DetailPoss, "Value", "Text", item.Page19FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page19FormEleType", FormEleTypes, "Value", "Text", item.Page19FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page20FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page20FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page20FormEleSort"   data-fieldnamecn='排序序号' id='Page20FormEleSort' 
+                    name='Page20FormEleSort' value='@item.Page20FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page20FormElePos", TablePoss, "Value", "Text", item.Page20FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page20FormElePos", PanlHeadPoss, "Value", "Text", item.Page20FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page20FormElePos", DetailPoss, "Value", "Text", item.Page20FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page20FormEleType", FormEleTypes, "Value", "Text", item.Page20FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page21FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page21FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page21FormEleSort"   data-fieldnamecn='排序序号' id='Page21FormEleSort' 
+                    name='Page21FormEleSort' value='@item.Page21FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page21FormElePos", TablePoss, "Value", "Text", item.Page21FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page21FormElePos", PanlHeadPoss, "Value", "Text", item.Page21FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page21FormElePos", DetailPoss, "Value", "Text", item.Page21FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page21FormEleType", FormEleTypes, "Value", "Text", item.Page21FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page22FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page22FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page22FormEleSort"   data-fieldnamecn='排序序号' id='Page22FormEleSort' 
+                    name='Page22FormEleSort' value='@item.Page22FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page22FormElePos", TablePoss, "Value", "Text", item.Page22FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page22FormElePos", PanlHeadPoss, "Value", "Text", item.Page22FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page22FormElePos", DetailPoss, "Value", "Text", item.Page22FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page22FormEleType", FormEleTypes, "Value", "Text", item.Page22FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page23FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page23FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page23FormEleSort"   data-fieldnamecn='排序序号' id='Page23FormEleSort' 
+                    name='Page23FormEleSort' value='@item.Page23FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page23FormElePos", TablePoss, "Value", "Text", item.Page23FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page23FormElePos", PanlHeadPoss, "Value", "Text", item.Page23FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page23FormElePos", DetailPoss, "Value", "Text", item.Page23FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page23FormEleType", FormEleTypes, "Value", "Text", item.Page23FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page24FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page24FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page24FormEleSort"   data-fieldnamecn='排序序号' id='Page24FormEleSort' 
+                    name='Page24FormEleSort' value='@item.Page24FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page24FormElePos", TablePoss, "Value", "Text", item.Page24FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page24FormElePos", PanlHeadPoss, "Value", "Text", item.Page24FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page24FormElePos", DetailPoss, "Value", "Text", item.Page24FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page24FormEleType", FormEleTypes, "Value", "Text", item.Page24FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page25FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page25FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page25FormEleSort"   data-fieldnamecn='排序序号' id='Page25FormEleSort' 
+                    name='Page25FormEleSort' value='@item.Page25FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page25FormElePos", TablePoss, "Value", "Text", item.Page25FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page25FormElePos", PanlHeadPoss, "Value", "Text", item.Page25FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page25FormElePos", DetailPoss, "Value", "Text", item.Page25FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page25FormEleType", FormEleTypes, "Value", "Text", item.Page25FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page26FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page26FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page26FormEleSort"   data-fieldnamecn='排序序号' id='Page26FormEleSort' 
+                    name='Page26FormEleSort' value='@item.Page26FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page26FormElePos", TablePoss, "Value", "Text", item.Page26FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page26FormElePos", PanlHeadPoss, "Value", "Text", item.Page26FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page26FormElePos", DetailPoss, "Value", "Text", item.Page26FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page26FormEleType", FormEleTypes, "Value", "Text", item.Page26FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page27FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page27FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page27FormEleSort"   data-fieldnamecn='排序序号' id='Page27FormEleSort' 
+                    name='Page27FormEleSort' value='@item.Page27FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page27FormElePos", TablePoss, "Value", "Text", item.Page27FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page27FormElePos", PanlHeadPoss, "Value", "Text", item.Page27FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page27FormElePos", DetailPoss, "Value", "Text", item.Page27FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page27FormEleType", FormEleTypes, "Value", "Text", item.Page27FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page28FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page28FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page28FormEleSort"   data-fieldnamecn='排序序号' id='Page28FormEleSort' 
+                    name='Page28FormEleSort' value='@item.Page28FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page28FormElePos", TablePoss, "Value", "Text", item.Page28FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page28FormElePos", PanlHeadPoss, "Value", "Text", item.Page28FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page28FormElePos", DetailPoss, "Value", "Text", item.Page28FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page28FormEleType", FormEleTypes, "Value", "Text", item.Page28FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page29FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page29FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page29FormEleSort"   data-fieldnamecn='排序序号' id='Page29FormEleSort' 
+                    name='Page29FormEleSort' value='@item.Page29FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page29FormElePos", TablePoss, "Value", "Text", item.Page29FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page29FormElePos", PanlHeadPoss, "Value", "Text", item.Page29FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page29FormElePos", DetailPoss, "Value", "Text", item.Page29FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page29FormEleType", FormEleTypes, "Value", "Text", item.Page29FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page30FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page30FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page30FormEleSort"   data-fieldnamecn='排序序号' id='Page30FormEleSort' 
+                    name='Page30FormEleSort' value='@item.Page30FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page30FormElePos", TablePoss, "Value", "Text", item.Page30FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page30FormElePos", PanlHeadPoss, "Value", "Text", item.Page30FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page30FormElePos", DetailPoss, "Value", "Text", item.Page30FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page30FormEleType", FormEleTypes, "Value", "Text", item.Page30FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page31FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page31FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page31FormEleSort"   data-fieldnamecn='排序序号' id='Page31FormEleSort' 
+                    name='Page31FormEleSort' value='@item.Page31FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page31FormElePos", TablePoss, "Value", "Text", item.Page31FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page31FormElePos", PanlHeadPoss, "Value", "Text", item.Page31FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page31FormElePos", DetailPoss, "Value", "Text", item.Page31FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page31FormEleType", FormEleTypes, "Value", "Text", item.Page31FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page32FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page32FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page32FormEleSort"   data-fieldnamecn='排序序号' id='Page32FormEleSort' 
+                    name='Page32FormEleSort' value='@item.Page32FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page32FormElePos", TablePoss, "Value", "Text", item.Page32FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page32FormElePos", PanlHeadPoss, "Value", "Text", item.Page32FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page32FormElePos", DetailPoss, "Value", "Text", item.Page32FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page32FormEleType", FormEleTypes, "Value", "Text", item.Page32FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page33FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page33FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page33FormEleSort"   data-fieldnamecn='排序序号' id='Page33FormEleSort' 
+                    name='Page33FormEleSort' value='@item.Page33FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page33FormElePos", TablePoss, "Value", "Text", item.Page33FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page33FormElePos", PanlHeadPoss, "Value", "Text", item.Page33FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page33FormElePos", DetailPoss, "Value", "Text", item.Page33FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page33FormEleType", FormEleTypes, "Value", "Text", item.Page33FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page34FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page34FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page34FormEleSort"   data-fieldnamecn='排序序号' id='Page34FormEleSort' 
+                    name='Page34FormEleSort' value='@item.Page34FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page34FormElePos", TablePoss, "Value", "Text", item.Page34FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page34FormElePos", PanlHeadPoss, "Value", "Text", item.Page34FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page34FormElePos", DetailPoss, "Value", "Text", item.Page34FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page34FormEleType", FormEleTypes, "Value", "Text", item.Page34FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page35FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page35FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page35FormEleSort"   data-fieldnamecn='排序序号' id='Page35FormEleSort' 
+                    name='Page35FormEleSort' value='@item.Page35FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page35FormElePos", TablePoss, "Value", "Text", item.Page35FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page35FormElePos", PanlHeadPoss, "Value", "Text", item.Page35FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page35FormElePos", DetailPoss, "Value", "Text", item.Page35FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page35FormEleType", FormEleTypes, "Value", "Text", item.Page35FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page36FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page36FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page36FormEleSort"   data-fieldnamecn='排序序号' id='Page36FormEleSort' 
+                    name='Page36FormEleSort' value='@item.Page36FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page36FormElePos", TablePoss, "Value", "Text", item.Page36FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page36FormElePos", PanlHeadPoss, "Value", "Text", item.Page36FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page36FormElePos", DetailPoss, "Value", "Text", item.Page36FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page36FormEleType", FormEleTypes, "Value", "Text", item.Page36FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page37FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page37FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page37FormEleSort"   data-fieldnamecn='排序序号' id='Page37FormEleSort' 
+                    name='Page37FormEleSort' value='@item.Page37FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page37FormElePos", TablePoss, "Value", "Text", item.Page37FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page37FormElePos", PanlHeadPoss, "Value", "Text", item.Page37FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page37FormElePos", DetailPoss, "Value", "Text", item.Page37FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page37FormEleType", FormEleTypes, "Value", "Text", item.Page37FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page38FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page38FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page38FormEleSort"   data-fieldnamecn='排序序号' id='Page38FormEleSort' 
+                    name='Page38FormEleSort' value='@item.Page38FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page38FormElePos", TablePoss, "Value", "Text", item.Page38FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page38FormElePos", PanlHeadPoss, "Value", "Text", item.Page38FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page38FormElePos", DetailPoss, "Value", "Text", item.Page38FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page38FormEleType", FormEleTypes, "Value", "Text", item.Page38FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page39FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page39FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page39FormEleSort"   data-fieldnamecn='排序序号' id='Page39FormEleSort' 
+                    name='Page39FormEleSort' value='@item.Page39FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page39FormElePos", TablePoss, "Value", "Text", item.Page39FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page39FormElePos", PanlHeadPoss, "Value", "Text", item.Page39FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page39FormElePos", DetailPoss, "Value", "Text", item.Page39FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page39FormEleType", FormEleTypes, "Value", "Text", item.Page39FormEleType)
+            </td>
+                    }
+                }
+            }
+            else if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page40FormEleType")
+            {
+            <td>
+                <input type='text'  class='form-control Page40FormEleSort'  data-datatype='int' 
+                           data-tabnextcol="Page40FormEleSort"   data-fieldnamecn='排序序号' id='Page40FormEleSort' 
+                    name='Page40FormEleSort' value='@item.Page40FormEleSort' />
+            </td>
+                if (Design_ModularOrFuns[m].PageType != 6)
+                {
+                    if (Design_ModularOrFuns[m].PageType == 1)
+                    {
+            <td>
+                @Html.DropDownList("Page40FormElePos", TablePoss, "Value", "Text", item.Page40FormElePos)
+            </td>
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 4)
+                    { 
+            <td>
+                @Html.DropDownList("Page40FormElePos", PanlHeadPoss, "Value", "Text", item.Page40FormElePos)
+            </td>                
+                    }
+                    else if (Design_ModularOrFuns[m].PageType == 5)
+                    { 
+            <td>
+                @Html.DropDownList("Page40FormElePos", DetailPoss, "Value", "Text", item.Page40FormElePos)
+            </td>                
+                    }
+                    if (Design_ModularOrFuns[m].PageType != 5)
+                    {
+            <td>
+                @Html.DropDownList("Page40FormEleType", FormEleTypes, "Value", "Text", item.Page40FormEleType)
+            </td>
+                    }
+                }
+            }
+
+            <!-- 查询条件 -->
+            if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query01")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query01Pos", QueryPoss, "Value", "Text", item.Query01Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query01FormEleType", FormEleTypes, "Value", "Text", item.Query01FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query01QueryType", QueryTypes, "Value", "Text", item.Query01QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query02")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query02Pos", QueryPoss, "Value", "Text", item.Query02Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query02FormEleType", FormEleTypes, "Value", "Text", item.Query02FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query02QueryType", QueryTypes, "Value", "Text", item.Query02QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query03")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query03Pos", QueryPoss, "Value", "Text", item.Query03Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query03FormEleType", FormEleTypes, "Value", "Text", item.Query03FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query03QueryType", QueryTypes, "Value", "Text", item.Query03QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query04")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query04Pos", QueryPoss, "Value", "Text", item.Query04Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query04FormEleType", FormEleTypes, "Value", "Text", item.Query04FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query04QueryType", QueryTypes, "Value", "Text", item.Query04QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query05")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query05Pos", QueryPoss, "Value", "Text", item.Query05Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query05FormEleType", FormEleTypes, "Value", "Text", item.Query05FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query05QueryType", QueryTypes, "Value", "Text", item.Query05QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query06")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query06Pos", QueryPoss, "Value", "Text", item.Query06Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query06FormEleType", FormEleTypes, "Value", "Text", item.Query06FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query06QueryType", QueryTypes, "Value", "Text", item.Query06QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query07")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query07Pos", QueryPoss, "Value", "Text", item.Query07Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query07FormEleType", FormEleTypes, "Value", "Text", item.Query07FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query07QueryType", QueryTypes, "Value", "Text", item.Query07QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query08")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query08Pos", QueryPoss, "Value", "Text", item.Query08Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query08FormEleType", FormEleTypes, "Value", "Text", item.Query08FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query08QueryType", QueryTypes, "Value", "Text", item.Query08QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query09")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query09Pos", QueryPoss, "Value", "Text", item.Query09Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query09FormEleType", FormEleTypes, "Value", "Text", item.Query09FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query09QueryType", QueryTypes, "Value", "Text", item.Query09QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query10")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query10Pos", QueryPoss, "Value", "Text", item.Query10Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query10FormEleType", FormEleTypes, "Value", "Text", item.Query10FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query10QueryType", QueryTypes, "Value", "Text", item.Query10QueryType)
+            </td>
+                }
+                else
+                {<td></td>
+            <td></td>
+            <td></td>}
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query11")
+            {
+            <!--查询-->
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query11Pos", QueryPoss, "Value", "Text", item.Query11Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query11FormEleType", FormEleTypes, "Value", "Text", item.Query11FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query11QueryType", QueryTypes, "Value", "Text", item.Query11QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query12")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query12Pos", QueryPoss, "Value", "Text", item.Query12Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query12FormEleType", FormEleTypes, "Value", "Text", item.Query12FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query12QueryType", QueryTypes, "Value", "Text", item.Query12QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query13")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query13Pos", QueryPoss, "Value", "Text", item.Query13Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query13FormEleType", FormEleTypes, "Value", "Text", item.Query13FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query13QueryType", QueryTypes, "Value", "Text", item.Query13QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query14")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query14Pos", QueryPoss, "Value", "Text", item.Query14Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query14FormEleType", FormEleTypes, "Value", "Text", item.Query14FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query14QueryType", QueryTypes, "Value", "Text", item.Query14QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query15")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query15Pos", QueryPoss, "Value", "Text", item.Query15Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query15FormEleType", FormEleTypes, "Value", "Text", item.Query15FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query15QueryType", QueryTypes, "Value", "Text", item.Query15QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query16")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query16Pos", QueryPoss, "Value", "Text", item.Query16Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query16FormEleType", FormEleTypes, "Value", "Text", item.Query16FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query16QueryType", QueryTypes, "Value", "Text", item.Query16QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query17")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query17Pos", QueryPoss, "Value", "Text", item.Query17Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query17FormEleType", FormEleTypes, "Value", "Text", item.Query17FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query17QueryType", QueryTypes, "Value", "Text", item.Query17QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query18")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query18Pos", QueryPoss, "Value", "Text", item.Query18Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query18FormEleType", FormEleTypes, "Value", "Text", item.Query18FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query18QueryType", QueryTypes, "Value", "Text", item.Query18QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query19")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query19Pos", QueryPoss, "Value", "Text", item.Query19Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query19FormEleType", FormEleTypes, "Value", "Text", item.Query19FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query19QueryType", QueryTypes, "Value", "Text", item.Query19QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query20")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query20Pos", QueryPoss, "Value", "Text", item.Query20Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query20FormEleType", FormEleTypes, "Value", "Text", item.Query20FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query20QueryType", QueryTypes, "Value", "Text", item.Query20QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query21")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query21Pos", QueryPoss, "Value", "Text", item.Query21Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query21FormEleType", FormEleTypes, "Value", "Text", item.Query21FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query21QueryType", QueryTypes, "Value", "Text", item.Query21QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query22")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query22Pos", QueryPoss, "Value", "Text", item.Query22Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query22FormEleType", FormEleTypes, "Value", "Text", item.Query22FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query22QueryType", QueryTypes, "Value", "Text", item.Query22QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query23")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query23Pos", QueryPoss, "Value", "Text", item.Query23Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query23FormEleType", FormEleTypes, "Value", "Text", item.Query23FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query23QueryType", QueryTypes, "Value", "Text", item.Query23QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query24")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query24Pos", QueryPoss, "Value", "Text", item.Query24Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query24FormEleType", FormEleTypes, "Value", "Text", item.Query24FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query24QueryType", QueryTypes, "Value", "Text", item.Query24QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query25")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query25Pos", QueryPoss, "Value", "Text", item.Query25Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query25FormEleType", FormEleTypes, "Value", "Text", item.Query25FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query25QueryType", QueryTypes, "Value", "Text", item.Query25QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query26")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query26Pos", QueryPoss, "Value", "Text", item.Query26Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query26FormEleType", FormEleTypes, "Value", "Text", item.Query26FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query26QueryType", QueryTypes, "Value", "Text", item.Query26QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query27")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query27Pos", QueryPoss, "Value", "Text", item.Query27Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query27FormEleType", FormEleTypes, "Value", "Text", item.Query27FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query27QueryType", QueryTypes, "Value", "Text", item.Query27QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query28")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query28Pos", QueryPoss, "Value", "Text", item.Query28Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query28FormEleType", FormEleTypes, "Value", "Text", item.Query28FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query28QueryType", QueryTypes, "Value", "Text", item.Query28QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query29")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query29Pos", QueryPoss, "Value", "Text", item.Query29Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query29FormEleType", FormEleTypes, "Value", "Text", item.Query29FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query29QueryType", QueryTypes, "Value", "Text", item.Query29QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query30")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query30Pos", QueryPoss, "Value", "Text", item.Query30Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query30FormEleType", FormEleTypes, "Value", "Text", item.Query30FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query30QueryType", QueryTypes, "Value", "Text", item.Query30QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query31")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query31Pos", QueryPoss, "Value", "Text", item.Query31Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query31FormEleType", FormEleTypes, "Value", "Text", item.Query31FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query31QueryType", QueryTypes, "Value", "Text", item.Query31QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query32")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query32Pos", QueryPoss, "Value", "Text", item.Query32Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query32FormEleType", FormEleTypes, "Value", "Text", item.Query32FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query32QueryType", QueryTypes, "Value", "Text", item.Query32QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query33")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query33Pos", QueryPoss, "Value", "Text", item.Query33Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query33FormEleType", FormEleTypes, "Value", "Text", item.Query33FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query33QueryType", QueryTypes, "Value", "Text", item.Query33QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query34")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query34Pos", QueryPoss, "Value", "Text", item.Query34Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query34FormEleType", FormEleTypes, "Value", "Text", item.Query34FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query34QueryType", QueryTypes, "Value", "Text", item.Query34QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query35")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query35Pos", QueryPoss, "Value", "Text", item.Query35Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query35FormEleType", FormEleTypes, "Value", "Text", item.Query35FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query35QueryType", QueryTypes, "Value", "Text", item.Query35QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query36")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query36Pos", QueryPoss, "Value", "Text", item.Query36Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query36FormEleType", FormEleTypes, "Value", "Text", item.Query36FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query36QueryType", QueryTypes, "Value", "Text", item.Query36QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query37")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query37Pos", QueryPoss, "Value", "Text", item.Query37Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query37FormEleType", FormEleTypes, "Value", "Text", item.Query37FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query37QueryType", QueryTypes, "Value", "Text", item.Query37QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query38")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query38Pos", QueryPoss, "Value", "Text", item.Query38Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query38FormEleType", FormEleTypes, "Value", "Text", item.Query38FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query38QueryType", QueryTypes, "Value", "Text", item.Query38QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query39")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query39Pos", QueryPoss, "Value", "Text", item.Query39Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query39FormEleType", FormEleTypes, "Value", "Text", item.Query39FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query39QueryType", QueryTypes, "Value", "Text", item.Query39QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+            else if (Design_ModularOrFuns[m].QueryFormEleTypeName == "Query40")
+            {
+                if (item.Design_ModularFieldID >= 100)
+                {
+            <td>
+                @Html.DropDownList("Query40Pos", QueryPoss, "Value", "Text", item.Query40Pos)
+            </td>
+            <td>
+                @Html.DropDownList("Query40FormEleType", FormEleTypes, "Value", "Text", item.Query40FormEleType)
+            </td>
+            <td>
+                @Html.DropDownList("Query40QueryType", QueryTypes, "Value", "Text", item.Query40QueryType)
+            </td>
+                }
+                else
+                {
+            <td></td>
+            <td></td>
+            <td></td>
+                }
+            }
+                        
+            <!-- 排序 -->
+            if (!string.IsNullOrEmpty(Design_ModularOrFuns[m].SortCol) && item.Design_ModularFieldID < 100)
+            {
+            <td></td>
+            }
+            else
+            {
+                if (Design_ModularOrFuns[m].SortCol == "SortCol01")
+                {
+            <td>
+                <input type='text'  class='form-control Sort01'  data-datatype='int' 
+                           data-tabnextcol="Sort01"   data-fieldnamecn='排序序号' placeholder="排序序号01" id='Sort01' 
+                    name='Sort01' value='@item.Sort01' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol02")
+                {
+            <td>
+                <input type='text'  class='form-control Sort02'  data-datatype='int' 
+                           data-tabnextcol="Sort02"   data-fieldnamecn='排序序号' placeholder="排序序号02" id='Sort02' 
+                    name='Sort02' value='@item.Sort02' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol03")
+                {
+            <td>
+                <input type='text'  class='form-control Sort03'  data-datatype='int' 
+                           data-tabnextcol="Sort03"   data-fieldnamecn='排序序号' placeholder="排序序号03" id='Sort03' 
+                    name='Sort03' value='@item.Sort03' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol04")
+                {
+            <td>
+                <input type='text'  class='form-control Sort04'  data-datatype='int' 
+                           data-tabnextcol="Sort04"   data-fieldnamecn='排序序号' placeholder="排序序号04" id='Sort04' 
+                    name='Sort04' value='@item.Sort04' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol05")
+                {
+            <td>
+                <input type='text'  class='form-control Sort05'  data-datatype='int' 
+                           data-tabnextcol="Sort05"   data-fieldnamecn='排序序号'  placeholder="排序序号05" id='Sort05' 
+                    name='Sort05' value='@item.Sort05' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol06")
+                {
+            <td>
+                <input type='text'  class='form-control Sort06'  data-datatype='int' 
+                           data-tabnextcol="Sort06"   data-fieldnamecn='排序序号' placeholder="排序序号06" id='Sort06' 
+                    name='Sort06' value='@item.Sort06' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol07")
+                {
+            <td>
+                <input type='text'  class='form-control Sort07'  data-datatype='int' 
+                           data-tabnextcol="Sort07"   data-fieldnamecn='排序序号' placeholder="排序序号07" id='Sort07' 
+                    name='Sort07' value='@item.Sort07' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol08")
+                {
+            <td>
+                <input type='text'  class='form-control Sort08'  data-datatype='int' 
+                           data-tabnextcol="Sort08"   data-fieldnamecn='排序序号' placeholder="排序序号08" id='Sort08' 
+                    name='Sort08' value='@item.Sort08' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol09")
+                {
+            <td>
+                <input type='text'  class='form-control Sort09'  data-datatype='int' 
+                           data-tabnextcol="Sort09"   data-fieldnamecn='排序序号' placeholder="排序序号09" id='Sort09' 
+                    name='Sort09' value='@item.Sort09' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol10")
+                {
+            <td>
+                <input type='text'  class='form-control Sort10'  data-datatype='int' 
+                           data-tabnextcol="Sort10"   data-fieldnamecn='排序序号' placeholder="排序序号10" id='Sort10' 
+                    name='Sort10' value='@item.Sort10' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol11")
+                {
+            <td>
+                <input type='text'  class='form-control Sort11'  data-datatype='int' 
+                           data-tabnextcol="Sort11"   data-fieldnamecn='排序序号' placeholder="排序序号11" id='Sort11' 
+                    name='Sort11' value='@item.Sort11' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol12")
+                {
+            <td>
+                <input type='text'  class='form-control Sort12'  data-datatype='int' 
+                           data-tabnextcol="Sort12"   data-fieldnamecn='排序序号' placeholder="排序序号12" id='Sort12' 
+                    name='Sort12' value='@item.Sort12' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol13")
+                {
+            <td>
+                <input type='text'  class='form-control Sort13'  data-datatype='int' 
+                           data-tabnextcol="Sort13"   data-fieldnamecn='排序序号' placeholder="排序序号13" id='Sort13' 
+                    name='Sort13' value='@item.Sort13' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol14")
+                {
+            <td>
+                <input type='text'  class='form-control Sort14'  data-datatype='int' 
+                           data-tabnextcol="Sort14"   data-fieldnamecn='排序序号' placeholder="排序序号14" id='Sort14' 
+                    name='Sort14' value='@item.Sort14' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol15")
+                {
+            <td>
+                <input type='text'  class='form-control Sort15'  data-datatype='int' 
+                           data-tabnextcol="Sort15"   data-fieldnamecn='排序序号' placeholder="排序序号15" id='Sort15' 
+                    name='Sort15' value='@item.Sort15' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol16")
+                {
+            <td>
+                <input type='text'  class='form-control Sort16'  data-datatype='int' 
+                           data-tabnextcol="Sort16"   data-fieldnamecn='排序序号' placeholder="排序序号16" id='Sort16' 
+                    name='Sort16' value='@item.Sort16' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol17")
+                {
+            <td>
+                <input type='text'  class='form-control Sort17'  data-datatype='int' 
+                           data-tabnextcol="Sort17"   data-fieldnamecn='排序序号' placeholder="排序序号17" id='Sort17' 
+                    name='Sort17' value='@item.Sort17' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol18")
+                {
+            <td>
+                <input type='text'  class='form-control Sort18'  data-datatype='int' 
+                           data-tabnextcol="Sort18"   data-fieldnamecn='排序序号' placeholder="排序序号18" id='Sort18' 
+                    name='Sort18' value='@item.Sort18' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol19")
+                {
+            <td>
+                <input type='text'  class='form-control Sort19'  data-datatype='int' 
+                           data-tabnextcol="Sort19"   data-fieldnamecn='排序序号' placeholder="排序序号19" id='Sort19' 
+                    name='Sort19' value='@item.Sort19' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol20")
+                {
+            <td>
+                <input type='text'  class='form-control Sort19'  data-datatype='int' 
+                           data-tabnextcol="Sort20"   data-fieldnamecn='排序序号' placeholder="排序序号20" id='Sort20' 
+                    name='Sort20' value='@item.Sort20' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol21")
+                {
+            <td>
+                <input type='text'  class='form-control Sort21'  data-datatype='int' 
+                           data-tabnextcol="Sort21"   data-fieldnamecn='排序序号' placeholder="排序序号21" id='Sort21' 
+                    name='Sort21' value='@item.Sort21' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol22")
+                {
+            <td>
+                <input type='text'  class='form-control Sort22'  data-datatype='int' 
+                           data-tabnextcol="Sort22"   data-fieldnamecn='排序序号' placeholder="排序序号22" id='Sort22' 
+                    name='Sort22' value='@item.Sort22' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol23")
+                {
+            <td>
+                <input type='text'  class='form-control Sort23'  data-datatype='int' 
+                           data-tabnextcol="Sort23"   data-fieldnamecn='排序序号' placeholder="排序序号23" id='Sort23' 
+                    name='Sort23' value='@item.Sort23' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol24")
+                {
+            <td>
+                <input type='text'  class='form-control Sort24'  data-datatype='int' 
+                           data-tabnextcol="Sort24"   data-fieldnamecn='排序序号' placeholder="排序序号24" id='Sort24' 
+                    name='Sort24' value='@item.Sort24' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol25")
+                {
+            <td>
+                <input type='text'  class='form-control Sort25'  data-datatype='int' 
+                           data-tabnextcol="Sort25"   data-fieldnamecn='排序序号' placeholder="排序序号25" id='Sort25' 
+                    name='Sort25' value='@item.Sort25' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol26")
+                {
+            <td>
+                <input type='text'  class='form-control Sort26'  data-datatype='int' 
+                           data-tabnextcol="Sort26"   data-fieldnamecn='排序序号' placeholder="排序序号26" id='Sort26' 
+                    name='Sort26' value='@item.Sort26' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol27")
+                {
+            <td>
+                <input type='text'  class='form-control Sort27'  data-datatype='int' 
+                           data-tabnextcol="Sort27"   data-fieldnamecn='排序序号' placeholder="排序序号27" id='Sort27' 
+                    name='Sort27' value='@item.Sort27' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol28")
+                {
+            <td>
+                <input type='text'  class='form-control Sort28'  data-datatype='int' 
+                           data-tabnextcol="Sort28"   data-fieldnamecn='排序序号' placeholder="排序序号28" id='Sort28' 
+                    name='Sort28' value='@item.Sort28' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol29")
+                {
+            <td>
+                <input type='text'  class='form-control Sort29'  data-datatype='int' 
+                           data-tabnextcol="Sort29"   data-fieldnamecn='排序序号' placeholder="排序序号29" id='Sort29' 
+                    name='Sort29' value='@item.Sort29' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol30")
+                {
+            <td>
+                <input type='text'  class='form-control Sort30'  data-datatype='int' 
+                           data-tabnextcol="Sort30"   data-fieldnamecn='排序序号' placeholder="排序序号30" id='Sort30' 
+                    name='Sort30' value='@item.Sort30' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol31")
+                {
+            <td>
+                <input type='text'  class='form-control Sort31'  data-datatype='int' 
+                           data-tabnextcol="Sort31"   data-fieldnamecn='排序序号' placeholder="排序序号31" id='Sort31' 
+                    name='Sort31' value='@item.Sort31' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol32")
+                {
+            <td>
+                <input type='text'  class='form-control Sort32'  data-datatype='int' 
+                           data-tabnextcol="Sort32"   data-fieldnamecn='排序序号' placeholder="排序序号32" id='Sort32' 
+                    name='Sort32' value='@item.Sort32' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol33")
+                {
+            <td>
+                <input type='text'  class='form-control Sort33'  data-datatype='int' 
+                           data-tabnextcol="Sort33"   data-fieldnamecn='排序序号' placeholder="排序序号33" id='Sort33' 
+                    name='Sort33' value='@item.Sort33' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol34")
+                {
+            <td>
+                <input type='text'  class='form-control Sort34'  data-datatype='int' 
+                           data-tabnextcol="Sort34"   data-fieldnamecn='排序序号' placeholder="排序序号34" id='Sort34' 
+                    name='Sort34' value='@item.Sort34' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol35")
+                {
+            <td>
+                <input type='text'  class='form-control Sort35'  data-datatype='int' 
+                           data-tabnextcol="Sort35"   data-fieldnamecn='排序序号' placeholder="排序序号35" id='Sort35' 
+                    name='Sort35' value='@item.Sort35' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol36")
+                {
+            <td>
+                <input type='text'  class='form-control Sort36'  data-datatype='int' 
+                           data-tabnextcol="Sort36"   data-fieldnamecn='排序序号' placeholder="排序序号36" id='Sort36' 
+                    name='Sort36' value='@item.Sort36' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol37")
+                {
+            <td>
+                <input type='text'  class='form-control Sort37'  data-datatype='int' 
+                           data-tabnextcol="Sort37"   data-fieldnamecn='排序序号' placeholder="排序序号37" id='Sort37' 
+                    name='Sort37' value='@item.Sort37' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol38")
+                {
+            <td>
+                <input type='text'  class='form-control Sort38'  data-datatype='int' 
+                           data-tabnextcol="Sort38"   data-fieldnamecn='排序序号' placeholder="排序序号38" id='Sort38' 
+                    name='Sort38' value='@item.Sort38' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol39")
+                {
+            <td>
+                <input type='text'  class='form-control Sort39'  data-datatype='int' 
+                           data-tabnextcol="Sort39"   data-fieldnamecn='排序序号' placeholder="排序序号39" id='Sort39' 
+                    name='Sort39' value='@item.Sort39' />
+            </td>
+                }
+                if (Design_ModularOrFuns[m].SortCol == "SortCol40")
+                {
+            <td>
+                <input type='text'  class='form-control Sort40'  data-datatype='int' 
+                           data-tabnextcol="Sort40"   data-fieldnamecn='排序序号' placeholder="排序序号40" id='Sort40' 
+                    name='Sort40' value='@item.Sort40' />
+            </td>
+                }
+
+            }
+        }
+        <td>
+            <input type='text'  class='form-control AdditionalInfo'  data-datatype='string' 
+                           data-tabnextcol="AdditionalInfo"   data-fieldnamecn='附加信息' placeholder="附加信息" id='AdditionalInfo' 
+                name='AdditionalInfo' value='@item.AdditionalInfo' />
+        </td>
+        <td>
+            @Html.DropDownList("bTabVer", bTabVers, "Value", "Text", item.bTabVer)
+
+            @*            <input type='text'  class='form-control cssclass'  data-datatype='string' 
+                           data-tabnextcol="cssclass"   data-fieldnamecn='css类' id='cssclass' name='cssclass' value='@item.cssclass' />*@
+        </td>
+        <td>
+            <input type='text'  class='form-control calcol'  data-datatype='string' 
+                           data-tabnextcol="calcol"   data-fieldnamecn='列计算表达式'  placeholder="列计算表达式" id='calcol' name='calcol'
+                 value='@item.calcol' />
+        </td>
+        <td>
+            <input type='text'  class='form-control calrow'  data-datatype='string' 
+                           data-tabnextcol="calrow"   data-fieldnamecn='行计算表达式' placeholder="行计算表达式" id='calrow' name='calrow' value='@item.calrow' />
+        </td>
+        <td>
+            <input type='text'  class='form-control EditAreaName'  data-datatype='string' 
+                           data-tabnextcol="EditAreaName"   data-fieldnamecn='编辑区域名' placeholder="编辑区域名" id='EditAreaName' name='EditAreaName' value='@item.EditAreaName' />
+        </td>
+
+    </tr>
+}

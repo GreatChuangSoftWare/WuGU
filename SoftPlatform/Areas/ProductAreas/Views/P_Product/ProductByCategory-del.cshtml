@@ -1,0 +1,18 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Buy.cshtml";
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+
+    var conts = ViewContext.Controller as BaseController;
+}
+<div class="container-fluid mycon">
+    <div class="col-md-2">
+        <div class="panel panel-primary">
+            @Html.JqTreeN("P_ProductCategoryID", 1)
+        </div>
+    </div>
+    <div class="col-md-10">
+        @Html.Partial("DataListContext", Model)
+    </div>
+</div>

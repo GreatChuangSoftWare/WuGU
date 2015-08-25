@@ -1,0 +1,508 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    List<TextValue> PageFormEleTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+
+        new TextValue{Text="Page01FormEleType",Value="Page01FormEleType"},
+        new TextValue{Text="Page02FormEleType",Value="Page02FormEleType"},
+        new TextValue{Text="Page03FormEleType",Value="Page03FormEleType"},
+        new TextValue{Text="Page04FormEleType",Value="Page04FormEleType"},
+
+        new TextValue{Text="Page05FormEleType",Value="Page05FormEleType"},
+        new TextValue{Text="Page06FormEleType",Value="Page06FormEleType"},
+        new TextValue{Text="Page07FormEleType",Value="Page07FormEleType"},
+        new TextValue{Text="Page08FormEleType",Value="Page08FormEleType"},
+        new TextValue{Text="Page09FormEleType",Value="Page09FormEleType"},
+        new TextValue{Text="Page10FormEleType",Value="Page10FormEleType"},
+
+        new TextValue{Text="Page11FormEleType",Value="Page11FormEleType"},
+        new TextValue{Text="Page12FormEleType",Value="Page12FormEleType"},
+        new TextValue{Text="Page13FormEleType",Value="Page13FormEleType"},
+        new TextValue{Text="Page14FormEleType",Value="Page14FormEleType"},
+        new TextValue{Text="Page15FormEleType",Value="Page15FormEleType"},
+        new TextValue{Text="Page16FormEleType",Value="Page16FormEleType"},
+        new TextValue{Text="Page17FormEleType",Value="Page17FormEleType"},
+        new TextValue{Text="Page18FormEleType",Value="Page18FormEleType"},
+        new TextValue{Text="Page19FormEleType",Value="Page19FormEleType"},
+        new TextValue{Text="Page20FormEleType",Value="Page20FormEleType"},
+       
+       
+        
+        new TextValue{Text="Page21FormEleType",Value="Page21FormEleType"},
+        new TextValue{Text="Page22FormEleType",Value="Page22FormEleType"},
+        new TextValue{Text="Page23FormEleType",Value="Page23FormEleType"},
+        new TextValue{Text="Page24FormEleType",Value="Page24FormEleType"},
+        new TextValue{Text="Page25FormEleType",Value="Page25FormEleType"},
+        new TextValue{Text="Page26FormEleType",Value="Page26FormEleType"},
+        new TextValue{Text="Page27FormEleType",Value="Page27FormEleType"},
+        new TextValue{Text="Page28FormEleType",Value="Page28FormEleType"},
+        new TextValue{Text="Page29FormEleType",Value="Page29FormEleType"},
+        new TextValue{Text="Page30FormEleType",Value="Page30FormEleType"},
+
+        new TextValue{Text="Page31FormEleType",Value="Page31FormEleType"},
+        new TextValue{Text="Page32FormEleType",Value="Page32FormEleType"},
+        new TextValue{Text="Page33FormEleType",Value="Page33FormEleType"},
+        new TextValue{Text="Page34FormEleType",Value="Page34FormEleType"},
+        new TextValue{Text="Page35FormEleType",Value="Page35FormEleType"},
+        new TextValue{Text="Page36FormEleType",Value="Page36FormEleType"},
+        new TextValue{Text="Page37FormEleType",Value="Page37FormEleType"},
+        new TextValue{Text="Page38FormEleType",Value="Page38FormEleType"},
+        new TextValue{Text="Page39FormEleType",Value="Page39FormEleType"},
+        new TextValue{Text="Page40FormEleType",Value="Page40FormEleType"}
+               
+        
+          
+    };
+    List<TextValue> QueryFormEleTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+        new TextValue{Text="Query01",Value="Query01"},
+        new TextValue{Text="Query02",Value="Query02"},
+        new TextValue{Text="Query03",Value="Query03"},
+        new TextValue{Text="Query04",Value="Query04"},
+        new TextValue{Text="Query05",Value="Query05"},
+        new TextValue{Text="Query06",Value="Query06"},
+        new TextValue{Text="Query07",Value="Query07"},
+        new TextValue{Text="Query08",Value="Query08"},
+        new TextValue{Text="Query09",Value="Query09"},
+        new TextValue{Text="Query10",Value="Query10"},
+
+        new TextValue{Text="Query11",Value="Query11"},
+        new TextValue{Text="Query12",Value="Query12"},
+        new TextValue{Text="Query13",Value="Query13"},
+        new TextValue{Text="Query14",Value="Query14"},
+        new TextValue{Text="Query15",Value="Query15"},
+        new TextValue{Text="Query16",Value="Query16"},
+        new TextValue{Text="Query17",Value="Query17"},
+        new TextValue{Text="Query18",Value="Query18"},
+        new TextValue{Text="Query19",Value="Query19"},
+        new TextValue{Text="Query20",Value="Query20"},
+
+        
+        new TextValue{Text="Query21",Value="Query21"},
+        new TextValue{Text="Query22",Value="Query22"},
+        new TextValue{Text="Query23",Value="Query23"},
+        new TextValue{Text="Query24",Value="Query24"},
+        new TextValue{Text="Query25",Value="Query25"},
+        new TextValue{Text="Query26",Value="Query26"},
+        new TextValue{Text="Query27",Value="Query27"},
+        new TextValue{Text="Query28",Value="Query28"},
+        new TextValue{Text="Query29",Value="Query29"},
+        new TextValue{Text="Query30",Value="Query30"},
+
+        new TextValue{Text="Query31",Value="Query31"},
+        new TextValue{Text="Query32",Value="Query32"},
+        new TextValue{Text="Query33",Value="Query33"},
+        new TextValue{Text="Query34",Value="Query34"},
+        new TextValue{Text="Query35",Value="Query35"},
+        new TextValue{Text="Query36",Value="Query36"},
+        new TextValue{Text="Query37",Value="Query37"},
+        new TextValue{Text="Query38",Value="Query38"},
+        new TextValue{Text="Query39",Value="Query39"},
+        new TextValue{Text="Query40",Value="Query40"}  
+        
+    };
+
+    List<TextValue> PageTypes = new List<TextValue>
+    { 
+        new TextValue{Text="Table列表页",Value="1"},
+        new TextValue{Text="Pane列表页",Value="3"},
+        new TextValue{Text="PaneHead列表页",Value="4"},
+        new TextValue{Text="编辑页",Value="2"},
+        new TextValue{Text="标题页",Value="5"},
+        new TextValue{Text="扼要信息页",Value="6"},
+        new TextValue{Text="Tab页",Value="7"},
+        new TextValue{Text="DataList",Value="8"},
+        new TextValue{Text="==页面==",Value="0"},
+
+    };
+
+    List<TextValue> BMenus = new List<TextValue>
+    { 
+        new TextValue{Text="==菜单显示==",Value="0"},
+        new TextValue{Text="是(菜单显示)",Value="1"},
+    };
+
+    List<TextValue> BPages = new List<TextValue>
+    { 
+        new TextValue{Text="==分页==",Value=""},
+        new TextValue{Text="要(分页)",Value="1"},
+    };
+
+    List<TextValue> MenuPostions = new List<TextValue>
+    { 
+        new TextValue{Text="顶部(菜单)",Value="1"},
+        new TextValue{Text="左边(菜单)",Value="2"},
+        new TextValue{Text="==二级菜单位置==",Value="0"},
+    };
+
+    List<TextValue> BUrlNvas = new List<TextValue>
+    { 
+        new TextValue{Text="不(Url导航)",Value="0"},
+        new TextValue{Text="要(是否Url导航)",Value="1"},
+        new TextValue{Text="==是否Url导航==",Value="0"},
+    };
+
+
+    List<TextValue> BMenuPanels = new List<TextValue>
+    { 
+        new TextValue{Text="否(菜单面板)",Value="0"},
+        new TextValue{Text="是(菜单面板)",Value="1"},
+        new TextValue{Text="==是否菜单面板==",Value="0"},
+    };
+
+@*模块功能类型：2：模块和功能页面   3：功能页面*@
+    List<TextValue> GroupModularOrFuns = new List<TextValue>
+    { 
+        new TextValue{Text="模块和功能页面",Value="2"},
+        new TextValue{Text="功能页面",Value="3"},
+    };
+    List<TextValue> LoginCategorys = new List<TextValue>
+    { 
+        new TextValue{Text="公司",Value="1"},
+        new TextValue{Text="加盟商",Value="2"},
+        //new TextValue{Text="公司客户",Value="4"},
+        //new TextValue{Text="企业客户",Value="8"},
+
+        new TextValue{Text="公司和加盟商",Value="3"},
+        //new TextValue{Text="公司、公司客户、企业",Value="7"},        
+        //new TextValue{Text="公司、公司客户、企业、企业客户",Value="15"},        
+        
+        new TextValue{Text="==权限类别==",Value="0"},        
+    };
+
+    //List<TextValue> LoginCategorys = new List<TextValue>
+    //{ 
+    //    new TextValue{Text="公司",Value="1"},
+    //    new TextValue{Text="企业",Value="2"},
+    //    new TextValue{Text="公司客户",Value="4"},
+    //    new TextValue{Text="企业客户",Value="8"},
+
+    //    new TextValue{Text="公司企业",Value="3"},
+    //    new TextValue{Text="公司、公司客户、企业",Value="7"},        
+    //    new TextValue{Text="公司、公司客户、企业、企业客户",Value="15"},        
+        
+    //    new TextValue{Text="==权限类别==",Value="0"},        
+    //};
+
+    List<TextValue> ToolbarButtonAreaWidths = new List<TextValue>
+    { 
+        new TextValue{Text="==工具按钮区宽度==",Value=""},
+        new TextValue{Text="1",Value="1"},
+        new TextValue{Text="2",Value="2"},
+        new TextValue{Text="3",Value="3"},
+        new TextValue{Text="4",Value="4"},                
+        new TextValue{Text="5",Value="5"},
+        new TextValue{Text="6",Value="6"},
+        new TextValue{Text="7",Value="7"},
+        new TextValue{Text="8",Value="8"},
+        new TextValue{Text="9",Value="9"},
+        new TextValue{Text="10",Value="10"},        
+        new TextValue{Text="11",Value="11"},        
+        new TextValue{Text="12",Value="12"},        
+
+    };
+
+    List<TextValue> SortCols = new List<TextValue>
+    { 
+        new TextValue{Text="==排序列==",Value=""},
+        new TextValue{Text="SortCol01",Value="SortCol01"},
+        new TextValue{Text="SortCol02",Value="SortCol02"},
+        new TextValue{Text="SortCol03",Value="SortCol03"},
+        new TextValue{Text="SortCol04",Value="SortCol04"},
+        new TextValue{Text="SortCol05",Value="SortCol05"},
+        new TextValue{Text="SortCol06",Value="SortCol06"},
+        new TextValue{Text="SortCol07",Value="SortCol07"},
+        new TextValue{Text="SortCol08",Value="SortCol08"},
+        new TextValue{Text="SortCol09",Value="SortCol09"},
+        new TextValue{Text="SortCol10",Value="SortCol10"},
+
+        new TextValue{Text="SortCol11",Value="SortCol11"},
+        new TextValue{Text="SortCol12",Value="SortCol12"},
+        new TextValue{Text="SortCol13",Value="SortCol13"},
+        new TextValue{Text="SortCol14",Value="SortCol14"},
+        new TextValue{Text="SortCol15",Value="SortCol15"},
+        new TextValue{Text="SortCol16",Value="SortCol16"},
+        new TextValue{Text="SortCol17",Value="SortCol17"},
+        new TextValue{Text="SortCol18",Value="SortCol18"},
+        new TextValue{Text="SortCol19",Value="SortCol19"},
+        new TextValue{Text="SortCol20",Value="SortCol20"},
+
+        new TextValue{Text="SortCol21",Value="SortCol21"},
+        new TextValue{Text="SortCol22",Value="SortCol22"},
+        new TextValue{Text="SortCol23",Value="SortCol23"},
+        new TextValue{Text="SortCol24",Value="SortCol24"},
+        new TextValue{Text="SortCol25",Value="SortCol25"},
+        new TextValue{Text="SortCol26",Value="SortCol26"},
+        new TextValue{Text="SortCol27",Value="SortCol27"},
+        new TextValue{Text="SortCol28",Value="SortCol28"},
+        new TextValue{Text="SortCol29",Value="SortCol29"},
+        new TextValue{Text="SortCol30",Value="SortCol30"},
+
+        new TextValue{Text="SortCol31",Value="SortCol31"},
+        new TextValue{Text="SortCol32",Value="SortCol32"},
+        new TextValue{Text="SortCol33",Value="SortCol33"},
+        new TextValue{Text="SortCol34",Value="SortCol34"},
+        new TextValue{Text="SortCol35",Value="SortCol35"},
+        new TextValue{Text="SortCol36",Value="SortCol36"},
+        new TextValue{Text="SortCol37",Value="SortCol37"},
+        new TextValue{Text="SortCol38",Value="SortCol38"},
+        new TextValue{Text="SortCol39",Value="SortCol39"},
+        new TextValue{Text="SortCol40",Value="SortCol40"},
+              
+    };
+
+    List<TextValue> bFieldsConfigDisps = new List<TextValue>
+    { 
+        new TextValue{Text="==否(配字段显示)==",Value=""},
+        new TextValue{Text="是(配字段显示)",Value="1"},
+    };
+
+
+    List<TextValue> bValidModularOrFuns = new List<TextValue>
+    { 
+        new TextValue{Text="==有效==",Value="1"},
+        new TextValue{Text="==无效==",Value="0"},
+    };
+
+    List<TextValue> bNavModularOrFuns = new List<TextValue>
+    { 
+        new TextValue{Text="==显示在(导航条)==",Value="1"},
+        new TextValue{Text="==不显示在(导航条)==",Value="0"},
+    };
+
+    List<TextValue> BPrems = new List<TextValue>
+    { 
+        new TextValue{Text="权限分配",Value="1"},
+        new TextValue{Text="不要权限分配",Value="0"},
+    };
+
+    List<TextValue> DBOperTypes = new List<TextValue>
+    { 
+        new TextValue{Text="添加",Value="1"},
+        new TextValue{Text="修改",Value="2"},
+        new TextValue{Text="删除",Value="4"},
+        new TextValue{Text="查询",Value="8"},
+        //new TextValue{Text="查询",Value="8"},
+        new TextValue{Text="自定Sql语句",Value="16"},        
+    };
+
+    List<TextValue> BCalCols = new List<TextValue>
+    { 
+        new TextValue{Text="==是否计算==",Value=""},
+        new TextValue{Text="否",Value="0"},
+        new TextValue{Text="是",Value="1"},
+    };
+    var item = Model.Item;
+}
+
+<tr data-design_modularorfunid="@item.Design_ModularOrFunID" >
+    <td>
+        @(1)
+    </td>
+    <td>
+        <a href="/SysAreas/Design_ModularOrFunBtn/EditList?Item.Design_ModularOrFunParentID=@Model.Item.Design_ModularOrFunID&Item.Design_ModularOrFunID=@item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>按钮配置</a>
+        <br />
+        <br />
+        @*<a href="/SysAreas/Design_ModularPageField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>页面字段</a>*@
+        @*<a href="~/SysAreas/Design_ModularOrFunRefControll/EditList?Item.Design_PremSetID=@item.Design_ModularOrFunID&Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>权限控制器配置</a>*@
+        <a href="~/SysAreas/Design_ModularOrFunRefBtn/EditList?Item.Design_PremSetID=@item.Design_ModularOrFunID&Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>权限按钮</a>
+        <br />
+        <br />
+        @*                                        <a href="~/SysAreas/Design_ModularOrFun/BulidPage?Item.Design_ModularOrFunID=@item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>生成页面</a>*@
+
+        <a href="javascript:void(0);" data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" class="btn btn-primary btn-xs   btn-FwRowUIPopup">
+            <span class="glyphicon glyphicon-trash"></span>删除</a>
+        @*<a href="~/AuthorizationAreas/Pre_Role/Detail?Item.Pre_RoleID=@item.Pre_RoleID" class='btn btn-xs  btn-primary'>删除</a>*@
+    </td>
+    <td>
+        @*@Html.DropDownList("BMenu", BMenus, "Value", "Text", @item.BMenu)
+                                        @Html.DropDownList("BMenuPanel", BMenuPanels, "Value", "Text", item.BMenuPanel)
+                                        @Html.DropDownList("MenuPostion", MenuPostions, "Value", "Text", item.MenuPostion)
+                                        @Html.DropDownList("bNavModularOrFun", bNavModularOrFuns, "Value", "Text", item.bNavModularOrFun)*@
+
+        <input type="hidden"  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='模板父节点ID' placeholder="模板父节点ID" id='Design_ModularOrFunParentID' name='Design_ModularOrFunParentID' value='@item.Design_ModularOrFunParentID' />
+        <input type="hidden"  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='是否有效' placeholder="是否有效" id='bValidModularOrFun' name='bValidModularOrFun' value='@item.bValidModularOrFun' />
+
+        <input type="hidden"  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='组、模块或页面' placeholder="组、模块或页面" id='GroupModularOrFun' name='GroupModularOrFun' value='@item.GroupModularOrFun' />
+
+        @*                                        @Html.DropDownList("MenuPostion", MenuPostions, "Value", "Text", item.MenuPostion)*@
+        <input type="hidden"  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='菜单位置' placeholder="菜单位置" id='MenuPostion' name='MenuPostion' value='@item.MenuPostion' />
+
+        <div class="row" style="width: 500px;">
+            <div class="col-md-4">
+                <input type='text'  class='form-control'  data-datatype='int' data-fieldnamecn='排序序号' id='Sort' name='Sort' value='@item.Sort' />
+            </div>
+            <div class="col-md-4">
+                @*                                                @Html.DropDownList("bValidModularOrFun", bValidModularOrFuns, "Value", "Text", @item.bValidModularOrFun)*@
+            </div>
+            <div class="col-md-4">
+                @*模块功能类型：2：模块和功能页面   3：功能页面*@
+                @*                                                @Html.DropDownList("GroupModularOrFun", GroupModularOrFuns, "Value", "Text", @item.GroupModularOrFun)*@
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownList("BMenu", BMenus, "Value", "Text", @item.BMenu)
+            </div>
+
+            <div class="col-md-4">
+                <input type="text"  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='菜单标识' placeholder="2级菜单标识" id='MenuIdent' name='MenuIdent' value='@item.MenuIdent' />
+
+            </div>
+
+            @*<div class="col-md-4">
+                                                @Html.DropDownList("MenuPostion", MenuPostions, "Value", "Text", item.MenuPostion)
+                                            </div>*@
+
+
+            <div class="col-md-4">
+                <input type='text' class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='页面名称' placeholder="页面名称" id='ModularName' name='ModularName' value='@item.ModularName' />
+            </div>
+            <div class="col-md-4">
+                <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='标题名称' placeholder="标题名称" id='MenuName' name='MenuName' value='@item.MenuName' />
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownList("BUrlNva", BUrlNvas, "Value", "Text", @item.BUrlNva)
+            </div>
+
+
+            <div class="col-md-4">
+                <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='导航父ID' placeholder="导航父ID" id='ParentPremID' name='ParentPremID' value='@item.ParentPremID' />
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownList("BPrem", BPrems, "Value", "Text", @item.BPrem)
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownList("LoginCategoryID", LoginCategorys, "Value", "Text", @item.LoginCategoryID)
+            </div>
+            <div class="col-md-4">
+                <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='权限序号' placeholder="权限序号" id='PremSort' name='PremSort' value='@item.PremSort' />
+            </div>
+            <div class="col-md-4">
+                <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='权限名称' placeholder="权限名称" id='PremName' name='PremName' value='@item.PremName' />
+            </div>
+            <div class="col-md-4">
+                <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='数据权限' placeholder="数据权限" id='DataRightDropDown' name='DataRightDropDown' value='@item.DataRightDropDown' />
+            </div>
+        </div>
+    </td>
+    <td>
+        <div class="row" style="width: 300px;">
+            <div class="col-md-6">
+                @Html.DropDownList("bFieldsConfigDisp", bFieldsConfigDisps, "Value", "Text", @item.bFieldsConfigDisp)
+            </div>
+            <div class="col-md-6">
+                @Html.DropDownList("PageType", PageTypes, "Value", "Text", @item.PageType)
+            </div>
+        </div>
+        <div class="row" style="width: 300px;">
+            <div class="col-md-6">
+                @Html.DropDownList("PageFormEleTypeName", PageFormEleTypes, "Value", "Text", item.PageFormEleTypeName)
+            </div>
+            <div class="col-md-6">
+                @Html.DropDownList("QueryFormEleTypeName", QueryFormEleTypes, "Value", "Text", item.QueryFormEleTypeName)
+            </div>
+        </div>
+        <div class="row" style="width: 300px;">
+            <div class="col-md-6">
+                @Html.DropDownList("SortCol", SortCols, "Value", "Text", item.SortCol)
+            </div>
+            <div class="col-md-6">
+                @Html.DropDownList("bPage", BPages, "Value", "Text", @item.bPage)
+            </div>
+        </div>
+        <div class="row" style="width: 300px;">
+            <div class="col-md-6">
+                <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='页面标题' placeholder="页面标题" id='PageTitle' name='PageTitle' value='@item.PageTitle' />
+            </div>
+            <div class="col-md-6">
+                @Html.DropDownList("BCalCol", BCalCols, "Value", "Text", @item.BCalCol)
+            </div>
+        </div>
+
+
+
+    </td>
+    <td>
+        @*<input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='ActionID' placeholder="ActionID" id='Design_ModularOrFunControllID' name='Design_ModularOrFunControllID' value='@item.Design_ModularOrFunControllID' />*@
+        @*<input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='页面路径' placeholder="页面路径" id='ActionPath' name='ActionPath' value='@item.ActionPath' />*@
+        <input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='页面编码' placeholder="页面编码" id='ModularOrFunCode' name='ModularOrFunCode' value='@item.ModularOrFunCode' />
+        @*                                        <input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='Action编码' placeholder="Action编码" id='ActionCode' name='ActionCode' value='@item.ActionCode' />*@
+
+        <div class="row" style="width: 500px;">
+            <div class="col-md-4">
+                <input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='主视图名' placeholder="主视图名" id='MainView' name='MainView' value='@item.MainView' />
+            </div>
+            <div class="col-md-4">
+                <input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='子视图名' placeholder="子视图名" id='PartialView' name='PartialView' value='@item.PartialView' />
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownList("ToolbarButtonAreaWidth", ToolbarButtonAreaWidths, "Value", "Text", item.ToolbarButtonAreaWidth)
+            </div>
+        </div>
+        <div class="row" style="width: 500px;">
+            <div class="col-md-4">
+                <input type='text'style="margin-top:3px;margin-bottom:3px;"  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='表格宽度' placeholder="表格宽度" id='TableWidth' name='TableWidth' value='@item.TableWidth' />
+            </div>
+            <div class="col-md-8">
+                <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='备注' placeholder="备注" id='ModularOrFunRemarks' name='ModularOrFunRemarks' value='@item.ModularOrFunRemarks' />
+            </div>
+        </div>
+        @*<input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='查询方法' placeholder="查询方法" id='SearchMethod' name='SearchMethod' value='@item.SearchMethod' />
+                                        <input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='参数名称' placeholder="参数名称" id='ParamName' name='ParamName' value='@item.ParamName' />*@
+
+        @*@Html.DropDownList("BMenu", BMenus, "Value", "Text", @item.BMenu)
+                                        <input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='菜单名称' placeholder="菜单名称" id='MenuName' name='MenuName' value='@item.MenuName' />
+
+                                        <input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='菜单父节点ID' placeholder="菜单父节点ID" id='MenuParentID' name='MenuParentID' value='@item.MenuParentID' />*@
+        @*<input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='查询页面访问路径' placeholder="查询页面访问路径" id='ActionPath' name='ActionPath' value='@item.ActionPath' />*@
+    </td>
+    <td>
+        @*<input type='text' style="margin-top:3px;margin-bottom:3px;" class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='页面编码' placeholder="页面编码" id='ModularOrFunCode' name='ModularOrFunCode' value='@item.ModularOrFunCode' />*@
+        <input type='text'  class='form-control'  data-datatype='string' 
+                                        placeholder="视图名" id='TabViewName' name='TabViewName' value='@item.TabViewName' />
+
+        <input type='text'  class='form-control'  data-datatype='string' 
+                                        placeholder="默认排序" id='TSqlDefaultSort' name='TSqlDefaultSort' value='@item.TSqlDefaultSort' />
+        <div class="row">
+            <div class="col-md-6">
+                @Html.DropDownList("DBOperTypeFun", DBOperTypes, "Value", "Text", item.DBOperTypeFun)
+            </div>
+            <div class="col-md-6">
+                <button id="btn-BulidSql" class='btn btn-xs  btn-primary btn-BulidSql' data-PkName="@item.Design_ModularOrFunID">生成Sql语句</button>
+                @*<a href="~/SysAreas/Design_ModularOrFun/BulidSql?Item.Design_ModularOrFunID=@item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>生成Sql语句</a>*@
+            </div>
+        </div>
+        <textarea class='form-control ' data-datatype='string' rows="3"
+            data-fieldnamecn='代码' placeholder="代码" id='TSql' name='TSql'>@item.TSql</textarea>
+    </td>
+</tr>

@@ -1,0 +1,73 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "角色管理";
+    var conts = ViewContext.Controller as BaseController;
+    conts.Breadcrumb.Items.Clear();
+    conts.Breadcrumb.Items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem{Name="权限管理",URL=""},
+    };
+
+    var RankInfos = Model.PageQueryBase.RankInfos;
+}
+
+<div id='IndexPPre_Roles'>
+    <div>
+        @Html.RenderBreadcrumb()
+    </div>
+
+    <div class="container-fluid">
+        <div class='operArea' data-searchmethod='Framework.FwSearch' data-url="AuthorizationAreas/Pre_Role/Index">
+            <div>
+                <div class="col-sm-4">
+                    <a href="~/AuthorizationAreas/Pre_Role/Add" class='btn btn-success'><span class='glyphicon glyphicon-plus'></span>新增</a>
+                </div>
+                <div class="col-sm-8 text-right form-inline">
+                    <div class='fastWhere'>
+                        <input type='text' class='form-control' id='Item_RoleName' name='RoleName___like' value='@Model.Querys.GetValue("RoleName___like")' placeholder='角色名称' data-datatype='string' data-len='0|100' data-fieldnamecn='角色名称' />
+                        <button class="btn btn-primary btn-FwSearch"><span class="glyphicon glyphicon-search"></span>查询</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mylist container-fluid scrollBar scrollBarAuto" style="width: 100%;">
+                <table id='tbList' class=" table table-bordered table-hover table-striped" style="width: 100%;">
+                    <thead data-rolename='角色名称' data-sortid="排序码" data-statusname="状态">
+                        <tr>
+                            <th width='50'>序号
+                            </th>
+                            <th width='200'>操作</th>
+                            <th>角色名称 @Html.OrderBy(RankInfos, "RoleName")</th>
+                            <th>排序码 @Html.OrderBy(RankInfos, "SortID")</th>
+                            <th>状态 @Html.OrderBy(RankInfos, "StatusName")</th>
+                        </tr>
+                    </thead>
+                    <tbody data-pre_roleid='Pre_RoleID'>
+                        @for (var i = 0; i < Model.Items.Count; i++)
+                        {
+                            var item = Model.Items[i];
+                            <tr   data-pre_roleid='@item.Pre_RoleID' data-rolename='@item.RoleName' data-sortid="@item.SortID" data-statusname="@item.StatusName" >
+                                <td>
+                                    @(i+1)
+                                </td>
+                                <td>
+                                    <a href="~/AuthorizationAreas/Pre_Role/Detail?Item.Pre_RoleID=@item.Pre_RoleID" class='btn btn-xs  btn-primary'><span class='glyphicon glyphicon-zoom-in'></span>查看</a>
+                                    <a href="~/AuthorizationAreas/Pre_Role/Edit?Item.Pre_RoleID=@item.Pre_RoleID" class='btn btn-primary btn-xs btn-Edit'><span class='glyphicon glyphicon-edit'></span>编辑</a>
+                                </td>
+                                <td class="align-left">@item.RoleName</td>
+                                <td>@item.SortID</td>
+                                <td>@item.StatusName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+                @Html.Partial("_PagingOption", Model.PageQueryBase)
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_LayoutDesign.cshtml";
+
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = new SoftProjectAreaEntity
+        {
+            Design_ModularOrFunID = @Model.Item.Design_ModularOrFunID,
+            Design_ModularOrFunDomainID = @Model.Item.Design_ModularOrFunDomainID,
+        }
+    };
+
+
+    List<TextValue> MethodReturnTypeNames = new List<TextValue>
+    { 
+        new TextValue{Text="==void==",Value="1"},
+        new TextValue{Text="MethodReturnTypeName MyResponseBase",Value="2"},
+    };
+}
+
+<div id='editP' class="operArea">
+    <div>
+        @*@Html.Navigation(Model.ModularOrFunCode)*@
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>设计管理</li>
+            <li><a href="/SysAreas/Design_ModularOrFunDomain/Index?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID">业务逻辑</a></li>
+            <li>业务逻辑步骤</li>
+        </ul>
+    </div>
+
+    <div class='mastEditArea editArea  '>
+        <form>
+            <div class="container-fluid margin-top-15">
+                <div class='form-horizontal merge targetdom'>
+                    <input type='hidden' id='Item_Design_ModularOrFunID' name='Item.Design_ModularOrFunID' value='@Model.Item.Design_ModularOrFunID' />
+                    <input type='hidden' id='Item_Design_ModularOrFunDomainID' name='Item.Design_ModularOrFunDomainID' value='@Model.Item.Design_ModularOrFunDomainID' />
+                    <ul class="form-horizontal merge">
+                        <li class='col-lg-4'>
+                            <div class='form-group'>
+                                <label class='col-lg-4 control-label'>业务名称</label>
+                                <div class='col-lg-8'>
+                                    <input type='text'  class='form-control' data-required="true"   data-datatype='string' data-len='0|200' 
+                                        data-fieldnamecn='业务名称' id='Item_ModularOrFunDomainName' name='Item.ModularOrFunDomainName' value='@Model.Item.ModularOrFunDomainName' />
+                                </div>
+                            </div>
+                        </li>
+                        <li class='col-lg-4'>
+                            <div class='form-group'>
+                                <label class='col-lg-4 control-label'>方法名称</label>
+                                <div class='col-lg-8'>
+                                    <input type='text'  class='form-control' data-required="true"   data-datatype='string' data-len='0|200' 
+                                        data-fieldnamecn='方法名称' id='Item_MethodName' name='Item.MethodName' value='@Model.Item.MethodName' />
+                                </div>
+                            </div>
+                        </li>
+                        <li class='col-lg-4'>
+                            <div class='form-group'>
+                                <label class='col-lg-4 control-label'>返回类型</label>
+                                <div class='col-lg-8'>
+                                    @Html.DropDownList("Item.MethodReturnTypeID", MethodReturnTypeNames, "Value", "Text", Model.Item.MethodReturnTypeID)
+@*                                    <input type='text'  class='form-control' data-required="true"   data-datatype='string' data-len='0|200' 
+                                        data-fieldnamecn='返回类型' id='Item_MethodReturnTypeName' name='Item.MethodReturnTypeName' value='@Model.Item.MethodReturnTypeName' />*@
+                                </div>
+                            </div>
+                        </li>
+                        <li class='col-lg-4'>
+                            <div class='form-group'>
+                                <label class='col-lg-4 control-label'>排序序号</label>
+                                <div class='col-lg-8'>
+                                    <input type='text'  class='form-control' data-required="true"   data-datatype='string' data-len='0|200' 
+                                        data-fieldnamecn='排序序号' id='Item_Sort' name='Item.Sort' value='@Model.Item.Sort' />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @Html.Action("EditList", "Design_ModularOrFunDomainDetail", request)
+
+    <div class='editArea'>
+        <div class="container-fluid">
+            <div class="form-footer1">
+                <div class="text-right col-md-12">
+                    @if (Model.FunNameEn == "Add")
+                    {
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="310"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunDomainID"
+                            data-posturl="/SysAreas/Design_ModularOrFunDomain/AddSave"
+                            data-targeturl="/SysAreas/Design_ModularOrFunDomain/Edit"
+                            data-targeturlparamname="Design_ModularOrFunDomainID"
+                            type="button">
+                            保存</button>
+                    }
+                    else
+                    {
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunDomainID"
+                            data-posturl="/SysAreas/Design_ModularOrFunDomain/EditSave"
+                            data-targeturl="/SysAreas/Design_ModularOrFunDomain/Edit?Item.Design_ModularOrFunDomainID=@Model.Item.Design_ModularOrFunDomainID"
+                            data-targeturlparamname=""
+                            type="button">
+                            保存</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

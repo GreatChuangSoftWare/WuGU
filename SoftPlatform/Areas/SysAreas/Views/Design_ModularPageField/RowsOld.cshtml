@@ -1,0 +1,154 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    //字段类型：1：td  2:thead-data  4: tbody-data  6：thead|tbody-data
+    List<TextValue> FieldFunTypeIDs = new List<TextValue>
+    { 
+        new TextValue{Text="==功能类型==",Value=""},
+        new TextValue{Text="td",Value="1"},
+        new TextValue{Text="thead-data",Value="2"},
+        new TextValue{Text="td|thead-data",Value="3"},
+        new TextValue{Text="tbody-data",Value="4"},
+        new TextValue{Text="td|tbody-data",Value="5"},
+        new TextValue{Text="thead|tbody-data",Value="6"},
+        new TextValue{Text="td|thead|tbody-data",Value="7"},
+
+    };
+
+    //表单控件类型：1：文本框  2:标签  4：下拉列表框  8：Hidden  16:Radion  32:CheckBox
+    List<TextValue> FormEleTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value="100"},
+        new TextValue{Text="td",Value=""},        
+        new TextValue{Text="文本框",Value="1"},
+        new TextValue{Text="标签",Value="2"},
+        new TextValue{Text="下拉",Value="4"},
+        new TextValue{Text="下拉树",Value="128"},
+        new TextValue{Text="隐藏",Value="8"},
+
+        new TextValue{Text="单选",Value="16"},
+        new TextValue{Text="复选框",Value="32"},
+        new TextValue{Text="文本框(只读)",Value="64"},
+    };
+
+    List<TextValue> bTabVers = new List<TextValue>
+    { 
+        new TextValue{Text="==回车垂直==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+
+    List<SoftProjectAreaEntity> Design_ModularOrFuns = new List<SoftProjectAreaEntity> { 
+        new SoftProjectAreaEntity{PageFormEleTypeName="FormEleType",ModularName="列表页"},
+        new SoftProjectAreaEntity{PageFormEleTypeName="Page2FormEleType",ModularName="添加页"},
+        new SoftProjectAreaEntity{PageFormEleTypeName="Page3FormEleType",ModularName="编辑页"},
+        new SoftProjectAreaEntity{PageFormEleTypeName="Page4FormEleType",ModularName="查看页"},
+    };
+
+}
+
+@for (var i = 0; i < Model.Items.Count; i++)
+{
+    var item = Model.Items[i];
+    <tr data-design_modularfieldid="@item.Design_ModularFieldID" data-design_modularpagefieldid="@item.Design_ModularPageFieldID"
+        data-namecn="@item.NameCn">
+        <td>
+            @(i + 1)
+        </td>
+        <td>
+            <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除"
+                class='btn btn-primary btn-xs   btn-FwRowUIPopup'>删除</a>
+        </td>
+        <td>
+            <input type='text'  class='form-control TableInfoSort'  data-datatype='int' 
+                           data-tabnextcol="TableInfoSort"   data-fieldnamecn='排序序号' id='TableInfoSort' name='TableInfoSort' value='@item.TableInfoSort' />
+        </td>
+        <td>
+            @Html.DropDownList("FieldFunTypeID", FieldFunTypeIDs, "Value", "Text", item.FieldFunTypeID)
+        </td>
+        <td>
+            @item.name
+        </td>
+        <td>
+            @item.NameCn
+        </td>
+        @for (int m = 0; m < Design_ModularOrFuns.Count; m++)
+        {
+            if (Design_ModularOrFuns[m].PageFormEleTypeName == "FormEleType")
+            {
+            <td>
+                @if (item.Design_ModularFieldID >= 100)
+                {
+                    @Html.DropDownList("FormEleType", FormEleTypes, "Value", "Text", item.FormEleType)
+                }
+            </td>
+            }
+            if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page2FormEleType")
+            {
+            <td>
+                @if (item.Design_ModularFieldID >= 100)
+                {
+                    @Html.DropDownList("Page2FormEleType", FormEleTypes, "Value", "Text", item.Page2FormEleType)
+                }
+            </td>
+            }
+            if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page3FormEleType")
+            {
+            <td>
+                @if (item.Design_ModularFieldID >= 100)
+                {
+                    @Html.DropDownList("Page3FormEleType", FormEleTypes, "Value", "Text", item.Page3FormEleType)
+                }
+            </td>
+            }
+            if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page4FormEleType")
+            {
+            <td>
+                @if (item.Design_ModularFieldID >= 100)
+                {
+                    @Html.DropDownList("Page4FormEleType", FormEleTypes, "Value", "Text", item.Page4FormEleType)
+                }
+            </td>
+            }
+            if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page5FormEleType")
+            {
+            <td>
+                @if (item.Design_ModularFieldID >= 100)
+                {
+                    @Html.DropDownList("Page5FormEleType", FormEleTypes, "Value", "Text", item.Page5FormEleType)
+                }
+            </td>
+            }
+            if (Design_ModularOrFuns[m].PageFormEleTypeName == "Page6FormEleType")
+            {
+            <td>
+                @if (item.Design_ModularFieldID >= 100)
+                {
+                    @Html.DropDownList("Page6FormEleType", FormEleTypes, "Value", "Text", item.Page6FormEleType)
+                }
+            </td>
+            }
+        }
+        <td>
+            @Html.DropDownList("bTabVer", bTabVers, "Value", "Text", item.bTabVer)
+
+            @*            <input type='text'  class='form-control cssclass'  data-datatype='string' 
+                           data-tabnextcol="cssclass"   data-fieldnamecn='css类' id='cssclass' name='cssclass' value='@item.cssclass' />*@
+        </td>
+
+        <td>
+            <input type='text'  class='form-control calcol'  data-datatype='string' 
+                           data-tabnextcol="calcol"   data-fieldnamecn='列计算表达式' id='calcol' name='calcol' value='@item.calcol' />
+        </td>
+        <td>
+            <input type='text'  class='form-control calrow'  data-datatype='string' 
+                           data-tabnextcol="calrow"   data-fieldnamecn='行计算表达式' id='calrow' name='calrow' value='@item.calrow' />
+        </td>
+        <td>
+            <input type='text'  class='form-control EditAreaName'  data-datatype='string' 
+                           data-tabnextcol="EditAreaName"   data-fieldnamecn='编辑区域名' id='EditAreaName' name='EditAreaName' value='@item.EditAreaName' />
+        </td>
+
+    </tr>
+}

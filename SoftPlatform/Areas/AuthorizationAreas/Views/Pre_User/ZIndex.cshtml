@@ -1,0 +1,119 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //ViewBag.Title = "用户管理";
+    ////权限
+    //var conts = ViewContext.Controller as BaseController;
+    //conts.Breadcrumb.Items.Clear();
+    //conts.Breadcrumb.Items = new List<BreadcrumbItem>
+    //{
+    //    new BreadcrumbItem{Name="权限管理",URL=""},
+    //};
+    //List<TextValue> FieldNames = new List<TextValue>
+    //    { 
+    //        new TextValue{Text="用户名",Value="UserName"},
+    //        new TextValue{Text="身份证号",Value="IdentityCard"},
+    //        new TextValue{Text="登录名",Value="LoginName"},
+    //        new TextValue{Text="教育程度",Value="EducationID"},
+    //        new TextValue{Text="婚姻情况",Value="MaritalID"},
+    //        new TextValue{Text="电话",Value="Tel"},
+    //        new TextValue{Text="手机1",Value="MobilePhone1"},
+    //        new TextValue{Text="手机2",Value="MobilePhone2"},
+    //        new TextValue{Text="性别",Value="SexID"},
+    //        //new TextValue{Text="部门",Value="Pre_OrganizationID"},
+    //        new TextValue{Text="地址",Value="Address"},
+    //        new TextValue{Text="入职日期",Value="EntryTime"},
+    //    };
+
+    //var Nav = ProjectCache.Design_ModularPages.Where(p => p.PageCode == "UserManger").FirstOrDefault();
+    //ViewBag.Title = Nav.ModularName;
+    //var strNav = "<ul class='breadcrumb myjuxing'>";
+    //strNav += "<li><span class='icon-home'></span><a href='/'>首页</a></li>";
+    //strNav += "<li>" + Nav.ModularName + "</li>";
+    //strNav += "<li>" + Nav.ModularName + "</li>";
+    //strNav += "</ul>";
+    
+@*<ul class="breadcrumb myjuxing"><li><span class="icon-home"></span><a href="/">首页</a></li><li>库房管理</li><li>实时库存报表</li></ul>*@
+@*    <ul class="breadcrumb myjuxing">
+        <li><span class="icon-home"></span><a href="/">首页</a></li>
+        <li>产品管理</li>
+        <li><a href="/ProductAreas/P_Registration/Index">注册证管理</a></li>
+        <li>添加</li>
+    </ul> *@
+}
+
+@section PageCssSection{
+}
+
+@section PageJavascriptSection
+{
+    @*    <script type='text/javascript' src='@Url.Content("~/Scripts/jquery.FixedTable.js")'></script>
+    <script type='text/javascript' src='@Url.Content("~/Areas/AuthorizationAreas/Scripts/Pre_Users.js")'></script>*@
+}
+@*设计思路：
+	根据页面编码查询：
+	根据页面编码查询：父级导航条
+	工具条生成：工具条按钮、快速查询、更多查询、自定义查询
+	table:
+	thead：data-xxx：所有显示的列HeadOrDataType&1=1
+	tbody：data-yyy：所有显示的列+隐藏列  HeadOrDataType&2=2
+	tbody：      由HeadOrDataType来确定
+	    tr：data-xxx：HeadOrDataType&1||HeadOrDataType&2：
+	    td：操作列：查找页面行按钮并且据有此权限
+	    td：数据列：HeadOrDataType&4=4   
+2个方法：工具条、table1个
+1个方法
+*@
+@*
+
+模块
+
+--Index：页面标识=>
+--		页面生成工具栏生成方法：根据页面标识，查询工具条按钮=>生成工具条
+--			=>如果为添加功能：	如果为newpage=>
+--								如果为popup=>
+--			=>如果为查询功能：一般为导出
+--			=>如果为确认功能：参考文档，
+--		页面生成查询条件：根据页面标识，查询条件=>生成
+--			
+--		页面主体生成：根据页面标识，查询页面列表字段
+--			=>生成thead=>查询所有为popup的按钮：geturl为空的，提示字段
+--			=>生成hbody=>查询所有为popup的按钮：posturl不为空，保存或者提交数据项
+--			=>如果为序号列=>生成序号
+--			=>如果为操作列=>查询当前页的操作按钮
+--								如果当前用户有此权限，并且显示条件字段成立=>显示按钮
+--			=>数据列=>*@
+<div id='IndexP'>
+    <div>
+        @Html.Navigation(Model.ModularOrFunCode)
+        @*.Raw(strNav)*@
+    </div>
+    <div class="container-fluid">
+        <div class='operArea' data-searchmethod='Framework.FwSearch' data-url="AuthorizationAreas/Pre_User/Index">
+            <div class="search-bar">
+                <div class="tool-bar search-bar">
+                    <div class="col-sm-2">
+                        @Html.ToolBarHtml()
+                        @*<a href="~/AuthorizationAreas/Pre_User/Add" class='btn btn-success'><span class='glyphicon glyphicon-plus'></span>新增</a>*@
+                    </div>
+                    <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                        @Html.QueryHtml(Model.Querys)
+                    </div>
+                </div>
+            </div>
+            <div class="scrollBar scrollBarAuto" style="width: 100%; overflow: auto;" data-width="1800">
+                <div class="mylist container-fluid container" style="width: 1800px;">
+                    <table id='tbList' class="table table-bordered table-hover table-striped " style="width: 100%;">
+                        @Html.TableHtml(Model.Items,Model.PageQueryBase.RankInfos)
+                    </table>
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+                @Html.Partial("_PagingOption", Model.PageQueryBase)
+            </div>
+        </div>
+    </div>
+</div>

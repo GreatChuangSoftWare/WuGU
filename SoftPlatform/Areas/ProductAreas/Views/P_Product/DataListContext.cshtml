@@ -1,0 +1,93 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.ToolBarBtns(Model.Item, modulars.ModularOrFunCode, 1);
+}
+
+<div class="container-fluid targetdom ">
+    <div class='operArea' data-searchmethod='@modulars.SearchMethod' data-url="@modulars.ActionPath" data-targetdom=".targetdom">
+        <div class="search-bar">
+            <div class="tool-bar search-bar ">
+                <div class="col-sm-@modulars.ToolbarButtonAreaWidth">
+                    @Html.ToolBarHtml(Model.Item, modulars, btns)
+                </div>
+                <div class="col-sm-@modulars.ToolbarSearchAreaWidth text-right form-inline" id="SearchArea">
+                    @Html.QueryHtml(Model.Querys, Model.ModularOrFunCode, Model.Item)
+                    @*@Html.QueryHtml(Model.Querys, Model.ModularOrFunCode)*@
+                </div>
+            </div>
+        </div>
+        <div style="clear: both; margin-bottom: 10px;"></div>
+        <div class="sortArea">
+            @*<div class="dandupaixu">
+                <div class="col-md-9">
+                    <label class="contorl-label pull-left">排序：</label>
+                    @Html.SortHtml(Model.PageQueryBase.RankInfos)
+                </div>
+                <div class="col-md-3 row pull-right">
+                    <div class=" visible-lg-block list-nameber">总<span class="green">@Model.PageQueryBase.TotalItems</span>条，当前 @Model.PageQueryBase.PageIndex/@Model.PageQueryBase.TotalPages 页</div>
+                </div>
+            </div>*@
+        </div>
+        <div style="clear: both; margin-bottom: 10px;"></div>
+
+        <div id='editPItems'>
+            @if (Model.Items.Count > 0)
+            {
+                foreach (var Item in Model.Items)
+                {
+                    /*<a href="/P_ProductAreas/P_Product/ProductDetail?Item.P_ProductID=@Item.P_ProductID">
+                        <img src="@Item.PAttachmentFileNameGuid" /></a>
+                    @Item.ProductName
+                    @Item.ProductModel
+                    @Item.Specifications
+                    @Item.ProductPrice
+                    @Item.UnitName
+
+                    <button class="btn btn-xs btn-primary btn-FwBtnSubmit" data-fun="1" 
+                        data-posturl="/FranchiseeAreas/Fra_Order/AddShoppingCart?Item.P_ProductID=@Item.P_ProductID" 
+                        data-targeturlparamname="">
+                        加入购物车</button>*/
+                <div class="index item">
+                    <div class="img-box">
+                        <a href="/ProductAreas/P_Product/ProductDetail?Item.P_ProductID=@Item.P_ProductID">
+                            <img src="@Item.ProductMainImageFilePath" />
+                        </a>
+                    </div>
+                    <div class="c-box">
+                        <ul>
+                            <li>
+                                <div class="name">产品名称：@Item.ProductName</div>
+                            </li>
+                            <li>
+                                <div>产品编码：@Item.ProductNo</div>
+                            </li>
+                            <li>
+                                <div>规格：@Item.Specifications</div>
+                            </li>
+                            <li>
+                                <div>进货单价：@Item.ProductPrice</div>
+                            </li>
+                            <li>
+                                <button class="btn btn-xs btn-primary btn-FwBtnSubmit" data-fun="1" 
+                                        data-posturl="/OrderAreas/O_Order/AddShoppingCart?Item.P_ProductID=@Item.P_ProductID" 
+                                        data-targeturlparamname="">
+                                    加入购物车</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+                }
+            }
+            <div class="clear-both"></div>
+        </div>
+        <!-- 分页 -->
+        <div class="page-bar">
+            @Html.Partial("_PagingOption", Model.PageQueryBase)
+        </div>
+    </div>
+</div>

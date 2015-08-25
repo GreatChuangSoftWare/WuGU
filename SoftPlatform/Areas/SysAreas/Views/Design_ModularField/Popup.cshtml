@@ -1,0 +1,80 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "字段选择";
+
+    //var conts = ViewContext.Controller as BaseController;
+    //conts.Breadcrumb.Items.Clear();
+    //conts.Breadcrumb.Items = new List<BreadcrumbItem>
+    //{
+    //    //new BreadcrumbItem{Name="",URL=""},
+    //};
+
+}
+
+@section PageCssSection{
+}
+
+@section PageJavascriptSection
+{
+}
+@*<script type='text/javascript' src='@Url.Content("~/Areas/PurchaseOrderAreas/Scripts/Pu_PurchaseOrderDetailTT.js")'></script>*@
+
+<div id='P_Popup'>
+    <div class="container-fluid">
+        <div class='operArea' data-searchmethod='Framework.SearchPopup' data-url="/SysAreas/Design_ModularField/Popup" data-targetdom="#P_Popup">
+            <div class="search-bar">
+                <div id="toolbarbtn" class="col-sm-12">
+                </div>
+                <div class="col-sm-12 text-right form-inline">
+                    <span class="SearchArea">
+                        <span class='SearchAreaDetail fastWhere'>
+                            @Html.DropDownList("Item.Design_ModularOrFunID", @Model.Item.Design_ModularOrFuns, "Design_ModularOrFunID", "ModularName", Model.Item.Design_ModularOrFunID)
+                            @*<input title="" data-original-title="" class="form-control" id="ProductName___like" name="ProductName___like" placeholder="名称" data-datatype="string" value="" type="text">*@
+                            <button class="btn btn-primary btn-FwSearch"><span class="glyphicon glyphicon-search"></span>查询</button>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>
+            <div class="mylist container-fluid scrollBar" style="height: 300px;">
+                <table id='tbList' class=" table table-bordered table-hover table-striped">
+                    <thead id="tbhead">
+                        <tr>
+                            <th class="lockhead">序号</th>
+                            <th class="lockhead">
+                                <input type="checkbox" class="checkbox1 jq-checkall-switch" alt="全选/反选" title="全选/反选" />
+                            </th>
+                            <th class="lockhead">英文名称</th>
+                            <th class="lockhead">中文名称</th>
+                            <th class="lockhead">数据类型</th>
+                            <th class="lockhead">长度</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbbody">
+                        @if (Model.Items != null && Model.Items.Count > 0)
+                        {
+                            int i = 0;
+                            foreach (var item in Model.Items)
+                            {
+                                i++;
+                            <tr data-design_modularfieldid="@item.Design_ModularFieldID">
+                                <td>@i</td>
+                                <td>
+                                    <input type="checkbox" class="checkbox1 jq-checkall-item" />
+                                </td>
+                                <td class="align-left">@item.name</td>
+                                <td class="align-left">@item.NameCn</td>
+                                <td class="align-left">@item.xtype</td>
+                                <td class="align-left">@item.length</td>
+                            </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

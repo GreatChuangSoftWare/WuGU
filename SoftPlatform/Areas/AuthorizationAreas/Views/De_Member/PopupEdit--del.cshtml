@@ -1,0 +1,19 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+}
+
+<div class="modal-body clearfix">
+    <form>
+        @*<input type='hidden' id='Item_De_MemberID' name='Item.De_MemberID' value='@Model.Item.De_MemberID' />*@
+        <ul class="form-horizontal merge">
+            @Html.FormEleHtml(Model)
+        </ul>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+    @Html.BtnFooterHtml(Model)
+</div>
+

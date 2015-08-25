@@ -1,0 +1,72 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    List<TextValue> DomainTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+        new TextValue{Text="C#语句块(设置值、实例化对象等)",Value="101"},
+        new TextValue{Text="if",Value="81"},
+        new TextValue{Text="else",Value="82"},
+        new TextValue{Text="elseif",Value="83"},
+        new TextValue{Text="结束语句块",Value="84"},
+        new TextValue{Text="for",Value="85"},
+        new TextValue{Text="foreach",Value="87"},    
+        new TextValue{Text="自定义Sql-事务",Value="62"},
+        new TextValue{Text="自定义Sql-非事务",Value="63"},
+        new TextValue{Text="清空缓存",Value="65"},
+
+        new TextValue{Text="开始事务及try",Value="71"},
+        new TextValue{Text="结束事务及try",Value="72"},        
+        new TextValue{Text="提交事务",Value="73"},
+
+        new TextValue{Text="构造函数",Value="1"},
+        new TextValue{Text="主键不为空检查",Value="2"},
+        
+        new TextValue{Text="不能重复",Value="6"},
+        
+        new TextValue{Text="列表查询",Value="11"},
+        new TextValue{Text="列表查询--初始条件",Value="12"},
+        new TextValue{Text="根据主键查询-显示",Value="13"},
+        new TextValue{Text="根据主键查询-编辑",Value="14"},
+        
+        //new TextValue{Text="添加查询",Value="21"},
+        new TextValue{Text="添加查询-带初始值",Value="22"},//添加查询-带外键初始
+
+        new TextValue{Text="添加保存",Value="23"},
+        new TextValue{Text="编辑保存",Value="26"},
+        
+        new TextValue{Text="添加保存+子表",Value="41"},
+        new TextValue{Text="编辑保存+子表",Value="42"},
+        new TextValue{Text="Merger",Value="51"},
+        new TextValue{Text="子表Merger",Value="52"},
+        
+        };
+    var item = Model.Item;
+}
+
+<tr data-design_modularorfundomaindetailid="@item.Design_ModularOrFunDomainDetailID" >
+    <td>
+        @(1)
+    </td>
+    <td>
+        <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除"
+            class='btn btn-primary btn-xs   btn-FwRowUIPopup'>删除</a>
+    </td>
+    <td>
+        <input type='text'  class='form-control Serial'  data-datatype='int' 
+                           data-tabnextcol="Serial"   data-fieldnamecn='排序序号' id='Serial' name='Serial' value='@item.Serial' />
+    </td>
+    <td>
+        <input type='text'  class='form-control ModularOrFunDomainDetailName'  data-datatype='string' 
+                           data-tabnextcol="ModularOrFunDomainDetailName"   data-fieldnamecn='流程名称' placeholder="流程名称" id='ModularOrFunDomainDetailName' name='ModularOrFunDomainDetailName' value='@item.ModularOrFunDomainDetailName' />
+        @*                                    @Html.DropDownList("DomainType", DomainTypes, "Value", "Text", item.DomainType)*@
+        <input type='text'  class='form-control DBOperCode'  data-datatype='string' 
+                           data-tabnextcol="Design_DBOperCode"   data-fieldnamecn='数据库操作编码' placeholder="数据库操作编码" id='DBOperCode' name='DBOperCode' value='@item.DBOperCode' />
+    </td>
+    <td>
+        <textarea class='form-control ParamName' data-datatype='string' rows="5"
+            data-tabnextcol="ParamName" data-fieldnamecn='参数设置' id='ParamName' name='ParamName'>@item.ParamName</textarea>
+    </td>
+</tr>

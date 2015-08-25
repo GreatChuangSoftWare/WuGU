@@ -1,0 +1,122 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Buy.cshtml";
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var Item = Model.Item;
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = new SoftProjectAreaEntity { P_ProductID = Item.P_ProductID }
+    };
+}
+
+<div class="container-fluid mycon">
+@*    <div class="col-md-2">
+        <div class="panel panel-primary">
+            @Html.JqTreeN("P_ProductCategoryID", 1)
+        </div>
+    </div>*@
+    <div class="col-md-12">
+        <div>
+            <div class="container-fluid targetdom ">
+                <div class='operArea' data-targetdom=".targetdom">
+                    <div id='editPItems' class="p-info">
+                        <div class="img-box">
+                            @*<a href="#">
+                                <img src="@Item.PAttachmentFileNameGuid" /></a>*@
+                            <div class="jd-imbox">
+                                <img src="~/Areas/P_ProductAreas/Content/Image/555ed022Nb5d668451.jpg" />
+                            </div>
+                            <div class="thumb">
+                                <img src="~/Areas/P_ProductAreas/Content/Image/555ed021N3745b4cb.jpg" />
+                                <img src="~/Areas/P_ProductAreas/Content/Image/555ed022N9abcdad6.jpg" />
+                                <img src="~/Areas/P_ProductAreas/Content/Image/555ed022Nb5d66845.jpg" />
+                                <img src="~/Areas/P_ProductAreas/Content/Image/555ed023N4906f4a9.jpg" />
+                                <img src="~/Areas/P_ProductAreas/Content/Image/555ed023N5f5d74a9.jpg" />
+                            </div>
+                        </div>
+                        <div class="c-box">
+                            <ul>
+                                <li>
+                                    <div class="name">产品名称：@Item.ProductName</div>
+                                </li>
+                                <li>
+                                    <div>货品编码：@Item.ProductModel</div>
+                                </li>
+                                <li>
+                                    <div>单位：斤</div>
+                                </li>
+                                <li>
+                                    <div>规格：0.5斤/袋</div>
+                                </li>
+                                <li>
+                                    <div>进货单价：@Item.ProductPrice</div>
+                                </li>
+                                <li>
+                                    <div>产品名称：@Item.ProductName</div>
+                                </li>
+                                <li>
+                                    <div class="cx">促销信息:<em>促销</em><span>满1000，赠10斤!</span></div>
+                                </li>
+                                <li>
+                                    <button class="btn  btn-primary btn-FwBtnSubmit" data-fun="1" 
+                    data-posturl="/FranchiseeAreas/Fra_Order/AddShoppingCart?Item.P_ProductID=@Item.P_ProductID" 
+                    data-targeturlparamname="">加入购物车</button>
+                                </li>
+                            </ul>
+                            <!--@Item.ProductName
+                            @Item.ProductModel
+                            @Item.Specifications
+                            @Item.ProductPrice
+                            @Item.UnitName
+                            促销信息:满1000，赠10斤
+                            <button class="btn btn-xs btn-primary btn-FwBtnSubmit" data-fun="1" 
+                    data-posturl="/FranchiseeAreas/Fra_Order/AddShoppingCart?Item.P_ProductID=@Item.P_ProductID" 
+                    data-targeturlparamname="">加入购物车</button>-->
+                        </div>
+                        <div  class="clear-both"></div>
+                    </div>
+                </div>
+                <ul class="nav nav-tabs mybottabs">
+                    <li class="active">
+                        <a href="#tab1" data-toggle="tab">产品说明</a>
+                    </li>
+                    <li class="">
+                        <a href="#tab2" data-toggle="tab">功效</a>
+                    </li>
+                    <li class="">
+                        <a href="#tab3" data-toggle="tab">适合人群</a>
+                    </li>
+                    <li class="">
+                        <a href="#tab4" data-toggle="tab">成分</a>
+                    </li>
+                    <li class="">
+                        <a href="#tab5" data-toggle="tab">案例 </a>
+                    </li>
+
+                </ul>
+
+                <div class="tab-content box">
+                    <div class="tab-pane fade in active" id="tab1">
+                        @Item.ProductContext
+                    </div>
+                    <div class="tab-pane fade" id="tab2">
+                        @Html.Action("DetailIndex", "P_Effect", request)
+                    </div>
+                    <div class="tab-pane fade" id="tab3">
+                        @Html.Action("DetailIndex", "P_SuitsCrowd", request)
+                    </div>
+                    <div class="tab-pane fade" id="tab4">
+                        @Html.Action("DetailIndex", "P_Composition", request)
+                    </div>
+                    <div class="tab-pane fade" id="tab5">
+                        @Html.Action("DetailIndex", "P_Case", request)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

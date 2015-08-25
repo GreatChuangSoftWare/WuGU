@@ -1,0 +1,14 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+}
+
+<ul>
+    @foreach (var item in Model.Items)
+    { 
+        <li><a href="/CustomerAreas/C_Visit/WaitVisitAdd?Item.C_CustomerID=@item.Pre_UserID">@item.UserName</a></li>
+    }
+</ul>

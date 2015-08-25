@@ -1,0 +1,13 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id='editP' class="operArea">
+    <div>
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+    <!--用于连续审核...功能-->
+    @Html.Partial("EditPContext", Model)
+</div>

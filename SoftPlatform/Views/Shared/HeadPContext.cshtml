@@ -1,0 +1,26 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.LoginModulerBtns(modulars.ModularOrFunCode, 3);
+
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = Model.EditAction
+    };
+}
+
+<div class="targetdom container-fluid" >
+    <div class='mastEditArea editArea'>
+        <form>
+            <div class="container-fluid">
+                <div class='form-horizontal merge '>
+                        @Html.HeadPageHtml(Model.Item, Model.ModularOrFunCode, 4)
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

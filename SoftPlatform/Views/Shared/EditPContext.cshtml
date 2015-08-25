@@ -1,0 +1,43 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.LoginModulerBtns(modulars.ModularOrFunCode, 3);
+
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = Model.EditAction
+    };
+}
+
+<div class="targetdom container-fluid" >
+    <div class='mastEditArea editArea'>
+        <form>
+            <div class="container-fluid">
+                <div class='form-horizontal merge '>
+                    <ul class="form-horizontal merge table-panel">
+                        @Html.FormEleHtml(Model.Item, Model.ModularOrFunCode, 4)
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @if (Model.EditAction != null)
+    {
+        @Html.Action(Model.EditAction.ActionNameEn, Model.EditAction.ControllName, request)
+    }
+
+    <div class='editArea'>
+        <div class="container-fluid">
+            <div class="form-footer1">
+                <div class="text-right col-md-12">
+                    @Html.BtnFooterHtml(Model.Item, Model.ModularOrFunCode,btns)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

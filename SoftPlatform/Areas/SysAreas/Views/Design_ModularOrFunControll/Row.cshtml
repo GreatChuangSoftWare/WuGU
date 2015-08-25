@@ -1,0 +1,72 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    List<TextValue> ActionNames = new List<TextValue>
+    { 
+        new TextValue{Text="ActionResult",Value="1"},
+        new TextValue{Text="HJsonResult",Value="2"},
+    };
+    //返回的View名称：1:Index   20:Edit 22:PopupEdit  25:EditPartial  40:Row  
+    List<TextValue> ViewNames = new List<TextValue>
+    { 
+        new TextValue{Text="==视图名称==",Value=""},
+        new TextValue{Text="IndexP",Value="1"},
+        new TextValue{Text="NavPFrame",Value="2"},
+        new TextValue{Text="IndexPContext",Value="3"},
+        new TextValue{Text="IndexPChild",Value="4"},
+        new TextValue{Text="Row",Value="11"},
+        new TextValue{Text="Rows",Value="12"},
+        new TextValue{Text="IndexPTab",Value="15"},
+        
+        new TextValue{Text="EditP",Value="20"},
+        new TextValue{Text="NavPFrame",Value="21"},
+        new TextValue{Text="EditPContext",Value="22"},
+        new TextValue{Text="EditArea",Value="26"},
+        new TextValue{Text="EditPTab",Value="27"},
+
+        new TextValue{Text="PopupEdit",Value="30"},
+        new TextValue{Text="EditPartial",Value="31"},
+    };
+
+    var item = Model.Item;
+}
+<tr data-Design_ModularOrFunControllid="@item.Design_ModularOrFunControllID" >
+    <td>
+        @(1)
+    </td>
+    <td>
+        <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" class='btn btn-primary btn-xs   btn-FwRowUIPopup'>
+            <span class='glyphicon glyphicon-trash'></span>删除</a>
+    </td>
+    <td>
+        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='排序' id='Sort' name='Sort' value='@item.Sort' />
+    </td>
+
+    <td>
+        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='控制器名' id='ControllName' name='ControllName' value='@item.ControllName' />
+        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='控制器方法' placeholder="方法名" id='ActionMethod' name='ActionMethod' value='@item.ActionMethod' />
+        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='参数名' placeholder="参数名" id='ParamName' name='ParamName' value='@item.ParamName' />
+        @*                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='模块ID' placeholder="模块ID" id='Design_ModularOrFunID1' name='Design_ModularOrFunID1' value='@item.Design_ModularOrFunID1' />*@
+    </td>
+    @*                                    <td>
+                                        @Html.DropDownList("BPrem", BPrems, "Value", "Text", item.BPrem)
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='权限分配名称' placeholder="权限分配名称" id='ActionMethodCn' name='ActionMethodCn' value='@item.ActionMethodCn' />
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='数据权限' placeholder="数据权限" id='DataRightDict' name='DataRightDict' value='@item.DataRightDict' />
+                                    </td>*@
+    <td>
+        @*                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='页面编码' placeholder="页面编码" id='ControllModularOrFunCode' name='ControllModularOrFunCode' value='@item.ControllModularOrFunCode' />*@
+
+        <textarea class='form-control ControllProgramCode' data-datatype='string' rows="5"
+            data-tabnextcol="ControllProgramCode" data-fieldnamecn='代码' placeholder="代码" id='ControllProgramCode' name='ControllProgramCode'>@HttpUtility.UrlDecode(item.ControllProgramCode)</textarea>
+    </td>
+</tr>

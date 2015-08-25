@@ -1,0 +1,170 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "用户管理";
+    //权限
+    var conts = ViewContext.Controller as BaseController;
+    conts.Breadcrumb.Items.Clear();
+    conts.Breadcrumb.Items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem{Name="权限管理",URL=""},
+    };
+    List<TextValue> FieldNames = new List<TextValue>
+        { 
+            new TextValue{Text="用户名",Value="UserName"},
+            new TextValue{Text="身份证号",Value="IdentityCard"},
+            new TextValue{Text="登录名",Value="LoginName"},
+            new TextValue{Text="教育程度",Value="EducationID"},
+            new TextValue{Text="婚姻情况",Value="MaritalID"},
+            new TextValue{Text="电话",Value="Tel"},
+            new TextValue{Text="手机1",Value="MobilePhone1"},
+            new TextValue{Text="手机2",Value="MobilePhone2"},
+            new TextValue{Text="性别",Value="SexID"},
+            //new TextValue{Text="部门",Value="Pre_OrganizationID"},
+            new TextValue{Text="地址",Value="Address"},
+            new TextValue{Text="入职日期",Value="EntryTime"},
+        };
+}
+
+@section PageCssSection{
+}
+
+@section PageJavascriptSection
+{
+    @*    <script type='text/javascript' src='@Url.Content("~/Scripts/jquery.FixedTable.js")'></script>
+    <script type='text/javascript' src='@Url.Content("~/Areas/AuthorizationAreas/Scripts/Pre_Users.js")'></script>*@
+}
+@*设计思路：
+	根据页面编码查询：
+	根据页面编码查询：父级导航条
+	工具条生成：工具条按钮、快速查询、更多查询、自定义查询
+	table:
+	thead：data-xxx：所有显示的列HeadOrDataType&1=1
+	tbody：data-yyy：所有显示的列+隐藏列  HeadOrDataType&2=2
+	tbody：      由HeadOrDataType来确定
+	    tr：data-xxx：HeadOrDataType&1||HeadOrDataType&2：
+	    td：操作列：查找页面行按钮并且据有此权限
+	    td：数据列：HeadOrDataType&4=4   
+2个方法：工具条、table1个
+1个方法
+*@
+@*--Index：页面标识=>
+--		页面生成工具栏生成方法：根据页面标识，查询工具条按钮=>生成工具条
+--			=>如果为添加功能：	如果为newpage=>
+--								如果为popup=>
+--			=>如果为查询功能：一般为导出
+--			=>如果为确认功能：参考文档，
+--		页面生成查询条件：根据页面标识，查询条件=>生成
+--			
+--		页面主体生成：根据页面标识，查询页面列表字段
+--			=>生成thead=>查询所有为popup的按钮：geturl为空的，提示字段
+--			=>生成hbody=>查询所有为popup的按钮：posturl不为空，保存或者提交数据项
+--			=>如果为序号列=>生成序号
+--			=>如果为操作列=>查询当前页的操作按钮
+--								如果当前用户有此权限，并且显示条件字段成立=>显示按钮
+--			=>数据列=>*@
+<div id='IndexP'>
+    <div>
+        @Html.RenderBreadcrumb()
+    </div>
+    <div class="container-fluid">
+        <div class='operArea' data-searchmethod='Framework.FwSearch' data-url="AuthorizationAreas/Pre_User/Index">
+            <div class="tool-bar">
+                <div class="col-sm-4">
+                    <a href="~/AuthorizationAreas/Pre_User/Add" class='btn btn-success'><span class='glyphicon glyphicon-plus'></span>新增</a>
+                </div>
+                <div class="col-sm-8 text-right form-inline" id="SearchArea">
+                    <div class='fastWhere'>
+                        <input type='text' class='form-control' id='UserName_like' name='UserName___like' value='@Model.Querys.GetValue("UserName_like")' placeholder='姓名' data-datatype='string' data-len='0|100' data-fieldnamecn='姓名' />
+                        <input type='text' class='form-control' id='IdentityCard___like' name='IdentityCard___like' value='@Model.Querys.GetValue("IdentityCard___like")' placeholder='身份证' data-datatype='string' data-len='0|100' data-fieldnamecn='身份证' />
+                        <input type='text' class='form-control' id='MobilePhone1___like' name='MobilePhone1___like' value='@Model.Querys.GetValue("MobilePhone1___like")' placeholder='电话' data-datatype='string' data-len='0|100' data-fieldnamecn='电话' />
+                        <button class="btn btn-primary btn-FwSearch"><span class="glyphicon glyphicon-search"></span>查询</button>
+                        <button class="btn btn-primary btn-AdvSearch" id="advSearch" data-module="advSearchArea" data-parents="SearchArea">
+                            <span class="glyphicon glyphicon-search"></span>高级查询</button>
+                    </div>
+                    <div style="width: 700px; display: none; background-color: rgb(255, 255, 255); top: 163px; right: 30px; box-shadow: 3px 1px 24px rgb(136, 136, 136); padding: 10px; z-index: 9999;"
+                        class="SearchAreaDetail" id="advSearchArea">
+                        <a style="top: 5px; right: 10px; position: absolute; cursor: pointer;" id="module_close"><i class="glyphicon glyphicon-remove"></i></a>
+                        <div class="moreWhere">
+                            <ul style="margin-bottom: 0px; margin-top: 10px; list-style: outside none none;" class="container-fluid">
+                                <li class="col-sm-4 text-left">
+                                    <input type='text' class='form-control' id='LoginName___like' name='LoginName___like' 
+                                        value='@Model.Item.LoginName' placeholder='登录名' data-datatype='string' data-len='0|50' 
+                                        data-fieldnamecn='登录名' />
+                                </li>
+                                <li class="col-sm-4 text-left">
+                                    @Html.DropDownList("EducationID___equal", ProjectCache.GetByCategory("EducationID"), "DValue", "DText", Model.Querys.GetValue("StorageDate__greaterequal"), "", "==教育程序==")
+                                </li>
+                                <li class="col-sm-4 text-left">
+                                    <input type='text' class=' form-control datepicker ' id='Birth___greaterequal' name='Birth___greaterequal'
+                                         value='@Model.Querys.GetValue("Birth___greaterequal")' placeholder='出生起始日期' data-datatype='date' data-fieldnamecn='出生起始日期' /></li>
+                                <li class="col-sm-4 text-left">
+                                    <input type='text' class=' form-control datepicker ' id='Birth___lessequal' name='Birth___lessequal' value='@Model.Querys.GetValue("Birth___lessequal")' placeholder='出生结束日期' data-datatype='date' data-fieldnamecn='出生结束日期' />
+                                </li>
+                                <li class="col-sm-4 text-right pull-right">
+                                    <button class="btn btn-primary pull-righ btn-FwSearch"><span class="glyphicon glyphicon-search"></span>查询</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div style="width: 100%;">
+                            <table class="table table-bordered table-hover table-striped custWhere" id="tabsearch" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 80px;">操作</th>
+                                        <th style="width: 50px;">与/或</th>
+                                        <th style="width: 100px;">字段</th>
+                                        <th style="width: 50px;">运算符</th>
+                                        <th style="width: 100px;">值</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{  
+                                        for (var i = 0; i < Model.Querys.Count; i++)
+                                        {
+                                            var query = Model.Querys[i];
+                                        <tr data-oldvalue="@query.Value">
+                                            <td class="align-left valign-middle ">
+                                                <a href='javascript:void(0);' class='btn btn-primary btn-xs btn-FwCopy'>复</a>
+                                                <a href='javascript:void(0);' class='btn btn-primary btn-xs btn-FwDeleteNotHint' style="display: none;">删</a>
+                                            </td>
+                                            <td>
+                                                @Html.DropDownList("Querys[{0}].AndOr", ProjectCache.AndOrs, "Value", "Text", query.Oper, "", "=与/或=", "form-control", "style='width:80px;'")
+                                            </td>
+                                            <td>
+                                                @Html.DropDownList("Querys[{0}].FieldName", FieldNames, "Value", "Text", 
+                                                query.FieldName, "", "=字段=", 
+                                                "form-control queryfieldname"," data-datatype='date' data-bdic='1'")
+                                            </td>
+                                            <td>
+                                                @Html.DropDownList("Querys[{0}].Oper", ProjectCache.QueryOpers, "Value", "Text", query.Oper, "", "=运算符=", "form-control", "style='width:90px;'")
+                                            </td>
+                                            <td class="targetdom align-left">
+                                                <input type='text' style="width:100px;" class='form-control' name='Querys[{0}].Value' value='@query.Value' />
+                                            </td>
+                                        </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="margin-top-5">
+                            <button class="btn btn-primary pull-righ btn-FwSearch"><span class="glyphicon glyphicon-search"></span>查询</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scrollBar scrollBarAuto" style="width: 100%; overflow: auto;" data-width="1200">
+                <div class="mylist container-fluid container" style="width: 1200px;">
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+                @*                @Html.Partial("_PagingOption", Model.PageQueryBase)*@
+            </div>
+        </div>
+    </div>
+</div>

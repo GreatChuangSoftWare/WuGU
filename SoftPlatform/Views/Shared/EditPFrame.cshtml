@@ -1,0 +1,16 @@
+﻿@model MyResponseBase
+
+@{
+    var conts = ViewContext.Controller as BaseController;
+    Layout = "~/Views/Shared/" + conts.LayoutName + ".cshtml";
+
+}
+
+<div id='editP' class="operArea">
+    <div>
+        @Html.RenderBreadcrumb()
+        @*@Html.Navigation(Model.Item, Model.ModularOrFunCode)*@
+    </div>
+    <!--用于连续审核功能-->
+    @Html.Partial("EditPContext", Model)
+</div>

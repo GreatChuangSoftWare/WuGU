@@ -1,0 +1,280 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<TextValue> PageFormEleTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+
+        new TextValue{Text="Page01FormEleType",Value="Page01FormEleType"},
+        new TextValue{Text="Page02FormEleType",Value="Page02FormEleType"},
+        new TextValue{Text="Page03FormEleType",Value="Page03FormEleType"},
+        new TextValue{Text="Page04FormEleType",Value="Page04FormEleType"},
+
+        new TextValue{Text="Page05FormEleType",Value="Page05FormEleType"},
+        new TextValue{Text="Page06FormEleType",Value="Page06FormEleType"},
+        new TextValue{Text="Page07FormEleType",Value="Page07FormEleType"},
+        new TextValue{Text="Page08FormEleType",Value="Page08FormEleType"},
+        new TextValue{Text="Page09FormEleType",Value="Page09FormEleType"},
+        new TextValue{Text="Page10FormEleType",Value="Page10FormEleType"},
+
+        new TextValue{Text="Page11FormEleType",Value="Page11FormEleType"},
+        new TextValue{Text="Page12FormEleType",Value="Page12FormEleType"},
+        new TextValue{Text="Page13FormEleType",Value="Page13FormEleType"},
+        new TextValue{Text="Page14FormEleType",Value="Page14FormEleType"},
+        new TextValue{Text="Page15FormEleType",Value="Page15FormEleType"},
+        new TextValue{Text="Page16FormEleType",Value="Page16FormEleType"},
+        new TextValue{Text="Page17FormEleType",Value="Page17FormEleType"},
+        new TextValue{Text="Page18FormEleType",Value="Page18FormEleType"},
+        new TextValue{Text="Page19FormEleType",Value="Page19FormEleType"},
+        new TextValue{Text="Page20FormEleType",Value="Page20FormEleType"}
+        
+    };
+    List<TextValue> QueryFormEleTypes = new List<TextValue>
+    { 
+        new TextValue{Text="====",Value=""},
+        new TextValue{Text="Query01",Value="Query01"},
+        new TextValue{Text="Query02",Value="Query02"},
+        new TextValue{Text="Query03",Value="Query03"},
+        new TextValue{Text="Query04",Value="Query04"},
+
+        new TextValue{Text="Query05",Value="Query05"},
+        new TextValue{Text="Query06",Value="Query06"},
+        new TextValue{Text="Query07",Value="Query07"},
+        new TextValue{Text="Query08",Value="Query08"},
+        new TextValue{Text="Query09",Value="Query09"},
+        new TextValue{Text="Query10",Value="Query10"},
+
+        new TextValue{Text="Query11",Value="Query11"},
+        new TextValue{Text="Query12",Value="Query12"},
+        new TextValue{Text="Query13",Value="Query13"},
+        new TextValue{Text="Query14",Value="Query14"},
+        new TextValue{Text="Query15",Value="Query15"},
+        new TextValue{Text="Query16",Value="Query16"},
+        new TextValue{Text="Query17",Value="Query17"},
+        new TextValue{Text="Query18",Value="Query18"},
+        new TextValue{Text="Query19",Value="Query19"},
+        new TextValue{Text="Query20",Value="Query20"}
+        
+    };
+
+    List<TextValue> PageTypes = new List<TextValue>
+    { 
+        new TextValue{Text="Table列表页",Value="1"},
+        new TextValue{Text="Pane列表页",Value="3"},
+        new TextValue{Text="PaneHead列表页",Value="4"},
+        new TextValue{Text="编辑页",Value="2"},
+        new TextValue{Text="标题页",Value="5"},
+        new TextValue{Text="扼要信息页",Value="6"},
+        new TextValue{Text="Tab页",Value="7"},
+        new TextValue{Text="DataList",Value="8"},
+
+    };
+
+    List<TextValue> BMenus = new List<TextValue>
+    { 
+        new TextValue{Text="==菜单显示==",Value="0"},
+        new TextValue{Text="是(菜单显示)",Value="1"},
+    };
+
+    List<TextValue> BPages = new List<TextValue>
+    { 
+        new TextValue{Text="==分页==",Value=""},
+        new TextValue{Text="要(分页)",Value="1"},
+    };
+
+    List<TextValue> MenuPostions = new List<TextValue>
+    { 
+        new TextValue{Text="顶部(菜单)",Value="1"},
+        new TextValue{Text="左边(菜单)",Value="2"},
+        new TextValue{Text="==二级菜单位置==",Value="0"},
+    };
+
+    List<TextValue> BUrlNvas = new List<TextValue>
+    { 
+        new TextValue{Text="不(Url导航)",Value="0"},
+        new TextValue{Text="要(是否Url导航)",Value="1"},
+        new TextValue{Text="==是否Url导航==",Value="0"},
+    };
+
+
+    List<TextValue> BMenuPanels = new List<TextValue>
+    { 
+        new TextValue{Text="否(菜单面板)",Value="0"},
+        new TextValue{Text="是(菜单面板)",Value="1"},
+        new TextValue{Text="==是否菜单面板==",Value="0"},
+    };
+
+@*模块功能类型：2：模块和功能页面   3：功能页面*@
+    List<TextValue> GroupModularOrFuns = new List<TextValue>
+    { 
+        new TextValue{Text="模块和功能页面",Value="2"},
+        new TextValue{Text="功能页面",Value="3"},
+    };
+
+    List<TextValue> LoginCategorys = new List<TextValue>
+    { 
+        new TextValue{Text="公司",Value="1"},
+        new TextValue{Text="企业",Value="2"},
+        new TextValue{Text="公司客户",Value="4"},
+        new TextValue{Text="企业客户",Value="8"},
+
+        new TextValue{Text="公司企业",Value="3"},
+        new TextValue{Text="公司、公司客户、企业",Value="7"},        
+        new TextValue{Text="公司、公司客户、企业、企业客户",Value="15"},        
+        
+        new TextValue{Text="==权限类别==",Value="0"},        
+    };
+
+    List<TextValue> ToolbarButtonAreaWidths = new List<TextValue>
+    { 
+        new TextValue{Text="==工具按钮区宽度==",Value=""},
+        new TextValue{Text="1",Value="1"},
+        new TextValue{Text="2",Value="2"},
+        new TextValue{Text="3",Value="3"},
+        new TextValue{Text="4",Value="4"},                
+        new TextValue{Text="5",Value="5"},
+        new TextValue{Text="6",Value="6"},
+        new TextValue{Text="7",Value="7"},
+        new TextValue{Text="8",Value="8"},
+        new TextValue{Text="9",Value="9"},
+        new TextValue{Text="10",Value="10"},        
+        new TextValue{Text="11",Value="11"},        
+        new TextValue{Text="12",Value="12"},        
+
+    };
+
+    List<TextValue> SortCols = new List<TextValue>
+    { 
+        new TextValue{Text="==排序列==",Value=""},
+        new TextValue{Text="SortCol01",Value="SortCol01"},
+        new TextValue{Text="SortCol02",Value="SortCol02"},
+        new TextValue{Text="SortCol03",Value="SortCol03"},
+        new TextValue{Text="SortCol04",Value="SortCol04"},
+        new TextValue{Text="SortCol05",Value="SortCol05"},
+        new TextValue{Text="SortCol06",Value="SortCol06"},
+        new TextValue{Text="SortCol07",Value="SortCol07"},
+        new TextValue{Text="SortCol08",Value="SortCol08"},
+        new TextValue{Text="SortCol09",Value="SortCol09"},
+        new TextValue{Text="SortCol10",Value="SortCol10"},
+
+        new TextValue{Text="SortCol11",Value="SortCol11"},
+        new TextValue{Text="SortCol12",Value="SortCol12"},
+        new TextValue{Text="SortCol13",Value="SortCol13"},
+        new TextValue{Text="SortCol14",Value="SortCol14"},
+        new TextValue{Text="SortCol15",Value="SortCol15"},
+        new TextValue{Text="SortCol16",Value="SortCol16"},
+        new TextValue{Text="SortCol17",Value="SortCol17"},
+        new TextValue{Text="SortCol18",Value="SortCol18"},
+        new TextValue{Text="SortCol19",Value="SortCol19"},
+        new TextValue{Text="SortCol20",Value="SortCol20"},
+        
+    };
+
+    List<TextValue> bFieldsConfigDisps = new List<TextValue>
+    { 
+        new TextValue{Text="==否(配字段显示)==",Value=""},
+        new TextValue{Text="是(配字段显示)",Value="1"},
+    };
+
+
+    List<TextValue> bValidModularOrFuns = new List<TextValue>
+    { 
+        new TextValue{Text="==有效==",Value="1"},
+        new TextValue{Text="==无效==",Value="0"},
+    };
+
+    List<TextValue> bNavModularOrFuns = new List<TextValue>
+    { 
+        new TextValue{Text="==显示在(导航条)==",Value="1"},
+        new TextValue{Text="==不显示在(导航条)==",Value="0"},
+    };
+
+    List<TextValue> BPrems = new List<TextValue>
+    { 
+        new TextValue{Text="权限分配",Value="1"},
+        new TextValue{Text="不要权限分配",Value="0"},
+    };
+
+    List<TextValue> DBOperTypes = new List<TextValue>
+    { 
+        new TextValue{Text="添加",Value="1"},
+        new TextValue{Text="修改",Value="2"},
+        new TextValue{Text="删除",Value="4"},
+        new TextValue{Text="查询",Value="8"},
+        new TextValue{Text="自定Sql语句",Value="16"},        
+    };
+
+    List<TextValue> BCalCols = new List<TextValue>
+    { 
+        new TextValue{Text="==是否计算==",Value=""},
+        new TextValue{Text="否",Value="0"},
+        new TextValue{Text="是",Value="1"},
+    };
+}
+
+<div id='editP' class="operArea">
+    <div>
+        @*@Html.Navigation(Model.ModularOrFunCode)*@
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>设计管理</li>
+            <li>子功能配置</li>
+        </ul>
+    </div>
+    <div class="container-fluid childTableSelect">
+        <div class='operArea' data-searchmethod='' data-url="">
+            <div class="search-bar">
+                <div class="tool-bar search-bar">
+                    <div class="col-sm-8">
+                        <a href="/SysAreas/Design_ModularOrFun/Add" data-tableid="#tbList" class="btn btn-success " >
+                            <span class="glyphicon glyphicon-plus"></span>添加模块</a>
+                    </div>
+                    <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>
+            <div class="" style="width: 100%; overflow: auto;" data-width="2000">
+                <div class="mylist container-fluid container" style="width: 100%;">
+                    <table id='tbList' class=" table table-bordered table-hover table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">序号 </th>
+                                <th style="width: 100px;">操作 </th>
+                                <th style="width: 100px;">排序号 </th>
+                                <th style="">区域编码</th>
+                                <th style="">控制器编码(表名)</th>
+                                <th style="">主键名</th>
+                                <th>模块名称</th>
+                            </tr>
+                        </thead>
+                        <tbody data-collsname="Design_ModularOrFuns" data-design_modularorfunid="Design_ModularOrFunID">
+                            @for (var i = 0; i < Model.Items.Count; i++)
+                            {
+                                var item = Model.Items[i];
+                                <tr data-design_modularorfunid="@item.Design_ModularOrFunID" >
+                                    <td>
+                                        @(i + 1)
+                                    </td>
+                                    <td>
+                                        <a href="/SysAreas/Design_ModularOrFun/Edit?Item.Design_ModularOrFunID=@item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>编辑</a>
+                                    </td>
+                                    <td>@item.Sort</td>
+                                    <td>@item.AreasCode</td>
+                                    <td>@item.ControllCode</td>
+                                    <td>@item.PrimaryKey</td>
+                                    <td>@item.ModularName</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+            </div>
+        </div>
+    </div>
+</div>

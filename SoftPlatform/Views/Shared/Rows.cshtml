@@ -1,0 +1,6 @@
+﻿@model MyResponseBase
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+}
+@Html.TableRowsHtml(Model.Items)

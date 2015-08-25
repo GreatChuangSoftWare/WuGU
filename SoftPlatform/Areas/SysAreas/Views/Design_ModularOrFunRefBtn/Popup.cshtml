@@ -1,0 +1,76 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "控制器选择";
+
+    //var conts = ViewContext.Controller as BaseController;
+    //conts.Breadcrumb.Items.Clear();
+    //conts.Breadcrumb.Items = new List<BreadcrumbItem>
+    //{
+    //    //new BreadcrumbItem{Name="",URL=""},
+    //};
+
+}
+
+@section PageCssSection{
+}
+
+@section PageJavascriptSection
+{
+}
+@*<script type='text/javascript' src='@Url.Content("~/Areas/PurchaseOrderAreas/Scripts/Pu_PurchaseOrderDetailTT.js")'></script>*@
+
+<div id='P_Popup'>
+    <div class="container-fluid">
+        <div class='operArea' data-searchmethod='Framework.SearchPopup'
+            data-url="/SysAreas/Design_PremSetBtn/Popup" data-targetdom="#P_Popup">
+            <div class="search-bar">
+                <div id="toolbarbtn" class="col-sm-12">
+                </div>
+                <div class="col-sm-12 text-right form-inline">
+                    <span class="SearchArea">
+                        <span class='SearchAreaDetail fastWhere'>
+                            @Html.DropDownList("Item.Design_ModularOrFunID", @Model.Item.Design_ModularOrFuns, "Design_ModularOrFunID", "ModularName", Model.Item.Design_ModularOrFunID,"","", "form-control", " data-changeurl='/SysAreas/Design_ModularOrFunRefBtn/GetPageByModularOrFunParentID' data-textfield='ModularName' data-valuefield='Design_ModularOrFunID' data-targetdom='#Item_SubDesign_ModularOrFunID' data-optionlabel=''")
+
+                            @Html.DropDownList("Item.SubDesign_ModularOrFunID", @Model.Item.SubDesign_ModularOrFuns, "Design_ModularOrFunID", "ModularName", Model.Item.SubDesign_ModularOrFunID)
+                            <button class="btn btn-primary btn-FwSearch"><span class="glyphicon glyphicon-search"></span>查询</button>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>
+            <div class="mylist container-fluid scrollBar" style="height: 300px;">
+                <table id='tbList' class=" table table-bordered table-hover table-striped">
+                    <thead id="tbhead">
+                        <tr>
+                            <th class="lockhead">序号</th>
+                            <th class="lockhead">
+                                <input type="checkbox" class="checkbox1 jq-checkall-switch" alt="全选/反选" title="全选/反选" />
+                            </th>
+                            <th class="lockhead">按钮名称</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbbody">
+                        @if (Model.Items != null && Model.Items.Count > 0)
+                        {
+                            int i = 0;
+                            foreach (var item in Model.Items)
+                            {
+                                i++;
+                            <tr data-design_modularorfunbtnid="@item.Design_ModularOrFunBtnID">
+                                <td>@i</td>
+                                <td>
+                                    <input type="checkbox" class="checkbox1 jq-checkall-item" />
+                                </td>
+                                <td class="align-left">@item.BtnNameCn</td>
+                            </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

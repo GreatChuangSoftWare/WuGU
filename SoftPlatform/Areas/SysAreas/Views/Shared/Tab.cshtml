@@ -1,0 +1,27 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="nav nav-tabs mybottabs">
+    <li class="@Html.IsActive("Design_ModularOrFun", "Edit")"><a href="/SysAreas/Design_ModularOrFun/Edit?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID">模块配置</a></li>
+    <li class="@Html.IsActive("Design_ModularField")"><a href="/SysAreas/Design_ModularField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >模块字段</a></li>
+    <!--页面字段管理、页面查询条件字段管理(列表页)-->
+    <li class="@Html.IsActive("Design_ModularOrFunControll")"><a href="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >控制器</a></li>
+    @*<li class="@Html.IsActive("Design_ModularOrFunDomain")"><a href="/SysAreas/Design_ModularOrFunDomain/Index?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >业务逻辑</a></li>*@
+    <li class="@Html.IsActive("Design_ModularOrFunSql")"><a href="/SysAreas/Design_ModularOrFunSql/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >TSql</a></li>
+    @*    <li class="@IsActive("Users")"><a href="/SysAreas/Design_ModularOrFunBtn/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >模块按钮</a></li>*@
+    @*<li class="@Html.IsActive("Design_ModularPage")"><a href="/SysAreas/Design_ModularPage/Index?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >页面管理</a></li>*@
+    <li class="@Html.IsActive("Design_ModularOrFun", "EditList")"><a href="/SysAreas/Design_ModularOrFun/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID">导航、权限、页面配置</a></li>
+
+    <li class="@Html.IsActive("Design_ModularPageField")"><a href="/SysAreas/Design_ModularPageField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >页面字段</a></li>
+    @*<li class="@Html.IsActive("Design_ModularPageQueryField")"><a href="/SysAreas/Design_ModularPageQueryField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >查询字段</a></li>*@
+@*    <li class="@Html.IsActive("Design_ModularOrFun","EditListPrem")"><a href="/SysAreas/Design_PremSet/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >权限配置</a></li>*@
+    @*<li class="@Html.IsActive("Design_ModularOrFun", "EditListPrem")"><a href="/SysAreas/Design_ModularOrFun/EditListPrem?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID">权限配置</a></li>*@
+
+@*    <li class="@Html.IsActive("Design_PremSet")"><a href="/SysAreas/Design_PremSet/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >权限配置</a></li>
+    <li class="@Html.IsActive("Design_ModularOrFun")"><a href="/SysAreas/Design_PremSet/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >菜单配置</a></li>*@
+
+</ul>
+

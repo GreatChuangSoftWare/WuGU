@@ -1,0 +1,47 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+
+    var modulars = conts.Design_ModularOrFun;
+    var btns = conts.ToolBarBtns(Model.Item, modulars.ModularOrFunCode, 1);
+
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = Model.BaseAction
+    };
+    var BscrollBar = "";
+}
+
+<div class="container-fluid targetdom childTableSelect">
+    <div>
+    </div>
+    <div class='operArea'>
+        <div class="search-bar">
+            <div class="tool-bar search-bar ">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control autocompleteaddrow"
+                        placeholder="商品查询"
+                        id="Item_ProductNo__ProductName__Specifications"
+                        data-autocompletefields="ProductNo__ProductName__Specifications,Pre_UserID"
+                        data-autourl="/FranchiseeAreas/Fra_ProductPrice/AutoCompleteProductPrice"
+                        data-pkname="Fra_ProductPriceID"
+                        data-rowurl="/CustomerAreas/C_OrderDetail/Rows" />
+                </div>
+                <div class="col-sm-6 text-right form-inline" id="SearchArea">
+                </div>
+            </div>
+        </div>
+
+        <div style="clear: both; margin-bottom: 10px;"></div>
+        <div class="@BscrollBar" style="width: 100%; " data-width="@modulars.TableWidth">
+            <div class="mylist container" style="width:@modulars.TableWidth;overflow:inherit;">
+                <table id='tbList' class="table table-bordered table-hover table-striped FwtabletoTab" style="width: 100%;">
+                    @Html.TableHtml(Model.Items, Model.ItemTotal, Model.PageQueryBase.RankInfos, Model.ModularOrFunCode)
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

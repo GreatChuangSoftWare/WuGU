@@ -1,0 +1,286 @@
+﻿@model MyResponseBase
+
+@{
+    //Layout = "~/Views/Shared/_LayoutDesign.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //    ,ControllName
+    //,ControllActionPath
+    //,Method
+    //,ActionName
+    //,ParamName
+    //,ViewName
+
+    List<TextValue> ActionNames = new List<TextValue>
+    { 
+        new TextValue{Text="ActionResult",Value="1"},
+        new TextValue{Text="HJsonResult",Value="2"},
+    };
+    //返回的View名称：1:Index   20:Edit 22:PopupEdit  25:EditPartial  40:Row  
+    List<TextValue> ViewNames = new List<TextValue>
+    { 
+        new TextValue{Text="==视图名称==",Value=""},
+        new TextValue{Text="IndexP",Value="1"},
+        new TextValue{Text="NavPFrame",Value="2"},
+        new TextValue{Text="IndexPContext",Value="3"},
+        new TextValue{Text="IndexPChild",Value="4"},
+        
+        new TextValue{Text="Row",Value="11"},
+        new TextValue{Text="Rows",Value="12"},
+        new TextValue{Text="IndexPTab",Value="15"},
+
+        
+        new TextValue{Text="EditP",Value="20"},
+        new TextValue{Text="NavPFrame",Value="21"},
+        new TextValue{Text="EditPContext",Value="22"},
+        new TextValue{Text="EditArea",Value="26"},
+        
+        
+        new TextValue{Text="PopupEdit",Value="30"},
+        new TextValue{Text="EditPartial",Value="31"},
+    };
+
+    List<TextValue> BPrems = new List<TextValue>
+    { 
+        new TextValue{Text="==权限验证==",Value=""},
+        new TextValue{Text="是",Value="1"},
+    };
+}
+
+<div id='editP' class="operArea">
+    <div>
+        @*@Html.Navigation(Model.ModularOrFunCode)*@
+        <ul class="breadcrumb myjuxing">
+            <li><span class="icon-home"></span><a href="/">首页</a></li>
+            <li>设计管理</li>
+            <li><a href="/SysAreas/Design_ModularOrFun/">控制器</a></li>
+            <li>修改</li>
+        </ul>
+    </div>
+    @Html.Partial("Tab", Model)
+    <div class='mastEditArea editArea  '>
+        <form>
+            <div class="container-fluid margin-top-15">
+                <div class='form-horizontal merge targetdom'>
+                    <input type='hidden' id=Item_Design_ModularOrFunID name='Item.Design_ModularOrFunID' value='@Model.Item.Design_ModularOrFunID' />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid childTableSelect">
+        <div class='operArea' data-searchmethod='' data-url="">
+            <div class="search-bar">
+                <div class="tool-bar search-bar">
+                    <div class="col-sm-12">
+                        <a href='javascript:void(0);' data-tableid="#tbList" class='btn btn-success  btn-FwBtnSubmit'
+                            data-posturl="/SysAreas/Design_ModularOrFunControll/Row?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-fun="200">
+                            <span class="glyphicon glyphicon-plus"></span>添加Action</a>
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunControllID"
+                            data-posturl="/SysAreas/Design_ModularOrFunControll/EditListBulidRecord"
+                            data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-targeturlparamname="">
+                            生成控制器记录</button>
+
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunControllID"
+                            data-posturl="/SysAreas/Design_ModularOrFunControll/EditListBulidRecord010416"
+                            data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-targeturlparamname="">
+                            EditListBulidRecord010416</button>
+
+
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunControllID"
+                            data-posturl="/SysAreas/Design_ModularOrFunControll/EditListBulidRecordByOrderDetailTemplete"
+                            data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-targeturlparamname="">
+                            订单明细模板-控制器</button>
+
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunControllID"
+                            data-posturl="/SysAreas/Design_ModularOrFunControll/EditListBulidRecordByAtt"
+                            data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-targeturlparamname="">
+                            生成附件控制器记录</button>
+
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunControllID"
+                            data-posturl="/SysAreas/Design_ModularOrFunControll/EditListBulidRecordPopup"
+                            data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-targeturlparamname="">
+                            生成控制器记录(Popup)</button>
+
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunControllID"
+                            data-posturl="/SysAreas/Design_ModularOrFunControll/EditListBulidRecordDomainRef"
+                            data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-targeturlparamname="">
+                            生成控制器记录(领域相关表)</button>
+                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="300"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunControllID"
+                            data-posturl="/SysAreas/Design_ModularOrFunControll/EditListBulidRecordDomainRefPopup"
+                            data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                            data-targeturlparamname="">
+                            生成控制器记录(领域相关表-Popup)</button>
+                        @*                        <button class="btn  btn-primary btn-FwBtnSubmit"
+                            data-targetdom=""
+                            data-masteditarea=""
+                            data-childtableselect=""
+                            data-fun="121"
+                            data-tableselect=""
+                            data-pkname="Design_ModularOrFunControllID"
+                            data-posturl="/SysAreas/Design_ModularOrFunControll/EditListBulidRecordChildTab"
+                            data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList"
+                            data-targeturlparamname="Design_ModularOrFunID">
+                            生成控制器记录(子表)</button>*@
+                    </div>
+                    <div class="col-sm-10 text-right form-inline" id="SearchArea">
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both; margin-bottom: 10px;"></div>
+            <div class="scrollBar scrollBarAuto" style="width: 100%;" data-width="2000">
+                <div class="mylist container-fluid container" style="width: 100%;">
+                    <table id='tbList' class=" table table-bordered table-hover table-striped" style="width: 100%">
+
+                        @*<div class="scrollBar scrollBarAuto" style="width: 1800px;" data-width="1800">
+                            <div class="mylist container-fluid container" style="width: %;">
+                                <table id='tbList' class="table table-bordered table-hover table-striped " style="width: 100%;">*@
+                        <thead>
+                            <tr>
+                                <th class="lockhead" style="width: 60px;">序号 </th>
+                                <th class="lockhead" style="width: 50px;">操作 </th>
+                                <th class="lockhead" style="width: 80px;">排序 </th>
+                                <th class="lockhead" style="width: 200px;">基本配置列1</th>
+                                @*                                <th class="lockhead">控制器路径</th>*@
+                                @*                                <th class="lockhead">控制器方法</th>
+                                <th class="lockhead">ActionName</th>*@
+                                @*<th class="lockhead" style="width: 200px;">权限分配</th>*@
+                                @*                                <th class="lockhead" style="width: 250px;">参数名</th>
+                                <th class="lockhead" style="width: 250px;">视图名</th>
+                                <th class="lockhead" style="width: 120px;">模块ID(用于生成html)</th>*@
+                                @*<th class="lockhead" style="width: 120px;">业务层ID(暂没开发)</th>*@
+                                <th class="lockhead" style="">代码</th>
+                            </tr>
+                        </thead>
+                        <tbody data-collsname="Design_ModularOrFunControlls" data-design_modularorfuncontrollid="Design_ModularOrFunControllID">
+                            @for (var i = 0; i < Model.Items.Count; i++)
+                            {
+                                var item = Model.Items[i];
+                                <tr data-Design_ModularOrFunControllid="@item.Design_ModularOrFunControllID" >
+                                    <td>
+                                        @(i + 1)
+                                    </td>
+                                    <td>
+                                        <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" class='btn btn-primary btn-xs   btn-FwRowUIPopup'>
+                                            <span class='glyphicon glyphicon-trash'></span>删除</a>
+                                    </td>
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='排序' id='Sort' name='Sort' value='@item.Sort' />
+                                    </td>
+
+                                    <td>
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='控制器名' id='ControllName' name='ControllName' value='@item.ControllName' />
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='控制器方法' placeholder="方法名" id='ActionMethod' name='ActionMethod' value='@item.ActionMethod' />
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='参数名' placeholder="参数名" id='ParamName' name='ParamName' value='@item.ParamName' />
+                                        @*                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='模块ID' placeholder="模块ID" id='Design_ModularOrFunID1' name='Design_ModularOrFunID1' value='@item.Design_ModularOrFunID1' />*@
+                                    </td>
+@*                                    <td>
+                                        @Html.DropDownList("BPrem", BPrems, "Value", "Text", item.BPrem)
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='权限分配名称' placeholder="权限分配名称" id='ActionMethodCn' name='ActionMethodCn' value='@item.ActionMethodCn' />
+                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='数据权限' placeholder="数据权限" id='DataRightDict' name='DataRightDict' value='@item.DataRightDict' />
+                                    </td>*@
+                                    <td>
+@*                                        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='页面编码' placeholder="页面编码" id='ControllModularOrFunCode' name='ControllModularOrFunCode' value='@item.ControllModularOrFunCode' />*@
+
+                                        <textarea class='form-control ControllProgramCode' data-datatype='string' rows="5"
+                                            data-tabnextcol="ControllProgramCode" data-fieldnamecn='代码' placeholder="代码" id='ControllProgramCode' name='ControllProgramCode'>@HttpUtility.UrlDecode(item.ControllProgramCode)</textarea>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 分页 -->
+            <div class="page-bar">
+            </div>
+        </div>
+    </div>
+    <div class='editArea'>
+        <div class="container-fluid">
+            <div class="form-footer1">
+                <div class="text-right col-md-12">
+                    <button class="btn  btn-primary btn-FwBtnSubmit"
+                        data-targetdom=""
+                        data-masteditarea=""
+                        data-childtableselect=""
+                        data-fun="300"
+                        data-tableselect=""
+                        data-pkname="Design_ModularOrFunControllID"
+                        data-posturl="/SysAreas/Design_ModularOrFunControll/EditListSave"
+                        data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                        data-targeturlparamname="">
+                        保存</button>
+
+                    <button class="btn  btn-primary btn-FwBtnSubmit"
+                        data-targetdom=""
+                        data-masteditarea=""
+                        data-childtableselect=""
+                        data-fun="300"
+                        data-tableselect=""
+                        data-pkname="Design_ModularOrFunControllID"
+                        data-posturl="/SysAreas/Design_ModularOrFunControll/EditListBulidControll"
+                        data-targeturl="/SysAreas/Design_ModularOrFunControll/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID"
+                        data-targeturlparamname="">
+                        生成控制器文件</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

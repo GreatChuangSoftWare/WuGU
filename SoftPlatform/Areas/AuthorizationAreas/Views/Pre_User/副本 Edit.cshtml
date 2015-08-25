@@ -1,0 +1,355 @@
+﻿@model MyResponseBase<Pre_UsersView>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var disabled = "";
+    if (!string.IsNullOrEmpty(Model.Disabled))
+    {
+        disabled = "disabled='disabled'";
+    }
+    ViewBag.Title = disabled == "" ? (Model.Item.Pre_UsersID == null ? "添加" : "编辑") : "查看";
+
+    var conts = ViewContext.Controller as BaseController;
+
+    conts.Breadcrumb.Items.Clear();
+    conts.Breadcrumb.Items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem{Name="权限管理",URL=""},
+        new BreadcrumbItem{Name="用户管理",URL="Index"},
+        //new BreadcrumbItem{Name="ccc",URL="cc"},
+    };
+
+}
+
+@section PageCssSection{
+    <link rel="stylesheet" href="/Content/treeview/jquery.treeview.css" />
+}
+
+@section PageJavascriptSection
+{
+    <script type='text/javascript' src='@Url.Content("~/Areas/AuthorizationAreas/Scripts/Pre_Users.js")'></script>
+}
+
+<div id='editPPre_Users'>
+    <div>
+        @Html.RenderBreadcrumb()
+    </div>
+    <input type='hidden' id=Item_Pre_UsersID name='Item.Pre_UsersID' value='@Model.Item.Pre_UsersID' />
+
+    <div class="container-fluid set-height">
+        <div class="form-horizontal merge">
+            <ul class='list-unstyled'>
+                <li class="col-lg-12 overflow-auto">
+                    <div class='form-group'>
+                        <label class='col-lg-1 control-label'>角色</label>
+                        <div class='col-lg-11 margin-left'>
+                            @*                            @Html.ChecksButtonList("Item.Pre_RolesIDs", Model.Item.Pre_RolesViews, "Pre_RolesID", "RoleName", Model.Item.Pre_UserRolesViews, disabled)*@
+                            @Html.ChecksButtonList("Item.Pre_RolesIDs", Model.Item.Pre_RolesViews, "Pre_RolesID", "RoleName", Model.Item.Pre_UserRolesViews, disabled)
+                            @*<label class="checkbox-inline">
+                                <div class="checker">
+                                    <span><input class="ck-align" name="Item.Pre_RolesIDs" type="checkbox" value="1" data-original-title="" title=""></span>
+                                </div>系统管理员
+                            </label>*@
+
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>部门</label>
+                        <div class='col-lg-9'>
+                            @Html.DropDownForTree("Item.Pre_OrganizationID", ViewData["listOrganization"] as SelectTreeList, disabled, "")
+                        </div>
+                    </div>
+                </li>
+
+                @*        <li class='col-lg-4'>
+            <div class='form-group'>
+                <label class='col-lg-3 control-label'>员工编码</label>
+                <div class='col-lg-9'>
+                    <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|50' data-fieldnamecn='员工编码' id='Item_UserNo' name='Item.UserNo' value='@Model.Item.UserNo' />
+                </div>
+            </div>
+        </li>*@
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>登录名<font color="red">*</font></label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled data-required="true" class='form-control'  data-datatype='string' data-len='2|255' data-fieldnamecn='登录名' id='Item_LoginName' name='Item.LoginName' value='@Model.Item.LoginName' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>姓名<font color="red">*</font></label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled data-required="true" class='form-control'  data-datatype='string' data-len='2|255' data-fieldnamecn='姓名' id='Item_UserName' name='Item.UserName' value='@Model.Item.UserName' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>身份证号</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control' data-datatype='string'  data-regex="cardNo" data-len='0|50' data-fieldnamecn='身份证号' id='Item_IdentityCard' name='Item.IdentityCard' value='@Model.Item.IdentityCard' />
+                        </div>
+                    </div>
+                </li>
+                @*        <li class='col-lg-4'>
+            <div class='form-group'>
+                <label class='col-lg-3 control-label'>登录名</label>
+                <div class='col-lg-9'>
+                    <input type='text' class='form-control'  data-datatype='string' data-len='0|50' data-fieldnamecn='登录名' id='Item_LoginName' name='Item.LoginName' value='@Model.Item.LoginName' />
+                </div>
+            </div>
+        </li>*@
+                @*        <li class='col-lg-4'>
+            <div class='form-group'>
+                <label class='col-lg-3 control-label'>密码</label>
+                <div class='col-lg-9'>
+                    <input type='text' @disabled data-required="true" class='form-control'  data-datatype='string' data-len='0|255' data-fieldnamecn='密码' id='Item_PasswordDigest' name='Item.PasswordDigest' value='@Model.Item.PasswordDigest' />
+                </div>
+            </div>
+        </li>*@
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>出生日期</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control datepicker'  data-datatype='date' data-fieldnamecn='出生日期' id='Item_Birth' name='Item.Birth' value='@Model.Item.Birth' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>教育程度</label>
+                        <div class='col-lg-9'>
+
+                            @Html.DropDownList("Item.Education", ProjectCache.GetByCategory("Education"), "DValue", "DText", Model.Item.Education, disabled)
+                            @*                    <input type='text' @disabled class='form-control'  data-datatype='number' data-fieldnamecn='教育程序' id='Item_Education' name='Item.Education' value='@Model.Item.Education' />*@
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>婚姻状态</label>
+                        <div class='col-lg-9'>
+                            @Html.DropDownList("Item.MaritalStatus", ProjectCache.GetByCategory("MaritalStatus"), "DValue", "DText", Model.Item.MaritalStatus, disabled)
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>电话</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='11|11'  data-fieldnamecn='电话' id='Item_Tel' name='Item.Tel' value='@Model.Item.Tel' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>手机号<font color="red">*</font></label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled data-required="true" class='form-control'  data-datatype='string' data-len='11|11' data-fieldnamecn='手机号1' id='Item_MobilePhone1' name='Item.MobilePhone1' value='@Model.Item.MobilePhone1' />
+                        </div>
+                    </div>
+                </li>
+                @*        <li class='col-lg-4'>
+            <div class='form-group'>
+                <label class='col-lg-3 control-label'>手机号2</label>
+                <div class='col-lg-9'>
+                    <input type='text '@disabled class='form-control'  data-datatype='string' data-len='0|50' data-fieldnamecn='手机号2' id='Item_MobilePhone2' name='Item.MobilePhone2' value='@Model.Item.MobilePhone2' />
+                </div>
+            </div>
+        </li>*@
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>传真</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='11|11'  data-fieldnamecn='传真' id='Item_Fax' name='Item.Fax' value='@Model.Item.Fax' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>公司邮箱</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|255'  data-fieldnamecn='公司邮箱' id='Item_Email' name='Item.Email' value='@Model.Item.Email' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>性别</label>
+                        <div class='col-lg-9'>
+                            @Html.DropDownList("Item.Gender", ProjectCache.GetByCategory("Sex"), "DValue", "DText", Model.Item.Gender, disabled)
+
+                        </div>
+                    </div>
+                </li>
+
+                @*        <li class='col-lg-4'>
+            <div class='form-group'>
+                <label class='col-lg-3 control-label'>地区ID</label>
+                <div class='col-lg-9'>
+                    <input type='text' class='form-control'  data-datatype='number' data-fieldnamecn='地区ID' id='Item_DistrictID' name='Item.DistrictID' value='@Model.Item.DistrictID' />
+                </div>
+            </div>
+        </li>
+        <li class='col-lg-4'>
+            <div class='form-group'>
+                <label class='col-lg-3 control-label'>邮编</label>
+                <div class='col-lg-9'>
+                    <input type='text' class='form-control'  data-datatype='string' data-len='0|255' data-fieldnamecn='邮编' id='Item_ZIPCode' name='Item.ZIPCode' value='@Model.Item.ZIPCode' />
+                </div>
+            </div>
+        </li>*@
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>地址</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|255' data-fieldnamecn='地址' id='Item_Address' name='Item.Address' value='@Model.Item.Address' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>永久地址</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|100' data-fieldnamecn='永久地址' id='Item_PermanentAddress' name='Item.PermanentAddress' value='@Model.Item.PermanentAddress' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>紧急联系人</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|50' data-fieldnamecn='紧急联系人' id='Item_EmergencyPerson' name='Item.EmergencyPerson' value='@Model.Item.EmergencyPerson' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>紧急联系电话</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='11|11'  data-fieldnamecn='紧急联系电话' id='Item_EmergencyTele' name='Item.EmergencyTele' value='@Model.Item.EmergencyTele' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>QQ</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|255' data-fieldnamecn='QQ' id='Item_QQ' name='Item.QQ' value='@Model.Item.QQ' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>MSN</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|255' data-fieldnamecn='MSN' id='Item_MSN' name='Item.MSN' value='@Model.Item.MSN' />
+                        </div>
+                    </div>
+                </li>
+                @*        <li class='col-lg-4'>
+            <div class='form-group'>
+                <label class='col-lg-3 control-label'>说明</label>
+                <div class='col-lg-9'>
+                    <input type='text' class='form-control'  data-datatype='string' data-len='0|255' data-fieldnamecn='说明' id='Item_Note' name='Item.Note' value='@Model.Item.Note' />
+                </div>
+            </div>
+        </li>*@
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>配偶姓名</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|50' data-fieldnamecn='配偶姓名' id='Item_SpouseName' name='Item.SpouseName' value='@Model.Item.SpouseName' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>配偶电话</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='11|11' data-fieldnamecn='配偶电话' id='Item_SpouseTele' name='Item.SpouseTele' value='@Model.Item.SpouseTele' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>状态</label>
+                        <div class='col-lg-9'>
+                            @Html.DropDownList("Item.Status", ProjectCache.GetByCategory("GeneralState"), "DValue", "DText", Model.Item.Status, disabled)
+
+                            @*                    <input type='text' @disabled class='form-control'  data-datatype='number' data-fieldnamecn='状态' id='Item_Status' name='Item.Status' value='@Model.Item.Status' />*@
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>入职时间</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control datepicker'  data-datatype='date' data-fieldnamecn='入职时间' id='Item_EntryTime' name='Item.EntryTime' value='@Model.Item.EntryTime' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>转正时间</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control datepicker'  data-datatype='date' data-fieldnamecn='转正时间' id='Item_PositiveTime' name='Item.PositiveTime' value='@Model.Item.PositiveTime' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-4'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>离职时间</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control datepicker'  data-datatype='date' data-fieldnamecn='离职时间' id='Item_QuitDate' name='Item.QuitDate' value='@Model.Item.QuitDate' />
+                        </div>
+                    </div>
+                </li>
+                <li class='col-lg-8'>
+                    <div class='form-group'>
+                        <label class='col-lg-3 control-label'>离职原因</label>
+                        <div class='col-lg-9'>
+                            <input type='text' @disabled class='form-control'  data-datatype='string' data-len='0|2000' data-fieldnamecn='离职原因' id='Item_QuitReason' name='Item.QuitReason' value='@Model.Item.QuitReason' />
+                        </div>
+                    </div>
+                </li>
+
+
+            </ul>
+
+
+        </div>
+
+
+    </div>
+    @*    <div class="col-lg-2">
+
+        <div class='form-horizontal'>
+            <div style="height: 50px">
+                <label class='control-label'>所属机构</label>
+            </div>
+            <div class="form-control" style="height: auto; min-height: 200px;">
+                @Html.JqTreeCheck("OrganizationsTree", "Pre_OrganizationIDs", Model.Item.Pre_UsersOrgViews, ViewData["ListOrganizationsTree"] as TreeList, ViewData["currentPath"].ToString(), false)
+            </div>
+        </div>
+
+    </div>*@
+    <div class="form-footer">
+        <div class="text-right col-md-12">
+            <a href='@Url.Content("~/AuthorizationAreas/Pre_Users/Index")' class='btn btn-primary  btn-Back' >返回</a>
+            @if (disabled == "")
+            {
+                <button class='btn btn-primary btn-Save'>&nbsp;&nbsp;保存&nbsp;&nbsp; </button>
+@*        <button class='btn btn-default btn-Close'>取 消 </button>*@
+            }
+        </div>
+    </div>
+
+
+
+</div>

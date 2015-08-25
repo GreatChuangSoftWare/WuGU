@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+
+    var conts = ViewContext.Controller as BaseController;
+}
+
+<!DOCTYPE html>
+<html lang="@culture">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap.min.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/font-awesome.min.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/mycss.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/jquery.datetimepicker.css")" />
+
+    @RenderSection("PageCssSection", required: false)
+
+</head>
+<body>
+    <!-- haad开始 -->
+    <div class="haed hidden-print">
+        <div class="logo pull-left">
+            <a href="/">
+                <img src="../../Content/images/logo.png"></a>
+        </div>
+        <h4 class="pull-left sys-name">电子商务平台</h4>
+        <div class="pull-right user">
+            <div class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" role="button" href="#"><i class="glyphicon glyphicon-user"></i>@*@conts.LoginInfo.LoginNameCn *@ <i class="caret"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    @*<li class="divider"></li>*@
+                    <li>
+                        <a href="#" tabindex="-1" id="changePass"><i class="glyphicon glyphicon-edit"></i>修改密码</a>
+                        <a href="/BaseInfoAreas/Sys_LoginInfo/LogOut" tabindex="-1"><i class="glyphicon glyphicon-off"></i>退出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear-both "></div>
+    </div>
+    <!-- head end -->
+
+    <div class="main">
+        <!-- menu strat -->
+        <div id="main_left" class="main-left pull-left hidden-print">
+            <div class="menu-title">
+                <span>功能菜单</span>
+                <div class="menu-collapse" id="menu-collapse" data-open="open"><i class="icon-double-angle-left"></i></div>
+            </div>
+            @*@Html.MainMenu()*@
+        </div>
+        <!-- menu end -->
+        <!-- 正文 strat -->
+        @*        <script src="/Scripts/jquery.min.js"></script>
+        <script src="/Scripts/jquery.cookie.js"></script>
+        <script src="/Scripts/bootstrap.min.js"></script>*@
+
+        <script src="~/Scripts/jquery-1.9.1.js"></script>
+        <script src="/Scripts/bootstrap.min.js"></script>
+        <script type='text/javascript' src="~/Scripts/jquery.datetimepicker.js"></script>
+        <script src="~/Scripts/jquery.linq.js"></script>
+        <script src="~/Scripts/Framework.js"></script>
+
+        <script src="~/Scripts/my.js"></script>
+        <div class="main-right" id="main-right">
+            @RenderBody()
+        </div>
+        <!-- 正文 end -->
+        <div style="clear: both;"></div>
+    </div>
+
+    <script type="text/javascript">
+        @*        var Framework = Framework || {};
+        Framework.Page = Framework.Page || {};
+        $.extend(Framework.Page, {
+            BaseURL: "@Url.Content("~/")",
+            AppTime: Date.getUTCDate(new Date()),
+        });
+
+        $(function () {
+            App.init();
+        })*@
+
+    </script>
+
+    @RenderSection("PageJavascriptSection", required: false)
+</body>
+</html>

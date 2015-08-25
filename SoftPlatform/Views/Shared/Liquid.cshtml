@@ -1,0 +1,17 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class='Liquid'>
+    <form>
+        <div class="container-fluid">
+            <div class='form-horizontal merge '>
+                <ul class="form-horizontal merge">
+                    @Html.FormEleHtml(Model.Item, Model.ModularOrFunCode)
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>

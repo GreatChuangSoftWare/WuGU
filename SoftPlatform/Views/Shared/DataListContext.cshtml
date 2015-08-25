@@ -1,0 +1,49 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;
+    var conts = ViewContext.Controller as BaseController;
+    var modulars = conts.Design_ModularOrFun;
+}
+
+<div class="container-fluid targetdom ">
+    <div class='operArea' data-searchmethod='@modulars.SearchMethod' data-url="@modulars.ActionPath" data-targetdom=".targetdom">
+        <div class="search-bar">
+            <div class="tool-bar search-bar ">
+                <div class="col-sm-@modulars.ToolbarButtonAreaWidth">
+                    @Html.ToolBarHtml(Model.Item, Model.ModularOrFunCode)
+                </div>
+                <div class="col-sm-@modulars.ToolbarSearchAreaWidth text-right form-inline" id="SearchArea">
+                    @Html.QueryHtml(Model.Querys, Model.ModularOrFunCode)
+                </div>
+            </div>
+        </div>
+        <div class="sortArea">
+            <div class="dandupaixu">
+                <div class="col-md-9">
+                    <label class="contorl-label pull-left">排序：</label>
+                    @Html.SortHtml(Model.PageQueryBase.RankInfos)
+                </div>
+                <div class="col-md-3 row pull-right">
+                    <div class=" visible-lg-block list-nameber">总<span class="green">@Model.PageQueryBase.TotalItems</span>条，当前 @Model.PageQueryBase.PageIndex/@Model.PageQueryBase.TotalPages 页</div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both; margin-bottom: 10px;"></div>
+
+        <div id='editPItems'>
+            @if (Model.Items.Count > 0)
+            {
+                foreach (var Item in Model.Items)
+                {
+                }
+            }
+        </div>
+        <!-- 分页 -->
+        <div class="page-bar">
+            @Html.Partial("_PagingOption", Model.PageQueryBase)
+        </div>
+    </div>
+</div>
+
+

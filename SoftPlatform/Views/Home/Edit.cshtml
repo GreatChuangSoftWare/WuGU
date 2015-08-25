@@ -1,0 +1,88 @@
+﻿@model MyResponseBase<CM_BankInformationView>
+
+@{
+    //ViewBag.Title = "标题";
+    Layout = null;
+    //基类控制器
+    var baseControll = ViewContext.Controller as BaseController;
+
+    baseControll.Breadcrumb.Items.Clear();
+    baseControll.Breadcrumb.Items = new List<BreadcrumbItem>
+    {
+        //new BreadcrumbItem{Name="aaa",URL="abc"},
+        //new BreadcrumbItem{Name="bbb",URL="bb"},
+        //new BreadcrumbItem{Name="ccc",URL="cc"},
+    };
+    var disabled = "";
+    if (!string.IsNullOrEmpty(Model.Item.Disabled))
+    {
+        disabled = "disabled='disabled'";
+    }
+    else if (!(baseControll.UserHasPermission("CM_ContractInformation.Add") || baseControll.UserHasPermission("CM_ContractInformation.Edit")))
+    {
+        disabled = "disabled='disabled'";
+    }
+
+}
+
+@section PageJavascriptSection
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Pages/CM_BankInformation.js")"></script>
+}
+
+<div id='editPItems'>
+    @if (Model.Items.Count > 0)
+    {
+        foreach (var Item in Model.Items)
+        {
+        <div class="editPItem">
+            <div class="main_wrap">
+                <div class="kPanel_wrap panel panel-primary" style="width: 100%;">
+                    <div class="panel-heading">
+                        <span class="kPanel_title_text">银行名称:@Item.BankName
+                            当前状态：@Item.CurrentStateCn
+                        </span>
+
+                        <div class="pull-right dropup js_close" style="height: 30px; padding: 0 20px; cursor: pointer;">
+                            <span class="caret"></span>
+                        </div>
+                    </div>
+                    <div class="kPanel_content_wrap panel-body">
+                        <div class="kPanel_content">
+                            <div class='mastEditArea editArea'>
+                                <form>
+                                    <div class="container-fluid">
+                                        <div class='form-horizontal merge '>
+                                            <ul class="form-horizontal merge">
+                                                @Html.FormEleHtml(Model.Item, Model.ModularOrFunCode, 4)
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div style="clear: both"></div>
+                            <!--列表页面-->
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="overflow: hidden;">
+                        <div class="pull-left">
+                            @*<button class="btn btn-primary js_addPanel btn-sm"><span class="glyphicon glyphicon-plus-sign"></span>增加一套房产</button>*@
+                        </div>
+                        <div class="mybtntool pull-right">
+                            @Html.BtnFooterHtml(Model.Item, Model.ModularOrFunCode)
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    }
+</div>
+
+@if (disabled == "" && baseControll.UserHasPermission("CM_BankInformation.Add"))
+{
+    <div class='form-footer'>
+        <button class="btn btn-primary js_addPanel btn-sm btn-AddBank"><span class="glyphicon glyphicon-plus-sign"></span>增加银行</button>
+    </div>
+}

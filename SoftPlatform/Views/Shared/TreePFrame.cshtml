@@ -1,0 +1,50 @@
+﻿@model MyResponseBase
+
+@{
+    var conts = ViewContext.Controller as BaseController;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var modulars = conts.Design_ModularOrFun;
+
+    var request = new
+    {
+        FunNameEn = Model.FunNameEn,
+        Item = Model.BaseAction
+    };
+}
+
+<div>
+    <div>
+        @*@Html.RenderBreadcrumb()*@
+        @Html.Navigation(Model.Item, Model.ModularOrFunCode)
+    </div>
+
+    <div class="container-fluid mycon">
+        <div class="col-md-2">
+            <div class="panel panel-primary">
+                @Html.JqTreeN(Model.Item, Model.TreeID, Model.TreeQueryType)
+            </div>
+        </div>
+        <div class="col-md-10">
+            @Html.Partial(Model.ViewContextName, Model)
+        </div>
+    </div>
+</div>
+
+
+@*<a class="btn-FwBtnSubmit" data-fun="2" href="javascript:void(0);" data-posturl="/ProductAreas/P_Product/ProductByCategory?Querys[0].FieldName=P_CategoryID___equal&amp;Querys[0].Value=2">
+    <i class="glyphicon glyphicon-folder-open"></i>
+    香磨五谷</a>
+<a class="btn-FwBtnSubmit" data-fun="2" href="javascript:void(0);" data-posturl="/ProductAreas/P_Product/ProductByCategory?Querys[0].FieldName=P_CategoryID___equal&amp;Querys[0].Value=2">
+    <i class="glyphicon glyphicon-folder-close"></i>
+    香磨五谷</a>
+<a class="btn-FwBtnSubmit" data-fun="2" href="javascript:void(0);" data-posturl="/ProductAreas/P_Product/ProductByCategory?Querys[0].FieldName=P_CategoryID___equal&amp;Querys[0].Value=4">
+    御致茗芳</a>*@
+
+<script src="~/Scripts/jquery.myTree.js"></script>
+<script>
+    $(function () {
+        $('#@Model.TreeID').myTree({
+            subClass: 'sub'
+        })
+    })
+</script>

@@ -1,0 +1,49 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    List<TextValue> LoginCategoryIDs = new List<TextValue>
+    { 
+        new TextValue{Text="用户和代理商",Value="3"},
+        new TextValue{Text="用户",Value="1"},
+        new TextValue{Text="代理商",Value="2"},
+    };
+
+    var item = Model.Item;
+}
+
+<tr data-design_modularorfunid="@item.Design_ModularOrFunID" >
+    <td>
+        @(1)
+    </td>
+    <td>
+        <a href="javascript:void(0);" data-btnbehavior="11" data-fun="41" data-btnnamecn="删除" class="btn btn-primary btn-xs   btn-FwRowUIPopup">
+            <span class="glyphicon glyphicon-trash"></span>删除</a>
+        @*<a href="/SysAreas/Design_ModularPageField/EditList?Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" >页面设置</a>*@
+        @*<a href="~/AuthorizationAreas/Pre_Role/Detail?Item.Pre_RoleID=@item.Pre_RoleID" class='btn btn-xs  btn-primary'>删除</a>*@
+        <a href="~/SysAreas/Design_ModularOrFunRefControll/EditList?Item.Design_PremSetID=@item.Design_ModularOrFunID&Item.Design_ModularOrFunID=@Model.Item.Design_ModularOrFunID" class='btn btn-xs  btn-primary'>权限控制器配置</a>
+    </td>
+    <td>
+        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='排序序号' id='Sort' name='Sort' value='@item.Sort' />
+    </td>
+    <td>
+        <input type='text'  class='form-control'  data-datatype='string' 
+                                        data-fieldnamecn='权限名称' id='ModularName' name='ModularName' value='@item.ModularName' />
+    </td>
+    <td>
+        @Html.DropDownList("LoginCategoryID", LoginCategoryIDs, "Value", "Text", item.LoginCategoryID)
+    </td>
+    <td>
+        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='数据权限' id='DataRightDropDown' name='DataRightDropDown' value='@item.DataRightDropDown' />
+    </td>
+    <td>
+        <input type='text'  class='form-control'  data-datatype='int' 
+                                        data-fieldnamecn='权限父级节点ID' id='Design_ModularOrFunParentID' name='Design_ModularOrFunParentID' value='@item.Design_ModularOrFunParentID' />
+    </td>
+    <td>
+        @item.ParentModularName
+    </td>
+</tr>

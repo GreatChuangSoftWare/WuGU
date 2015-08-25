@@ -1,0 +1,84 @@
+﻿@{
+    Layout = null;
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+
+    var conts = ViewContext.Controller as BaseController;
+    var menus = conts.Menus.Items;
+}
+
+<!DOCTYPE html>
+<html lang="@culture">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap.min.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/font-awesome.min.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap-multiselect.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/mycss.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/css/jquery.datetimepicker.css")" />
+    <link href="/Scripts/uploadify.css" rel="stylesheet" />
+
+    @RenderSection("PageCssSection", required: false)
+
+</head>
+<body>
+    <!-- haad开始 -->
+    <div class="haed hidden-print">
+        <div class="logo pull-left">
+            <a href="/">
+                <img src="/Content/images/u21.png" height="50"><img src="/Content/images/u23.png" height="40"></a>
+        </div>
+        <h4 class="pull-left sys-name"></h4>
+        <div class="pull-right user">
+            @conts.LoginInfo.LoginNameCn
+        </div>
+        <div class="clear-both "></div>
+    </div>
+    <!-- head end -->
+
+    <div class="main">
+        <script src="/Scripts/jquery-1.9.1.js"></script>
+        <script src="/Scripts/bootstrap.min.js"></script>
+
+        @*<script src="/Scripts/bootstrap.js"></script>*@
+        <script src="/Scripts/bootstrap-multiselect.js"></script>
+        <script type='text/javascript' src="~/Scripts/jquery.datetimepicker.js"></script>
+        <script src="~/Scripts/jquery.linq.js"></script>
+        <!-- 配置文件 -->
+        <script type="text/javascript" src="/Scripts/ueditor.config.js"></script>
+        <!-- 编辑器源码文件 -->
+        <script type="text/javascript" src="/Scripts/ueditor.all.js"></script>
+        <script src="/Scripts/swfobject.js"></script>
+        <script src="/Scripts/jquery.uploadify.v2.1.4-min.js"></script>
+
+        <script src="~/Scripts/Framework.js"></script>
+
+        <script src="~/Scripts/my.js"></script>
+        <div class="main-right" id="main-right">
+            @RenderBody()
+        </div>
+        <!-- 正文 end -->
+        <div style="clear: both;"></div>
+    </div>
+
+    <script type="text/javascript">
+        @*        var Framework = Framework || {};
+        Framework.Page = Framework.Page || {};
+        $.extend(Framework.Page, {
+            BaseURL: "@Url.Content("~/")",
+            AppTime: Date.getUTCDate(new Date()),
+        });
+
+        $(function () {
+            App.init();
+        })*@
+
+    </script>
+
+    @RenderSection("PageJavascriptSection", required: false)
+</body>
+</html>

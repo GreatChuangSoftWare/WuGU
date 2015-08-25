@@ -1,0 +1,99 @@
+﻿@model MyResponseBase
+
+@{
+    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+
+    List<TextValue> OperPoss = new List<TextValue>
+    { 
+        new TextValue{Text="工具条",Value="1"},
+        new TextValue{Text="表格行",Value="2"},
+        new TextValue{Text="脚",Value="3"},
+    };
+
+    List<TextValue> BtnTypes = new List<TextValue>
+    { 
+        new TextValue{Text="一般按钮",Value="1"},
+        new TextValue{Text="上传按钮",Value="2"},
+    };
+    
+    List<TextValue> BtnBehaviors = new List<TextValue>
+    { 
+        //new TextValue{Text="弹窗UI",Value="11"},
+        //new TextValue{Text="弹窗Get",Value="12"},
+        //new TextValue{Text="跳转",Value="13"},
+        //new TextValue{Text="提交后台",Value="21"},
+        
+        new TextValue{Text="弹窗UI",Value="11"},
+        new TextValue{Text="弹窗UI--批量",Value="16"},
+        new TextValue{Text="弹窗Get",Value="12"},
+        new TextValue{Text="跳转",Value="13"},
+        new TextValue{Text="Url查询-Ajax",Value="24"},
+
+        new TextValue{Text="查询(导出)",Value="14"},
+        new TextValue{Text="提交后台",Value="21"},
+        new TextValue{Text="弹窗-选择",Value="15"},                
+
+    };
+
+    List<TextValue> PopupAfterTableFuns = new List<TextValue>
+    { 
+        new TextValue{Text="==后续==",Value=""},
+
+        new TextValue{Text="保存并关闭-插入行(弹窗Get)",Value="101"},
+        new TextValue{Text="保存并添加-插入行(弹窗Get)",Value="102"},
+        new TextValue{Text="保存并添加-插入行",Value="103"},
+
+        new TextValue{Text="保存并关闭-替换行(弹窗Get)",Value="111"},
+        new TextValue{Text="保存并编辑-替换行(弹窗Get)",Value="112"},
+
+        new TextValue{Text="保存并跳转-(新页)",Value="121"},
+        new TextValue{Text="保存并编辑-(新页)",Value="122"},
+        new TextValue{Text="保存并查询-Ajax(新页)",Value="123"},
+
+        //new TextValue{Text="前台删除(弹窗UI)",Value="41"},
+
+        //new TextValue{Text="==后续==",Value=""},
+        //new TextValue{Text="保存并添加",Value="13"},
+        //new TextValue{Text="保存继续编辑",Value="26"},
+        //new TextValue{Text="保存关闭-插入行)",Value="11"},
+        //new TextValue{Text="保存关闭-替换行(保存跳转)",Value="27"},
+
+        //new TextValue{Text="上一条",Value="24"},
+        //new TextValue{Text="下一条",Value="25"},
+        //new TextValue{Text="关闭窗体",Value="18"},
+        //new TextValue{Text="关闭并重载",Value="19"},
+        //new TextValue{Text="确认并下一条",Value="23"},        
+    };
+}
+
+<tr data-design_modularorfunbtnid="">
+    <td>
+        @(1)
+    </td>
+    <td>
+        <a href='javascript:void(0);' data-btnbehavior="11" data-fun="41" data-btnnamecn="删除"
+            class='btn btn-primary btn-xs   btn-FwRowUIPopup'>
+            <span class='glyphicon glyphicon-trash'></span>删除</a>
+        @*<a href="~/AuthorizationAreas/Pre_Role/Detail?Item.Pre_RoleID=@item.Pre_RoleID" class='btn btn-xs  btn-primary'>删除</a>*@
+    </td>
+    <td>
+        <input type='text' class='form-control' data-datatype='string'
+            data-fieldnamecn='排序' id='Item_Sort' name='Sort' value='' />
+    </td>
+    <td>
+        <input type='text' class='form-control' data-datatype='string'
+            data-fieldnamecn='按钮名称' id='BtnNameCn' name='BtnNameCn' value='' />
+    </td>
+    <td>
+        @Html.DropDownList("BtnType", BtnTypes, "Value", "Text", "")
+    </td>
+    <td>
+        @Html.DropDownList("OperPos", OperPoss, "Value", "Text", "")
+    </td>
+    <td>
+        @Html.DropDownList("BtnBehavior", BtnBehaviors, "Value", "Text", "")
+    </td>
+    <td>
+        @Html.DropDownList("PopupAfterTableFun", PopupAfterTableFuns, "Value", "Text", "")
+    </td>
+</tr>
