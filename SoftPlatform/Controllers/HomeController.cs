@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 //修改测试
 //修改测试2
+//软件中进行修改
 namespace SoftPlatform.Controllers
 {
     public class HomeController : BaseController
